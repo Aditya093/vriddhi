@@ -65,11 +65,7 @@ class _BasicDetailsFormState extends State<BasicDetailsForm> {
               ),
               Text(
                 "Answer the questions given below",
-                style: TextStyle(
-                  fontFamily: "Catamaran",
-                  fontSize: 15.0,
-                  color: Color(0xFF9B9B9B),
-                ),
+                style: kGreySubtitleTS,
               ),
               FormBuilder(
                 key: _formKey,

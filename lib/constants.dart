@@ -61,6 +61,7 @@ const kFormTextFieldLabelStyle = TextStyle(
   fontSize: 20.0,
   color: kHeadingTextColor,
   fontWeight: FontWeight.w500,
+  height: 2
 );
 
 const kFormTextFieldStyle = InputDecoration(
@@ -75,12 +76,14 @@ const kFormPrimaryHeadingStyle = TextStyle(
   fontWeight: FontWeight.w900,
   fontSize: 28.0,
   color: kHeadingTextColor,
+  height: 2
 );
 
 const kFormSecondaryHeadingStyle = TextStyle(
   fontFamily: "Catamaran",
   fontSize: 15.0,
   color: Color(0xFF9B9B9B),
+  height: 2
 );
 
 const kFormLabelTextFieldStyle = InputDecoration(
@@ -91,4 +94,11 @@ const kFormLabelTextFieldStyle = InputDecoration(
   hintStyle: TextStyle(color: kSecondaryHeadingTextColor),
   labelText: "",
   labelStyle: TextStyle(color: kButtonPositiveColor),
+);
+
+const kGreySubtitleTS = TextStyle(
+  fontFamily: "Catamaran",
+  fontSize: 15.0,
+  color: Color(0xFF9B9B9B),
+  height: 2
 );
