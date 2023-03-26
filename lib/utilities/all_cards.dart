@@ -57,59 +57,82 @@ class RectangleCard extends StatelessWidget {
   final String titleText;
   final String descriptionText;
 
-  const RectangleCard({required this.relatedImagePath,
-  required this.titleText, @required this.onTapped, required this.descriptionText});
+  const RectangleCard(
+      {required this.relatedImagePath,
+      required this.titleText,
+      @required this.onTapped,
+      required this.descriptionText});
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(1),
-      child: Card(
-        margin: const EdgeInsets.only(left: 20, right: 20, bottom: 8),
-        color: kCardColor,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(
-            Radius.circular(10),
-          ),
-        ),
-        child: ListTile(
-          // crossAxisAlignment: CrossAxisAlignment.center,
-          contentPadding: EdgeInsets.all(5),
-            //Feature Icon
-          leading: Image.asset(
-              relatedImagePath,
-              height: 80,
-              width: 80,
+      child: GestureDetector(
+        onTap: onTapped,
+        child: Card(
+          margin: const EdgeInsets.only(left: 20, right: 20, bottom: 8),
+          color: kCardColor,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(
+              Radius.circular(10),
             ),
-            //Title Text
-          title: Text(
-              titleText,
-              style: TextStyle(fontSize: 23, color: kNavyBlueColor,height: 1),
+          ),
+          child: ListTile(
+            // crossAxisAlignment: CrossAxisAlignment.center,
+            contentPadding: EdgeInsets.all(8),
+              //Feature Icon
+            leading: Image.asset(
+                relatedImagePath,
+                height: 80,
+                width: 80,
               ),
+              //Title Text
+            title: Text(
+                titleText,
+                style: TextStyle(fontSize: 23, color: kNavyBlueColor,height: 1),
+                ),
 
-          subtitle: Text(descriptionText, style: kSubtitleTS),
-
-        ),
+                  subtitle: Text(descriptionText, style: kSubtitleTS),
+                ),
+              ),
       ),
     );
   }
 }
 
 class TaskRectangleCard extends StatelessWidget {
-  final Widget? cardChild;
-  const TaskRectangleCard({@required this.cardChild});
+  const TaskRectangleCard({
+    required this.titleText,
+    required this.descriptionText,
+    @required this.iconOnRight,
+  });
+
+
+  final String titleText;
+  final String descriptionText;
+  final IconData? iconOnRight;
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 80,
+    return Card(
+      // height: 80,
       // width: 170,
+      color: kCardColorSecond,
       margin: EdgeInsets.only(left: 15, right: 15, bottom: 10),
-      decoration: BoxDecoration(
-        color: kCardColorSecond,
+      shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.all(
           Radius.circular(20),
         ),
       ),
-      child: cardChild,
+      child: Padding(
+        padding: EdgeInsets.all(8),
+        child: ListTile(
+          title: Text(titleText,style: TextStyle(fontSize: 18, color: kNavyBlueColor,height: 1),),
+          subtitle: Text(
+            descriptionText,
+            style: TextStyle(color: kDescriptionFontColor),),
+          trailing: Icon(Icons.arrow_forward_ios,color: kNavyBlueColor,),
+        ),
+      ),
     );
   }
 }
@@ -263,15 +286,83 @@ class UserProfileRectangleCards extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-        margin: EdgeInsets.only(left: 20,right: 10,bottom: 10),
+        margin: EdgeInsets.only(left: 20, right: 10, bottom: 10),
         elevation: 2,
         child: ListTile(
-          leading: FaIcon(leadingIcon, color: Colors.black,),
-          title:  Text(title, style: kUserProfileCardsTitleTS),
-          trailing:Icon(Icons.arrow_forward_ios,size: 15,),
-        )
+          leading: FaIcon(
+            leadingIcon,
+            color: Colors.black,
+          ),
+          title: Text(title, style: kUserProfileCardsTitleTS),
+          trailing: Icon(
+            Icons.arrow_forward_ios,
+            size: 15,
+          ),
+        ));
+  }
+}
+
+class FewTaskCardsForWeek extends StatelessWidget {
+  const FewTaskCardsForWeek({required this.title, @required this.onTapped});
+  final String title;
+  final VoidCallback? onTapped;
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20.0),
+      child: GestureDetector(
+        onTap: onTapped,
+        child: Card(
+          color: kCardColor,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
+          ),
+          child: ListTile(
+            contentPadding: EdgeInsets.all(10),
+            title: Text(
+              title,
+              style: TextStyle(fontSize: 18, height: 1.5),
+            ),
+            trailing: Icon(Icons.arrow_forward_ios),
+          ),
+        ),
+      ),
     );
   }
 }
 
-
+// Row(
+// children: [
+// //Feature Icon
+// // Image.asset(
+// //   relatedImagePath,
+// //   height: 80,
+// //   width: 80,
+// // ),
+// SizedBox(width: 12),
+// //Title Text + Descrp Text
+// Column(
+// crossAxisAlignment: CrossAxisAlignment.start,
+// children: [
+// // Title Text
+// Text(
+// titleText,
+// style: TextStyle(fontSize: 23, color: kNavyBlueColor),
+// ),
+// // Descrp Text
+// Flexible(
+// child: Text(
+// descriptionText,
+// style: TextStyle(color: kDescriptionFontColor),
+// ),
+// ),
+// ],
+// ),
+// Spacer(),
+// //Icon
+// Align(
+// alignment: Alignment.centerRight,
+// child:Icon(iconOnRight,),
+// ),
+// ],
+// )

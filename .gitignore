@@ -48,3 +48,6 @@ app.*.map.json
 
 # Firestore
 */google-services.json
+
+#backend - data
+*/task.json

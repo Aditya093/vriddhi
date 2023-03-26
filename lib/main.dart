@@ -54,8 +54,6 @@ class Vriddhi extends StatelessWidget {
         WeatherScreen.id : (context) => WeatherScreen(),
         ExploreScreen.id : (context) => ExploreScreen(),
         DiseaseDetectionScreen.id : (context) => DiseaseDetectionScreen(),
-
-
       },
     );
   }

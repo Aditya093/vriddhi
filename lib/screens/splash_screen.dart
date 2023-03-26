@@ -25,13 +25,10 @@ class _SplashScreenState extends State<SplashScreen> {
     return Scaffold(
       backgroundColor: kPrimaryAppColor,
       body: Center(
-        child: Hero(
-          tag: 'starting_logo',
-          child: Image.asset(
-            'assets/images/logo/logo.png',
-            height: 250,
-            width: 250,
-          ),
+        child: Image.asset(
+          'assets/images/logo/logo.png',
+          height: 250,
+          width: 250,
         ),
       ),
     );

@@ -47,6 +47,7 @@ flutter:
      - assets/images/crops/
      - assets/images/scenes_farming/
      - assets/images/temp/
+     - assets/task.json
 
   fonts:
      - family: Jaldi

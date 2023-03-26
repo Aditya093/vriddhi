@@ -17,7 +17,7 @@ class _CropGuideScreenState extends State<CropGuideScreen> {
 
   void updateList(String value){
       setState(() {
-        displayList = CropGuideList.cropGuideList.where((element) => element.title!.toLowerCase().contains(value.toLowerCase())).toList();
+        displayList = CropGuideList.cropGuideList.where((element) => element.title.toLowerCase().contains(value.toLowerCase())).toList();
       });
   }
 

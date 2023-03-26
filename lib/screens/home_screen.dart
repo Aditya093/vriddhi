@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:vriddhi_0/screens/basic_details_screen.dart';
 import 'package:vriddhi_0/screens/crop_guide_screen.dart';
+import 'package:vriddhi_0/screens/disease_detection_screen.dart';
 import 'package:vriddhi_0/screens/explore_screen.dart';
 import 'package:vriddhi_0/utilities/all_card_content.dart';
 import 'package:vriddhi_0/utilities/all_cards.dart';
@@ -52,14 +54,16 @@ class _HomeScreenState extends State<HomeScreen> {
                     'assets/images/feature_icons/Feature_Disease_Prediction.png',
                 titleText: 'Disease Detection',
                 descriptionText: 'Detect the disease of the crop',
-
+                onTapped:  (){Navigator.pushNamed(context, DiseaseDetectionScreen.id);},
             ),
              RectangleCard(
                 relatedImagePath:
                     'assets/images/feature_icons/Feature_Crop.png',
                 titleText: 'Predict Crop',
-                descriptionText: 'Predict the most suitable crop for your land',
-            ),
+                descriptionText: 'Predict the most suitable crop for land',
+                onTapped:  (){Navigator.pushNamed(context, BasicDetailsScreen.id);},
+
+             ),
             //Crops + View All
             Padding(
               padding: const EdgeInsets.only(left: 20.0, right: 20.0),

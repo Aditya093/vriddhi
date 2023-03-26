@@ -89,11 +89,11 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                           );
                         },
                         child:   CircleAvatar(
-                          child: ClipOval(
-                            child: (profileimage != null)
-                                ? Image.file(File(profileimage!.path),fit: BoxFit.cover,height: 150,width: 150,)
-                                : Image.asset('images/newimage.png'),
-                          ),
+                          // child: ClipOval(
+                          //   child: (profileimage != null)
+                          //       ? Image.file(File(profileimage!.path),fit: BoxFit.cover,height: 150,width: 150,)
+                          //       : Image.asset('images/newimage.png'),
+                          // ),
                           backgroundColor: kGreyColor,
                           radius: 60,
                         ) ,

@@ -31,11 +31,11 @@ class BigAppBar extends StatelessWidget {
           // ),
           //User Circle - floating action button
           Spacer(),
-          FloatingActionButton(
-            elevation: 0,
-            onPressed: () {},
-            backgroundColor: kGreyColor,
-          ),
+          // FloatingActionButton(
+          //   elevation: 0,
+          //   onPressed: () {},
+          //   backgroundColor: kGreyColor,
+          // ),
         ],
       ),
     );
