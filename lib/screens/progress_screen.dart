@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:vriddhi_0/screens/progress_task_details_screen.dart';
 import 'package:vriddhi_0/utilities/all_card_content.dart';
 import 'package:vriddhi_0/utilities/all_cards.dart';
 import 'package:vriddhi_0/widgets/heading_row_of_card.dart';
@@ -12,37 +13,42 @@ class ProgressScreen extends StatefulWidget {
 }
 
 class _ProgressScreenState extends State<ProgressScreen> {
+  final int current_week = 1;
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        // appBar: AppBar(
-        //   title: Text('Vridhhi'),
-        // ),
         body: Material(
           child: ListView(
             children: [
               //Stackedd App Bar with progress box
-              StackedAppAndBox(boxCardContent: CardContentProgressBox(),),
-              //Heading row tasks and view all
+              StackedAppAndBox(
+                boxCardContent: CardContentProgressBox(),
+              ),
+              //Weekly Task Cards
               Padding(
                 padding: const EdgeInsets.only(left: 22.0, right: 22.0),
-                child: HeadingRowOfRectCards(heading: 'Tasks', onTapViewAll: (){},),
+                child: HeadingRowOfRectCards(
+                  heading: 'Week $current_week',
+                  onTapViewAll: () {
+                    Navigator.pushNamed(context, ProgressTaskDetailsScreen.id);
+                  },
+                ),
               ),
-              //task cards
-              // RectangleCard(),
-              // RectangleCard(),
-              //Weekly Cards with heading
+              FewTaskCardsForWeek(title: "Prepare the land for planting",),
+              FewTaskCardsForWeek(title: "Apply fertilizer to the soil",),
+              FewTaskCardsForWeek(title: "Plant maize seeds",),
+
               Padding(
                 padding: const EdgeInsets.only(left: 22.0, right: 22.0),
-                child: HeadingRowOfRectCards(heading: 'Week 10', onTapViewAll: (){},),
+                child: HeadingRowOfRectCards(
+                  heading: 'Week ${current_week+1}',
+                  onTapViewAll: () {},
+                ),
               ),
-              // RectangleCard(),
-              Padding(
-                padding: const EdgeInsets.only(left: 22.0, right: 22.0),
-                child: HeadingRowOfRectCards(heading: 'Week 11',onTapViewAll: (){},),
-              ),
-              // RectangleCard(),
+              FewTaskCardsForWeek(title: "Apply weed control",),
+              FewTaskCardsForWeek(title: "Check soil moisture levels",),
+              FewTaskCardsForWeek(title: 'Monitor the growth of the maize plants', ),
             ],
           ),
         ),
