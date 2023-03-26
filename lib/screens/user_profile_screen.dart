@@ -47,57 +47,85 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                 margin: EdgeInsets.only(left: 65, bottom: 50),
               ),
               Container(
-                  margin: EdgeInsets.only(bottom: 60,left: 5),
-                  child: Align(
-                      alignment: Alignment.centerLeft,
-                      child: InkWell(
-                        onTap: (){
-                          showDialog(
-                            context: context,
-                            builder: (BuildContext context) {
-                              return AlertDialog(
-                                title: Text(
-                                    "Select your Profile Picture"),
-                                actions: [
-                                  Center(
-                                    child: ElevatedButton(
-                                      style: ElevatedButton.styleFrom(
-                                        backgroundColor: kButtonPositiveColor, // Background color
-                                      ),
-                                      child: Row(
-                                        mainAxisSize: MainAxisSize.min,
-                                        children: [
-                                          Icon( // <-- Icon
-                                            FontAwesomeIcons.imagePortrait,
-                                            size: 24.0,
-                                          ),
-                                          Text('Upload from Gallery',),
-                                          // <-- Text
-                                          SizedBox(
-                                            width: 5,
-                                          ),
-                                        ],
-                                      ),
-                                      onPressed: () async {
-                                        await getImage(ImageSource.gallery);
-                                      },
+                margin: EdgeInsets.only(bottom: 60, left: 5),
+                child: Align(
+                  alignment: Alignment.centerLeft,
+                  child: InkWell(
+                    onTap: () {
+                      showModalBottomSheet(
+                        isScrollControlled: true,
+                        context: context,
+                        builder: (context) => SingleChildScrollView(
+                          child: Container(
+                            padding: EdgeInsets.only(
+                                bottom: MediaQuery.of(context)
+                                    .viewInsets
+                                    .bottom),
+                            child: Container(
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  ListTile(
+                                    leading: Icon(
+                                      FontAwesomeIcons.camera,
+                                      color: kButtonPositiveColor,
                                     ),
+                                    title: Text(
+                                      "Capture from Camera",
+                                      style: TextStyle(
+                                          color: kButtonPositiveColor,
+                                          fontSize: 15.0,
+                                          fontWeight: FontWeight.w600),
+                                    ),
+                                    onTap: () async {
+                                      await getImage(ImageSource.camera);
+                                    },
+                                  ),
+                                  ListTile(
+                                    leading: Icon(
+                                      FontAwesomeIcons.images,
+                                      color: kButtonPositiveColor,
+                                    ),
+                                    title: Text(
+                                      "Select from Gallery",
+                                      style: TextStyle(
+                                          color: kButtonPositiveColor,
+                                          fontSize: 15.0,
+                                          fontWeight: FontWeight.w600),
+                                    ),
+                                    onTap: () async {
+                                      await getImage(ImageSource.gallery);
+                                    },
                                   ),
                                 ],
-                              );
-                            },
-                          );
-                        },
-                        child:   CircleAvatar(
-                          // child: ClipOval(
-                          //   child: (profileimage != null)
-                          //       ? Image.file(File(profileimage!.path),fit: BoxFit.cover,height: 150,width: 150,)
-                          //       : Image.asset('images/newimage.png'),
-                          // ),
-                          backgroundColor: kGreyColor,
-                          radius: 60,
-                        ) ,
-                      ),),),
+                              ),
+                            ),
+                          ),
+                        ),
+                      );
+                    },
+                    child: CircleAvatar(
+                      child: ClipOval(
+                        child: (profileimage != null)
+                            ? Image.file(
+                          File(profileimage!.path),
+                          fit: BoxFit.cover,
+                          height: 150,
+                          width: 150,
+                        )
+                            : Image.asset(
+                          "assets/images/temp/User_Icon.png",
+                          fit: BoxFit.cover,
+                          height: 150,
+                          width: 150,
+                        ),
+                      ),
+                      backgroundColor: Color(0xFFB3B3B3),
+                      radius: 60,
+                    ),
+                  ),
+                ),
+              ),
               UserProfileRectangleCards(leadingIcon: FontAwesomeIcons.addressBook,title: 'User Information',),
             ],
           ),

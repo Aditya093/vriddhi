@@ -4,7 +4,6 @@ import 'package:vriddhi_0/screens/basic_details_screen.dart';
 import 'package:vriddhi_0/screens/crop_guide_screen.dart';
 import 'package:vriddhi_0/screens/current_screen.dart';
 import 'package:vriddhi_0/screens/disease_detection_screen.dart';
-import 'package:vriddhi_0/screens/dummy_my_screen.dart';
 import 'package:vriddhi_0/screens/explore_screen.dart';
 import 'package:vriddhi_0/screens/get_started.dart';
 import 'package:vriddhi_0/screens/home_screen.dart';
