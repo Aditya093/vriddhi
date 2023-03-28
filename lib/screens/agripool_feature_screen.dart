@@ -9,7 +9,7 @@ class AgriPoolFeatureScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ColorScheme colors = Theme.of(context).colorScheme;
+    
     return SafeArea(
         child: Scaffold(
           body: Container(
@@ -23,7 +23,7 @@ class AgriPoolFeatureScreen extends StatelessWidget {
             child: Column(
               children: [
                 Text("Capture or Upload a Photo", style: kFormPrimaryHeadingStyle.copyWith(fontSize: 20.0),),
-                SizedBox(height: 50.0,),
+                SizedBox(height: 60.0,),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
