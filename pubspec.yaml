@@ -48,7 +48,9 @@ flutter:
      - assets/images/scenes_farming/
      - assets/images/temp/
      - assets/images/pool_features/
+     - assets/images/plant_diseases/
      - assets/task.json
+     - assets/disease_guide.json
 
   fonts:
      - family: Jaldi
