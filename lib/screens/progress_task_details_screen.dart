@@ -40,18 +40,23 @@ class _ProgressTaskDetailsScreenState extends State<ProgressTaskDetailsScreen> {
             children: [
               //Week Title + menu icon
               Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                // crossAxisAlignment: CrossAxisAlignment.center,
-                children: <Widget>[
-                  Expanded(
-                    child: Center(
-                      child: Text(
-                        'Week $_currentWeek',
-                        style: kWeekTitleTS,
-                      ),
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  IconButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      icon: Icon(Icons.arrow_back_ios)),
+                  Text(
+                    'Week $_currentWeek',
+                    style: kWeekTitleTS,
+                  ),
+                  IconButton(
+                    onPressed: () {},
+                    icon: Icon(
+                      Icons.more_vert,
                     ),
                   ),
-                  Icon(Icons.more_vert,),
                 ],
               ),
               //Image

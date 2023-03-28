@@ -120,7 +120,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                           width: 150,
                         ),
                       ),
-                      backgroundColor: Color(0xFFB3B3B3),
+                      backgroundColor: kButtonPositiveColor,
                       radius: 60,
                     ),
                   ),
