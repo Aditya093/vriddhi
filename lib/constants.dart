@@ -24,7 +24,7 @@ const kTitleOfWeekCardsTS = TextStyle(
     fontWeight: FontWeight.w600,
     fontFamily: 'Catamaran');
 const kWeekTitleTS = TextStyle(
-  fontSize: 30,
+  fontSize: 25,
   color: kNavyBlueColor,
   fontFamily: 'Catamaran',
   fontWeight: FontWeight.bold,

@@ -22,6 +22,8 @@ class SquareCard extends StatelessWidget {
   }
 }
 
+
+
 class BoxCard extends StatelessWidget {
   final Widget cardChild;
   final VoidCallback? onTapped;
@@ -191,6 +193,67 @@ class SmallSquareCard extends StatelessWidget {
   }
 }
 
+class AgriPoolSquareCard extends StatelessWidget {
+  final String title;
+  final String imagePath;
+  final VoidCallback? onTapCard;
+  const AgriPoolSquareCard(
+      {Key? key,
+        required this.title,
+        required this.imagePath,
+        @required this.onTapCard})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onTapCard,
+      child: Card(
+        elevation: 4,
+        // margin: EdgeInsets.all(8),
+        color: Color(0xFFF0F4F1),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10),
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            SizedBox(
+              height: 10,
+            ),
+            Image.asset(
+              imagePath,
+              height: 80,
+              width: 80,
+            ),
+            // SizedBox(height: 10),
+            Flexible(
+              child: Padding(
+                padding: EdgeInsets.only(top: 5),
+                child: Text(
+                  title,
+                  // softWrap: true,
+                  maxLines: 2,
+                  textAlign: TextAlign.center,
+
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                    // height: 1,
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(height: 4),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+
 class SmallWeatherSpecsCard extends StatelessWidget {
   final String title;
   final IconData icon;
@@ -301,6 +364,8 @@ class FewTaskCardsForWeek extends StatelessWidget {
   const FewTaskCardsForWeek({required this.title, @required this.onTapped});
   final String title;
   final VoidCallback? onTapped;
+  final bool isDone = true;
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -314,11 +379,12 @@ class FewTaskCardsForWeek extends StatelessWidget {
           ),
           child: ListTile(
             contentPadding: EdgeInsets.all(10),
+            leading: Icon(isDone ? FontAwesomeIcons.hourglassStart : FontAwesomeIcons.hourglassEnd, size: 30.0, color: kButtonPositiveColor,),
             title: Text(
               title,
               style: TextStyle(fontSize: 18, height: 1.5),
             ),
-            trailing: Icon(Icons.arrow_forward_ios),
+            trailing: Icon(isDone ? Icons.arrow_forward_ios : Icons.check_circle_outline_rounded, size: isDone ? 20.0 : 25.0, color: kButtonPositiveColor,),
           ),
         ),
       ),

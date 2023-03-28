@@ -52,6 +52,7 @@ flutter:
      - assets/images/crops/
      - assets/images/scenes_farming/
      - assets/images/temp/
+     - assets/images/pool_features/
      - assets/task.json
 
   fonts:
