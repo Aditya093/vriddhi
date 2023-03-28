@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:vriddhi_0/constants.dart';
 import 'package:vriddhi_0/data_lists/crop_guide_list.dart';
+import 'package:vriddhi_0/screens/crop_details_screen.dart';
 import 'package:vriddhi_0/utilities/all_card_content.dart';
 import 'package:vriddhi_0/utilities/all_cards.dart';
 
@@ -13,12 +14,25 @@ class CropGuideScreen extends StatefulWidget {
 
 class _CropGuideScreenState extends State<CropGuideScreen> {
 
-  List<CardContentCropGuide> displayList = List.from(CropGuideList.cropGuideList);
+  List<CardContentCropGuide> displayList =
+      List.from(CropGuideList.cropGuideList);
+  void onTapped(int index){
+    switch(index){
+      case 0: {
+        Navigator.pushNamed(context, CropDetailsScreen.id);
+      }
+      break;
+    }
 
-  void updateList(String value){
-      setState(() {
-        displayList = CropGuideList.cropGuideList.where((element) => element.title.toLowerCase().contains(value.toLowerCase())).toList();
-      });
+  }
+
+  void updateList(String value) {
+    setState(() {
+      displayList = CropGuideList.cropGuideList
+          .where((element) =>
+              element.title.toLowerCase().contains(value.toLowerCase()))
+          .toList();
+    });
   }
 
   @override
@@ -45,7 +59,9 @@ class _CropGuideScreenState extends State<CropGuideScreen> {
                     filled: true,
                     fillColor: Colors.white,
                     border: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(10),),
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(10),
+                      ),
                       borderSide: BorderSide.none,
                     ),
                     hintText: "Search Crops",
@@ -59,11 +75,27 @@ class _CropGuideScreenState extends State<CropGuideScreen> {
                 Expanded(
                   child: GridView.builder(
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2,),
+                      crossAxisCount: 2,
+                    ),
                     itemBuilder: (BuildContext context, int index) {
                       CropGuideList().sortingList();
                       final current_crop = displayList[index];
-                      return SquareCard(colour: Colors.white, cardChild: current_crop, onPress: (){});
+                      return GestureDetector(
+                        onTap: (){
+                          // print("${displayList[index].id}");
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => CropDetailsScreen(cropId: displayList[index].id),
+                            ),
+                          );
+                        },
+                        child: SquareCard(
+                          colour: Colors.white,
+                          cardChild: current_crop,
+                          // onPress: () => onTapped(index),
+                        ),
+                      );
                     },
                     itemCount: displayList.length,
                   ),

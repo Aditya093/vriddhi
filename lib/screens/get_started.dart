@@ -12,7 +12,7 @@ class GetStartedScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Material(
+    return SafeArea(
       child: Scaffold(
         backgroundColor: kPrimaryAppbarColor,
         body: Container(
@@ -21,6 +21,7 @@ class GetStartedScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                SizedBox(height: 8,),
                 Icon(FontAwesomeIcons.seedling, color: kPrimaryGreenColor),
                 Image(image: AssetImage("assets/images/temp/Get_started.png"),),
                 Text("Grow & Earn", style: TextStyle(fontFamily: "Blinker", color:Colors.white, fontSize: 50.0),),

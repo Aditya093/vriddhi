@@ -102,3 +102,26 @@ const kGreySubtitleTS = TextStyle(
   color: Color(0xFF9B9B9B),
   height: 2
 );
+
+const crop_mapper = {0: 'apple',
+1: 'banana',
+2: 'blackgram',
+3: 'chickpea',
+4: 'coconut',
+5: 'coffee',
+6: 'cotton',
+7: 'grapes',
+8: 'jute',
+9: 'kidneybeans',
+10: 'lentil',
+11: 'maize',
+12: 'mango',
+13: 'mothbeans',
+14: 'mungbean',
+15: 'muskmelon',
+16: 'orange',
+17: 'papaya',
+18: 'pigeonpeas',
+19: 'pomegranate',
+20: 'rice',
+21: 'watermelon'};

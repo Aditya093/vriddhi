@@ -1,6 +1,8 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:vriddhi_0/constants.dart';
 import 'package:vriddhi_0/screens/basic_details_screen.dart';
+import 'package:vriddhi_0/screens/crop_details_screen.dart';
 import 'package:vriddhi_0/screens/crop_guide_screen.dart';
 import 'package:vriddhi_0/screens/current_screen.dart';
 import 'package:vriddhi_0/screens/disease_detection_screen.dart';
@@ -15,7 +17,9 @@ import 'package:vriddhi_0/screens/soil_details_screen.dart';
 import 'package:vriddhi_0/screens/splash_screen.dart';
 import 'package:vriddhi_0/screens/weather_screen.dart';
 
-void main() {
+void main()  async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(Vriddhi());
 }
 

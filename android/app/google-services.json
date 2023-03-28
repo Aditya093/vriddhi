@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "77563495830",
+    "project_id": "vridhiapp",
+    "storage_bucket": "vridhiapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:77563495830:android:b1cdfcb7777789dc17c9b7",
+        "android_client_info": {
+          "package_name": "com.exanple.vriddhi_0"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "77563495830-71hp3t2elg0n3vip6qnhmr0nj9hfq1ib.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCJue06Spg6-qjLu-ajrLLGDkkdCDaC7Ro"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "77563495830-71hp3t2elg0n3vip6qnhmr0nj9hfq1ib.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:77563495830:android:cb41cd1b547584ac17c9b7",
+        "android_client_info": {
+          "package_name": "com.vridhiapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "77563495830-71hp3t2elg0n3vip6qnhmr0nj9hfq1ib.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCJue06Spg6-qjLu-ajrLLGDkkdCDaC7Ro"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "77563495830-71hp3t2elg0n3vip6qnhmr0nj9hfq1ib.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

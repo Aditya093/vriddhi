@@ -6,22 +6,17 @@ class SquareCard extends StatelessWidget {
   SquareCard(
       {@required this.colour,
       @required this.cardChild,
-      @required this.onPress});
+      });
   final Color? colour;
   final Widget? cardChild;
-  final VoidCallback? onPress;
-
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onPress,
-      child: Card(
-        color: colour,
-        child: cardChild,
-        margin: EdgeInsets.all(15.0),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(15.0),
-        ),
+    return Card(
+      color: colour,
+      child: cardChild,
+      margin: EdgeInsets.all(15.0),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(15.0),
       ),
     );
   }
@@ -331,38 +326,53 @@ class FewTaskCardsForWeek extends StatelessWidget {
   }
 }
 
-// Row(
-// children: [
-// //Feature Icon
-// // Image.asset(
-// //   relatedImagePath,
-// //   height: 80,
-// //   width: 80,
-// // ),
-// SizedBox(width: 12),
-// //Title Text + Descrp Text
-// Column(
-// crossAxisAlignment: CrossAxisAlignment.start,
-// children: [
-// // Title Text
-// Text(
-// titleText,
-// style: TextStyle(fontSize: 23, color: kNavyBlueColor),
-// ),
-// // Descrp Text
-// Flexible(
-// child: Text(
-// descriptionText,
-// style: TextStyle(color: kDescriptionFontColor),
-// ),
-// ),
-// ],
-// ),
-// Spacer(),
-// //Icon
-// Align(
-// alignment: Alignment.centerRight,
-// child:Icon(iconOnRight,),
-// ),
-// ],
-// )
+class DropdownToggleCard extends StatefulWidget {
+  final String title;
+  final String content;
+
+  DropdownToggleCard({required this.title, required this.content});
+
+  @override
+  _DropdownToggleCardState createState() => _DropdownToggleCardState();
+}
+
+class _DropdownToggleCardState extends State<DropdownToggleCard> {
+  bool isExpanded = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      child: InkWell(
+        onTap: () {
+          setState(() {
+            isExpanded = !isExpanded;
+          });
+        },
+        child: Column(
+          children: [
+            ListTile(
+              title: Text(
+                widget.title,
+                style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20.0,
+                    color: kNavyBlueColor
+                ),
+              ),
+              trailing: Icon(
+                isExpanded ? Icons.keyboard_arrow_up : Icons.keyboard_arrow_down,
+                size: 25.0,
+                color: kNavyBlueColor,
+              ),
+            ),
+            if (isExpanded)
+              Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Text(widget.content),
+              ),
+          ],
+        ),
+      ),
+    );
+  }
+}

@@ -4,7 +4,8 @@ import 'dart:math';
 
 //crop guide content of square card
 class CardContentCropGuide extends StatelessWidget {
-  CardContentCropGuide({required this.imagePath, required this.title});
+  CardContentCropGuide({required this.imagePath, required this.title,required this.id});
+  final int id ;
   final String imagePath;
   final String title;
   @override
