@@ -24,18 +24,23 @@ class BigAppBar extends StatelessWidget {
             height: 100,
             width: 100,
           ),
-          // //Title
-          // Text(
-          //   'Vriddhi',
-          //   style: kVriddhiAppTitleTS,
-          // ),
           //User Circle - floating action button
           Spacer(),
-          // FloatingActionButton(
-          //   elevation: 0,
-          //   onPressed: () {},
-          //   backgroundColor: kGreyColor,
-          // ),
+          InkWell(
+            onTap: (){},
+            child: CircleAvatar(
+              child: ClipOval(
+                 child: Image.asset(
+                  "assets/images/temp/User_Icon.png",
+                  fit: BoxFit.cover,
+                  height: 150,
+                  width: 150,
+                ),
+              ),
+              radius: 25,
+              backgroundColor: kButtonPositiveColor,
+            ),
+          ),
         ],
       ),
     );

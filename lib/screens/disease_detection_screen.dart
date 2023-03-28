@@ -5,6 +5,12 @@ import 'package:image_picker/image_picker.dart';
 import 'package:vriddhi_0/constants.dart';
 import 'dart:io';
 import 'dart:async';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+import 'package:flutter/cupertino.dart';
+import 'package:path/path.dart';
+import 'package:async/async.dart';
+
 
 import 'package:vriddhi_0/widgets/reusable_widgets.dart';
 
@@ -51,6 +57,40 @@ class _DiseaseDetectionFeatureState extends State<DiseaseDetectionFeature> {
       print(e);
     }
   }
+
+  upload(File imageFile) async {
+    // open a bytestream
+    var stream = http.ByteStream(DelegatingStream.typed(imageFile.openRead()));
+    // get file length
+    var length = await imageFile.length();
+
+    // string to uri
+    var uri = Uri.parse("https://1753-2405-201-2003-a0a0-f0c9-f730-966-7749.in.ngrok.io/predict");
+
+    // create multipart request
+    var request = http.MultipartRequest("POST", uri);
+
+    // multipart that takes file
+    var multipartFile = http.MultipartFile('image', stream, length,
+        filename: basename(imageFile.path));
+
+    // add file to multipart
+    request.files.add(multipartFile);
+    print("Done image uploaded");
+    // send
+
+    var response = await request.send();
+    // listen for response
+    response.stream.transform(utf8.decoder).listen((value) {
+      setState(() {
+        print("Done image uploaded");
+        report = jsonDecode(value)["class1"];
+        // showProcessing = false;
+        print(report);
+      });
+    });
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -153,14 +193,14 @@ class _DiseaseDetectionFeatureState extends State<DiseaseDetectionFeature> {
                 setState(() {
                   // showProcessing = true;
                 });
-                // upload(image!);
+                upload(image!);
                 showModalBottomSheet(
                   isScrollControlled: true,
                   context: context,
                   builder: (context) => SingleChildScrollView(
                     child:Container(
                       padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
-                      child: DiseaseResultModal(),
+                      child: DiseaseResultModal(diseaseResult: report),
                     ),
                   ),
                 );
@@ -174,9 +214,10 @@ class _DiseaseDetectionFeatureState extends State<DiseaseDetectionFeature> {
 }
 
 class DiseaseResultModal extends StatefulWidget {
-  const DiseaseResultModal({
-    super.key,
-  });
+
+  DiseaseResultModal({required this.diseaseResult});
+
+  late String diseaseResult;
 
   @override
   State<DiseaseResultModal> createState() => _DiseaseResultModalState();
@@ -203,7 +244,7 @@ class _DiseaseResultModalState extends State<DiseaseResultModal> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Results',
+                    "Result",
                     style: kFormPrimaryHeadingStyle,
                   ),
                   Text(
@@ -213,7 +254,7 @@ class _DiseaseResultModalState extends State<DiseaseResultModal> {
                   SizedBox(height:5.0),
                   Center(
                     child: Text(
-                      'Maize Common Rust',
+                      widget.diseaseResult,
                       style: kFormPrimaryHeadingStyle.copyWith(color: Color(0xFFc71e1e)),
                     ),
                   ),

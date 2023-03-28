@@ -8,6 +8,7 @@ import 'package:vriddhi_0/screens/weather_screen.dart';
 import 'package:vriddhi_0/utilities/all_card_content.dart';
 import 'package:vriddhi_0/utilities/all_cards.dart';
 import 'package:vriddhi_0/widgets/reusable_widgets.dart';
+import 'package:vriddhi_0/screens/agripool_screen.dart';
 
 class ExploreScreen extends StatefulWidget {
   static final String id = 'explore_screen';
@@ -43,7 +44,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
       }
       break;
       case 6: {
-        Navigator.pushNamed(context, CropGuideScreen.id);
+        Navigator.pushNamed(context, AgriPoolScreen.id);
       }
       break;
       case 7: {
@@ -54,9 +55,6 @@ class _ExploreScreenState extends State<ExploreScreen> {
         Navigator.pushNamed(context, CropGuideScreen.id);
       }
       break;
-      case 9: {
-        Navigator.pushNamed(context, CropGuideScreen.id);
-      }
       break;
     }
 

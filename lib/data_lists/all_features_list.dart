@@ -27,12 +27,12 @@ class AllFeaturesList {
       imagePath: 'assets/images/feature_icons/Feature_Blog.png',
     ),
     SmallSquareCard(
-      title: 'Agri Crowd-\nsourcing',
-      imagePath: 'assets/images/feature_icons/Feature_Tree.png',
+      title: 'Agri \nPool',
+      imagePath: 'assets/images/feature_icons/Feature_AgriPool.png',
     ),
     SmallSquareCard(
       title: 'Disease\nGuide',
-      imagePath: 'assets/images/feature_icons/Feature_CropGuide.png',
+      imagePath: 'assets/images/feature_icons/Feature_DiseaseGuide.png',
     ),
     SmallSquareCard(
       title: 'News\nFeed',
@@ -40,7 +40,4 @@ class AllFeaturesList {
     ),
 
   ];
-
-
-
 }

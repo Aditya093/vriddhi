@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:vriddhi_0/constants.dart';
+import 'package:vriddhi_0/screens/agripool_feature_details_screen.dart';
+import 'package:vriddhi_0/screens/agripool_feature_screen.dart';
+import 'package:vriddhi_0/screens/agripool_screen.dart';
 import 'package:vriddhi_0/screens/basic_details_screen.dart';
 import 'package:vriddhi_0/screens/crop_guide_screen.dart';
 import 'package:vriddhi_0/screens/current_screen.dart';
@@ -53,6 +56,9 @@ class Vriddhi extends StatelessWidget {
         WeatherScreen.id : (context) => WeatherScreen(),
         ExploreScreen.id : (context) => ExploreScreen(),
         DiseaseDetectionScreen.id : (context) => DiseaseDetectionScreen(),
+        AgriPoolScreen.id : (context) => AgriPoolScreen(),
+        AgriPoolFeatureDetailsScreen.id: (context) => AgriPoolFeatureDetailsScreen(),
+        AgriPoolFeatureScreen.id: (context) =>AgriPoolFeatureScreen(),
       },
     );
   }
