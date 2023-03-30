@@ -2,9 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:vriddhi_0/constants.dart';
 import 'package:vriddhi_0/data_lists/all_features_list.dart';
 import 'package:vriddhi_0/screens/basic_details_screen.dart';
+import 'package:vriddhi_0/screens/blog_info_screen.dart';
 import 'package:vriddhi_0/screens/crop_guide_screen.dart';
 import 'package:vriddhi_0/screens/disease_detection_screen.dart';
+import 'package:vriddhi_0/screens/disease_guide_screen.dart';
 import 'package:vriddhi_0/screens/loading_screen.dart';
+import 'package:vriddhi_0/screens/news_screen.dart';
+import 'package:vriddhi_0/screens/soil_testing_screen.dart';
 import 'package:vriddhi_0/screens/weather_screen.dart';
 import 'package:vriddhi_0/utilities/all_card_content.dart';
 import 'package:vriddhi_0/utilities/all_cards.dart';
@@ -33,7 +37,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
       }
       break;
       case 3: {
-        Navigator.pushNamed(context, CropGuideScreen.id);
+        Navigator.pushNamed(context, SoilTestingScreen.id);
       }
       break;
       case 4: {
@@ -41,7 +45,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
       }
       break;
       case 5: {
-        Navigator.pushNamed(context, CropGuideScreen.id);
+        Navigator.pushNamed(context, BlogInfoScreen.id);
       }
       break;
       case 6: {
@@ -49,11 +53,11 @@ class _ExploreScreenState extends State<ExploreScreen> {
       }
       break;
       case 7: {
-        Navigator.pushNamed(context, CropGuideScreen.id);
+        Navigator.pushNamed(context, DiseaseGuideScreen.id);
       }
       break;
       case 8: {
-        Navigator.pushNamed(context, CropGuideScreen.id);
+        Navigator.pushNamed(context, NewsScreen.id);
       }
       break;
       break;
