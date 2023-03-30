@@ -4,6 +4,7 @@ import 'package:vriddhi_0/data_lists/all_features_list.dart';
 import 'package:vriddhi_0/screens/basic_details_screen.dart';
 import 'package:vriddhi_0/screens/crop_guide_screen.dart';
 import 'package:vriddhi_0/screens/disease_detection_screen.dart';
+import 'package:vriddhi_0/screens/loading_screen.dart';
 import 'package:vriddhi_0/screens/weather_screen.dart';
 import 'package:vriddhi_0/utilities/all_card_content.dart';
 import 'package:vriddhi_0/utilities/all_cards.dart';
@@ -36,7 +37,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
       }
       break;
       case 4: {
-        Navigator.pushNamed(context, WeatherScreen.id);
+        Navigator.push(context, MaterialPageRoute(builder: (context)=>LoadingScreen()));
       }
       break;
       case 5: {

@@ -15,7 +15,7 @@ const kProgressBoxTitleTS = TextStyle(
   fontSize: 20,
   color: kNavyBlueColor,
 );
-const kProgressBoxbottomTS = TextStyle(fontSize: 15, color: kNavyBlueColor);
+const kProgressBoxbottomTS = TextStyle(fontSize: 16, color: kNavyBlueColor);
 const kTitleOfInfoCardsTS =
     TextStyle(fontSize: 20, color: kNavyBlueColor, fontWeight: FontWeight.bold);
 const kTitleOfWeekCardsTS = TextStyle(

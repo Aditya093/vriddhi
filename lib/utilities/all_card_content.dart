@@ -1,3 +1,4 @@
+import 'package:change_case/change_case.dart';
 import 'package:flutter/material.dart';
 import 'package:vriddhi_0/constants.dart';
 import 'dart:math';
@@ -81,11 +82,12 @@ class CardContentWeather extends StatelessWidget {
 }
 
 //Progress Content - box card
-class CardContentProgressBox extends StatefulWidget {
-  @override
-  State<CardContentProgressBox> createState() => _CardContentProgressBoxState();
-}
-class _CardContentProgressBoxState extends State<CardContentProgressBox> {
+class CardContentProgressBox extends StatelessWidget {
+  CardContentProgressBox({required this.levelImage, required this.currentLevel});
+  final String levelImage;
+  final int currentLevel;
+  // late List<String> words = levelImage.toTitleCase().split(" ");
+  // final String levelName;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -116,12 +118,13 @@ class _CardContentProgressBoxState extends State<CardContentProgressBox> {
           width: MediaQuery.of(context).size.width,
           // color: Colors.blue,
           child: Image.asset(
-            'assets/images/scenes_farming/Scene_Start.png',
+            'assets/images/scenes_farming/${levelImage}.png',
             // height: 300,
             // width: MediaQuery.of(context).size.width,
             fit: BoxFit.cover,
           ),
         ),
+
         //Row of Icon + Week + Divider + Task Name + Statusof Task
         Container(
           decoration: BoxDecoration(
@@ -149,7 +152,7 @@ class _CardContentProgressBoxState extends State<CardContentProgressBox> {
               ),
               //Week Number
               Text(
-                'Week 12',
+                'Level $currentLevel',
                 style: kProgressBoxbottomTS,
               ),
               Spacer(),
@@ -163,7 +166,7 @@ class _CardContentProgressBoxState extends State<CardContentProgressBox> {
               //Task name
               Spacer(),
               Text(
-                'Harvesting',
+                '${(levelImage.substring(6,))}',
                 style: kProgressBoxbottomTS,
               ),
               SizedBox(
@@ -177,5 +180,4 @@ class _CardContentProgressBoxState extends State<CardContentProgressBox> {
     );
   }
 }
-
 //Feature Icons Content

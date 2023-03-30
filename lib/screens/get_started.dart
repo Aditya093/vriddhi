@@ -25,7 +25,7 @@ class GetStartedScreen extends StatelessWidget {
                 Icon(FontAwesomeIcons.seedling, color: kPrimaryGreenColor),
                 Image(image: AssetImage("assets/images/temp/Get_started.png"),),
                 Text("Grow & Earn", style: TextStyle(fontFamily: "Blinker", color:Colors.white, fontSize: 50.0),),
-                Center(child: Text("Farming made easy,\nall your farming reqiurements\nat one stop", style: TextStyle(fontFamily: "Blinker", color:Colors.white, fontSize: 18.0), textAlign: TextAlign.center, ),),
+                Center(child: Text("Farming made easy,\nall your farming requirements\nat one stop", style: TextStyle(fontFamily: "Blinker", color:Colors.white, fontSize: 18.0), textAlign: TextAlign.center, ),),
                 SizedBox(height:30.0),
                 SizedBox(
                   height:36.0,

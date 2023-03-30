@@ -1,20 +1,20 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:vriddhi_0/constants.dart';
-import 'package:vriddhi_0/screens/agripool_feature_details_screen.dart';
+import 'package:vriddhi_0/data_lists/disease_guide_list.dart';
 import 'package:vriddhi_0/screens/agripool_feature_screen.dart';
 import 'package:vriddhi_0/screens/agripool_screen.dart';
 import 'package:vriddhi_0/screens/basic_details_screen.dart';
-import 'package:vriddhi_0/screens/crop_details_screen.dart';
 import 'package:vriddhi_0/screens/crop_guide_screen.dart';
 import 'package:vriddhi_0/screens/current_screen.dart';
 import 'package:vriddhi_0/screens/disease_detection_screen.dart';
+import 'package:vriddhi_0/screens/disease_guide_screen.dart';
 import 'package:vriddhi_0/screens/explore_screen.dart';
 import 'package:vriddhi_0/screens/get_started.dart';
 import 'package:vriddhi_0/screens/home_screen.dart';
 import 'package:vriddhi_0/screens/login_screen.dart';
 import 'package:vriddhi_0/screens/progress_screen.dart';
-import 'package:vriddhi_0/screens/progress_task_details_screen.dart';
 import 'package:vriddhi_0/screens/registration_screen.dart';
 import 'package:vriddhi_0/screens/soil_details_screen.dart';
 import 'package:vriddhi_0/screens/splash_screen.dart';
@@ -53,7 +53,6 @@ class Vriddhi extends StatelessWidget {
         HomeScreen.id : (context) => HomeScreen(),
         CropGuideScreen.id :(context) => CropGuideScreen(),
         ProgressScreen.id: (context) => ProgressScreen(),
-        ProgressTaskDetailsScreen.id: (context) => ProgressTaskDetailsScreen(),
         SoilDetailsScreen.id: (context) => SoilDetailsScreen(),
         BasicDetailsScreen.id : (context) => BasicDetailsScreen(),
         CurrentBottomNavBarScreen.id : (context) => CurrentBottomNavBarScreen(),
@@ -61,8 +60,8 @@ class Vriddhi extends StatelessWidget {
         ExploreScreen.id : (context) => ExploreScreen(),
         DiseaseDetectionScreen.id : (context) => DiseaseDetectionScreen(),
         AgriPoolScreen.id : (context) => AgriPoolScreen(),
-        AgriPoolFeatureDetailsScreen.id: (context) => AgriPoolFeatureDetailsScreen(),
         AgriPoolFeatureScreen.id: (context) =>AgriPoolFeatureScreen(),
+        DiseaseGuideScreen.id: (context) => DiseaseGuideScreen(),
       },
     );
   }

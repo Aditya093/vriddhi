@@ -4,8 +4,8 @@ import 'package:vriddhi_0/screens/agripool_feature_screen.dart';
 
 class AgriPoolFeatureDetailsScreen extends StatelessWidget {
   static const String id = 'agripool_feature_details_screen';
-
-  const AgriPoolFeatureDetailsScreen({Key? key}) : super(key: key);
+  final String featureName;
+  AgriPoolFeatureDetailsScreen({required this.featureName});
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +29,7 @@ class AgriPoolFeatureDetailsScreen extends StatelessWidget {
                       icon: Icon(Icons.arrow_back_ios)),
                   Center(
                     child: Text(
-                      "Leaves",
+                      featureName,
                       style: kWeekTitleTS,
                     ),
                   ),
@@ -46,9 +46,9 @@ class AgriPoolFeatureDetailsScreen extends StatelessWidget {
                 padding: const EdgeInsets.all(8.0),
                 child: Column(
                   children: [
-                    Image.asset("assets/images/pool_features/Pool_Leaves.png", height: 250.0, width: 250.0,),
+                    Image.asset("assets/images/pool_features/Pool_$featureName.png", height: 250.0, width: 250.0,),
                     Text(
-                      "Help us improve our leaf detection model\nFor capturing images of objects:",
+                      "Help us improve our ${featureName.toLowerCase()} detection model\nFor capturing images of objects:",
                       style: kFormTextFieldLabelStyle,
                     ),
                     SizedBox(height:10.0),

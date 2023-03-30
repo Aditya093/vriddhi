@@ -4,7 +4,6 @@ import 'package:vriddhi_0/constants.dart';
 
 class ResultModal extends StatefulWidget {
   const ResultModal({super.key});
-
   @override
   State<ResultModal> createState() => _ResultModalState();
 }
@@ -109,18 +108,7 @@ class _ResultModalState extends State<ResultModal> {
                                           ),
                                         ],
                                       ),
-                                      // Text(
-                                      //   "Previous Year's Stats",
-                                      //   style: kFormTextFieldLabelStyle.copyWith(fontWeight: FontWeight.w700, fontSize: 15.0),
-                                      // ),
-                                      // Text(
-                                      //   "1975 Rs/Q",
-                                      //   style:kFormTextFieldLabelStyle.copyWith(fontSize: 15.0),
-                                      // ),
-                                      // Text(
-                                      //   "75.8 million MT",
-                                      //   style:kFormTextFieldLabelStyle.copyWith(fontSize: 15.0),
-                                      // ),
+
                                     ],
                                   ),
                                 ),

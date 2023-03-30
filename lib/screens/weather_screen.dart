@@ -6,11 +6,49 @@ import 'package:vriddhi_0/widgets/reusable_widgets.dart';
 
 class WeatherScreen extends StatefulWidget {
   static const String id = 'weather_screen';
+  //Constructor
+  WeatherScreen({@required this.locationWeather});
+  final locationWeather;
   @override
   State<WeatherScreen> createState() => _WeatherScreenState();
 }
 
 class _WeatherScreenState extends State<WeatherScreen> {
+  late int temperature;
+  late int wind;
+  late String cityName;
+  late int humidity;
+  // late int rain;
+  late String condition;
+
+  void initState() {
+    super.initState();
+    updateUI(widget.locationWeather);
+  }
+
+  //Updating text fields by fetching api data
+  void updateUI(dynamic weatherData) {
+    setState(() {
+      //if weatherData is nul by any chance ,ex: location disabled etc.
+      if (weatherData == null) {
+        temperature = 0;
+        this.humidity = 0;
+        this.wind = 0;
+        // rain = 0;
+        cityName = '...';
+        return;
+      }
+      dynamic temp = weatherData['main']['temp'];
+      temperature = temp.toInt();
+      var condition = weatherData['weather'][0]['main'];
+      this.condition = condition;
+      cityName = weatherData['name'];
+      dynamic humidity = weatherData['main']['humidity'];
+      this.humidity = humidity.toInt();
+      dynamic wind = weatherData['wind']['speed'];
+      this.wind = wind.toInt();
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -45,7 +83,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
                     ),
                     //Current Location
                     Text(
-                      'Gandhinagar',
+                      '$cityName',
                       style: kTitleOfInfoCardsTS,
                     ),
                   ],
@@ -83,13 +121,13 @@ class _WeatherScreenState extends State<WeatherScreen> {
                                   ),
                                 ),
                                 Text(
-                                  '30°C',
+                                   '$temperature°',
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
                                     fontSize: 50,
                                   ),
                                 ),
-                                Text('Thunderstorm' , style: kTitleOfInfoCardsTS,),
+                                Text('$condition' , style: kTitleOfInfoCardsTS,),
                               ],
                             ),
                           ),),
@@ -108,9 +146,9 @@ class _WeatherScreenState extends State<WeatherScreen> {
                   child: GridView.count(
                     crossAxisCount: 3,
                     children: [
-                      SmallWeatherSpecsCard(title: '25%', icon: FontAwesomeIcons.droplet, subtitle: 'Humidity'),
-                      SmallWeatherSpecsCard(title: '8 km/h', icon: FontAwesomeIcons.cloudShowersHeavy, subtitle: 'Rain'),
-                      SmallWeatherSpecsCard(title: '60%', icon: FontAwesomeIcons.wind, subtitle: 'Wind'),
+                      SmallWeatherSpecsCard(title: '$humidity', icon: FontAwesomeIcons.droplet, subtitle: 'Humidity'),
+                      SmallWeatherSpecsCard(title: '0', icon: FontAwesomeIcons.cloudShowersHeavy, subtitle: 'Rain'),
+                      SmallWeatherSpecsCard(title: '$wind', icon: FontAwesomeIcons.wind, subtitle: 'Wind'),
 
                     ],
                   ),

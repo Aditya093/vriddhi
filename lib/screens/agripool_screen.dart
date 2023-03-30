@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:vriddhi_0/constants.dart';
 import 'package:vriddhi_0/data_lists/agripool_features.dart';
 import 'package:vriddhi_0/screens/agripool_feature_details_screen.dart';
-import 'package:vriddhi_0/screens/weather_screen.dart';
 import 'package:vriddhi_0/utilities/all_cards.dart';
 import 'package:vriddhi_0/widgets/reusable_widgets.dart';
 
@@ -15,30 +14,7 @@ class AgriPoolScreen extends StatefulWidget {
 }
 
 class _AgriPoolScreenState extends State<AgriPoolScreen> {
-  void onTapped(int index) {
-    switch (index) {
-      case 0:
-        {
-          Navigator.pushNamed(context, AgriPoolFeatureDetailsScreen.id);
-        }
-        break;
-      case 1:
-        {
-          Navigator.pushNamed(context, AgriPoolFeatureDetailsScreen.id);
-        }
-        break;
-      case 2:
-        {
-          Navigator.pushNamed(context, AgriPoolFeatureDetailsScreen.id);
-        }
-        break;
-      case 3:
-        {
-          Navigator.pushNamed(context, AgriPoolFeatureDetailsScreen.id);
-        }
-        break;
-    }
-  }
+
 
   List<SmallSquareCard> featureList = AgriPoolFeatures.agripoolfeatures;
   @override
@@ -77,10 +53,20 @@ class _AgriPoolScreenState extends State<AgriPoolScreen> {
                       crossAxisCount: 2, mainAxisSpacing: 10, crossAxisSpacing: 10),
                   itemBuilder: (BuildContext context, int index) {
                     final current_feature = featureList[index];
-                    return AgriPoolSquareCard(
-                        title: current_feature.title,
-                        imagePath: current_feature.imagePath,
-                        onTapCard: () => onTapped(index));
+                    return GestureDetector(
+                      onTap: (){
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => AgriPoolFeatureDetailsScreen(featureName: featureList[index].title),
+                          ),
+                        );
+                      },
+                      child: AgriPoolSquareCard(
+                          title: current_feature.title,
+                          imagePath: current_feature.imagePath,
+                          ),
+                    );
                   },
                   itemCount: featureList.length,
                 ),
