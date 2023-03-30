@@ -28,6 +28,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             //Explore + View All
             Padding(
+
               padding: const EdgeInsets.only(left: 20.0, right: 20.0),
               child: HeadingRowOfRectCards(
                 heading: 'Explore',

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:vriddhi_0/constants.dart';
-
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 class SquareCard extends StatelessWidget {
   SquareCard({
     @required this.colour,
@@ -494,6 +495,70 @@ class _DynamicDropdownLevelCardsState extends State<DynamicDropdownLevelCards> {
     );
   }
 }
+class BlogCard extends StatelessWidget {
+  final String title;
+  final String author;
+  final String imagePath;
+
+  const BlogCard({
+    required this.title,
+    required this.author,
+    required this.imagePath,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      elevation: 4,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(15.0),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          ClipRRect(
+            borderRadius: BorderRadius.vertical(top: Radius.circular(15.0)),
+            child: Image.asset(
+              imagePath,
+              fit: BoxFit.cover,
+              height: 200,
+              width: double.infinity,
+              errorBuilder: (context, error, stackTrace) {
+                // Placeholder image to show when there is an error loading the image
+                return Image.asset('assets/images/temp/Get_started.png');
+              },
+            ),
+
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  title,
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18,
+                  ),
+                ),
+                SizedBox(height: 8),
+                Text(
+                  'By $author',
+                  style: TextStyle(
+                    fontStyle: FontStyle.italic,
+                    fontSize: 16,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
 
 
 class DiseaseListTile extends StatelessWidget {
