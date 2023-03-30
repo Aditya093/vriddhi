@@ -51,7 +51,6 @@ flutter:
      - assets/images/plant_diseases/
      - assets/task.json
      - assets/disease_guide.json
-
   fonts:
      - family: Jaldi
        fonts:
