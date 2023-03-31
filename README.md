@@ -21,7 +21,9 @@ Soil degradation: Soil degradation is a major problem in agriculture, particular
 
 Pests and diseases: Pests and diseases can have a significant impact on crop yields and livestock production. Climate change has also led to the emergence of new pests and diseases, which can be challenging for farmers to control.
 
-Market access: Access to markets and fair prices for their products is a challenge for many farmers, particularly small-scale farmers. They may lack the infrastructure and resources to transport their products to markets or may be forced to sell their products at low prices to intermediaries.
+Lack of knowledge of sustainable techniques: Farmers who lack knowledge of sustainable techniques may engage in practices that harm the environment, deplete natural resources, and contribute to climate change. This can result in reduced crop yields, soil degradation, and water pollution, ultimately threatening the long-term viability of their farms and communities.
+
+Diversification of crops: Farmers may lack the knowledge, resources, or incentives to diversify their crops. This can result in a reliance on a single crop or a narrow range of crops, which increases the risk of crop failure, limits income opportunities, and can lead to environmental problems such as soil erosion and nutrient depletion. Additionally, policies and market conditions may favor monoculture farming practices, further discouraging diversification.
 
 Water scarcity: Water scarcity is a significant problem in many parts of the world, particularly in areas with low rainfall or high rates of evaporation. As agriculture is one of the largest consumers of water, farmers often struggle to obtain enough water to irrigate their crops and support their livestock.
 
@@ -62,19 +64,33 @@ No Poverty               | Zero Hunger             |  Quality Education |  Respo
 ![](https://developers.google.com/community/images/gdsc-solution-challenge/goal-01_480.png?raw=true)|![](https://developers.google.com/community/images/gdsc-solution-challenge/goal-02_480.png?raw=true)|![](https://developers.google.com/community/images/gdsc-solution-challenge/goal-04_480.png?raw=true)|![](https://developers.google.com/community/images/gdsc-solution-challenge/goal-12_480.png?raw=true)|![](https://developers.google.com/community/images/gdsc-solution-challenge/goal-13_480.png?raw=true)|
 
 
+## How our app completes these Goals?
+
+No poverty: 'Vriddhi' can help reduce poverty among farmers by providing them with personalized agricultural production recommendations based on various factors such as soil, climate, and seed types. By increasing crop yields, farmers can generate more income, which can help them lift themselves and their families out of poverty.
+
+Zero Hunger: 'Vriddhi' can contribute to achieving the goal of zero hunger by providing farmers with tools for weather and crop prediction, reminders for fertilizer and water dispersion, and access to government insurance programs. This can help ensure that crops are grown efficiently, reducing the risk of crop failure and increasing food availability.
+
+Quality Education: 'Vriddhi' can contribute to achieving the goal of quality education by providing farmers with access to the latest agricultural practices, techniques, and technologies. This can help them learn new skills and stay up-to-date with best practices, ultimately improving their productivity and livelihoods.
+
+Responsible consumption and production: 'Vriddhi' can contribute to achieving the goal of responsible consumption and production by promoting sustainable agriculture practices, such as crop diversification, which can reduce the use of pesticides and chemical fertilizers, resulting in improved soil health and reduced water pollution. Additionally, by enabling farmers to examine crop demand at various market locations, 'Vriddhi' can help reduce food waste and improve market efficiency.
+
+Climate Action: 'Vriddhi' can contribute to achieving the goal of climate action by providing farmers with tools for weather and crop prediction, which can help them make informed decisions about planting and harvesting times, reducing the risk of crop failure and improving resource efficiency. By promoting sustainable agriculture practices such as crop diversification, 'Vriddhi' can also help reduce greenhouse gas emissions and improve soil health and biodiversity.
 
 
-# Vriddhi
 
-Agriculture is one of the most fundamental aspects of human life. Agriculture has developed with human evolution. 
-'Vriddhi' is a solution to the challenges that many farmers confront all over the world.
-'Vriddhi' offers capabilities for the advanced farming revolution. 
+## How to run our application?
 
-## Getting Started
-
-How to start with it ?
+### Frontend
 
   -Open Android Studio -> File -> New -> Project from Version Control
   -Paste the HTTPS web URL from the Code Dropdown into the URL textfield
   -Rename the directory as \vriddhi_0 and click clone.
+  -In urllist.dart please change the url according to URL of backend.
 
+### Backend
+
+ - Our backend server is built in flask, so python is required.
+ - Apart from python, tensorflow, flask are required.
+ - Tesseract OCR from google is also required.
+ - Configure path of tesseract OCR in app.py file
+ - run app.py flask file and serve API using ngrok or some other software.
