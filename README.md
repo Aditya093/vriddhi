@@ -29,12 +29,21 @@ Planting guide creation capability allows Farmers to design efficient planting g
 
 ## Technology
 
+<p float="left">
+ 
 
-<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg?raw=true" width="128" />
-
-<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original-wordmark.svg?raw=true" width="128" />
-<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original-wordmark.svg?raw=true" width="128" />
-<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flask/flask-original-wordmark.svg?raw=true" width="128" />
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg?raw=true" width="128" style="margin:125px" />
+&nbsp; &nbsp;&nbsp; &nbsp;
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original-wordmark.svg?raw=true" width="128" style="margin:125px"/>
+&nbsp; &nbsp;&nbsp; &nbsp;
+ <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original-wordmark.svg?raw=true" width="128" style="margin:125px" />
+ 
+ &nbsp; &nbsp;&nbsp; &nbsp;
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain-wordmark.svg?raw=true" width="128" style="margin:125px" />
+ 
+ &nbsp; &nbsp;&nbsp; &nbsp;
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flask/flask-original-wordmark.svg?raw=true" width="128" style="margin:125px" />
+</p>
           
           
 
