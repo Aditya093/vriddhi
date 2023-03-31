@@ -27,7 +27,16 @@ Planting guide creation capability allows Farmers to design efficient planting g
 <p style="display:flex; flex-direction:row; align-items:center"><img src="https://github.com/AyushSolanki-17/StaticServer/blob/main/pngwing.com.png?raw=true" width="24">Farming assistant to schedule weekly task for growth of crop.</p>
 
 
+## Technology
 
+
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg?raw=true" width="128" />
+
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original-wordmark.svg?raw=true" width="128" />
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original-wordmark.svg?raw=true" width="128" />
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flask/flask-original-wordmark.svg?raw=true" width="128" />
+          
+          
 
 
 
