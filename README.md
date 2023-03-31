@@ -12,7 +12,7 @@ A next generation farming application which optimizes the efforts of farmers to 
     <li><a href="#Problems-with-current-Agriculture-world">Problems with current Agriculture world</a></li>
     <li><a href="#Features">Features</a></li>
     <li><a href="#Technology">Technology</a></li>
-    <li><a href="#Our-Goals">Our goals/a></li>
+    <li><a href="#Our-Goals">Our goals</a></li>
     <li><a href="#How-our-app-completes-these-Goals?">How our app completes these Goals?</a></li>
     <li><a href="How-to-run-our-application?">How to run our application?</a></li>
     <li><a href="#Further-Enhancements">Further Enhancements</a></li>
