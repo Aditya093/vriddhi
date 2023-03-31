@@ -27,14 +27,14 @@ Water scarcity: Water scarcity is a significant problem in many parts of the wor
 
 ## Features
 
-<p style="display:flex; flex-direction:row; align-items:center"><img src="https://github.com/AyushSolanki-17/StaticServer/blob/main/pngwing.com.png?raw=true" width="24">Crop Recommendation based on soil and demographic data.</p>
+<p style="display:flex; flex-direction:row; align-items:center"><img src="https://upload.wikimedia.org/wikipedia/commons/3/39/Greentick.png?raw=true" width="24">Crop Recommendation based on soil and demographic data.</p>
 <br/>
 
-<p style="display:flex; flex-direction:row; align-items:center"><img src="https://github.com/AyushSolanki-17/StaticServer/blob/main/pngwing.com.png?raw=true" width="24">Crop disease identification from Image processing.</p>
+<p style="display:flex; flex-direction:row; align-items:center"><img src="https://upload.wikimedia.org/wikipedia/commons/3/39/Greentick.png?raw=true" width="24">Crop disease identification from Image processing.</p>
 <br/>
-<p style="display:flex; flex-direction:row; align-items:center"><img src="https://github.com/AyushSolanki-17/StaticServer/blob/main/pngwing.com.png?raw=true" width="24">Crop guide to chose best crop to grow.</p>
+<p style="display:flex; flex-direction:row; align-items:center"><img src="https://upload.wikimedia.org/wikipedia/commons/3/39/Greentick.png?raw=true" width="24">Crop guide to chose best crop to grow.</p>
 <br/>
-<p style="display:flex; flex-direction:row; align-items:center"><img src="https://github.com/AyushSolanki-17/StaticServer/blob/main/pngwing.com.png?raw=true" width="24">Farming assistant to schedule weekly task for growth of crop.</p>
+<p style="display:flex; flex-direction:row; align-items:center"><img src="https://upload.wikimedia.org/wikipedia/commons/3/39/Greentick.png?raw=true" width="24">Farming assistant to schedule weekly task for growth of crop.</p>
 
 
 ## Technology
