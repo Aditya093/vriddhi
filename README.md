@@ -82,10 +82,10 @@ Climate Action: 'Vriddhi' can contribute to achieving the goal of climate action
 
 ### Frontend
 
-  -Open Android Studio -> File -> New -> Project from Version Control
-  -Paste the HTTPS web URL from the Code Dropdown into the URL textfield
-  -Rename the directory as \vriddhi_0 and click clone.
-  -In urllist.dart please change the url according to URL of backend.
+  - Open Android Studio -> File -> New -> Project from Version Control
+  - Paste the HTTPS web URL from the Code Dropdown into the URL textfield
+  - Rename the directory as \vriddhi_0 and click clone.
+  - In urllist.dart please change the url according to URL of backend.
 
 ### Backend
 
