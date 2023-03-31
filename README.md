@@ -15,6 +15,16 @@ Farmers may send out reminders to remind them of fertiliser and water dispersion
 A comprehensive real-time dashboard will be given for recording, tracking, and viewing detailed crop statistics, status, and marketing operations.
 Planting guide creation capability allows Farmers to design efficient planting guides for on-field personnel and also print them for convenience. 
 
+## Problems with current Agriculture world
+
+Soil degradation: Soil degradation is a major problem in agriculture, particularly in areas where intensive farming practices have been used. Overuse of pesticides and fertilizers, as well as erosion caused by deforestation and land-use change, can lead to soil degradation and reduce crop yields.
+
+Pests and diseases: Pests and diseases can have a significant impact on crop yields and livestock production. Climate change has also led to the emergence of new pests and diseases, which can be challenging for farmers to control.
+
+Market access: Access to markets and fair prices for their products is a challenge for many farmers, particularly small-scale farmers. They may lack the infrastructure and resources to transport their products to markets or may be forced to sell their products at low prices to intermediaries.
+
+Water scarcity: Water scarcity is a significant problem in many parts of the world, particularly in areas with low rainfall or high rates of evaporation. As agriculture is one of the largest consumers of water, farmers often struggle to obtain enough water to irrigate their crops and support their livestock.
+
 ## Features
 
 <p style="display:flex; flex-direction:row; align-items:center"><img src="https://github.com/AyushSolanki-17/StaticServer/blob/main/pngwing.com.png?raw=true" width="24">Crop Recommendation based on soil and demographic data.</p>
@@ -45,7 +55,11 @@ Planting guide creation capability allows Farmers to design efficient planting g
           
           
 
-
+<!-- GOALS -->
+## Our Goals
+No Poverty               | Zero Hunger             |  Quality Education |  Responsible consumption and production                |  Climate action
+:-------------------------:|:-------------------------:|:-------------------------:|:-------------------------:|:-------------------------:
+![](https://developers.google.com/community/images/gdsc-solution-challenge/goal-01_480.png?raw=true)|![](https://developers.google.com/community/images/gdsc-solution-challenge/goal-02_480.png?raw=true)|![](https://developers.google.com/community/images/gdsc-solution-challenge/goal-04_480.png?raw=true)|![](https://developers.google.com/community/images/gdsc-solution-challenge/goal-12_480.png?raw=true)|![](https://developers.google.com/community/images/gdsc-solution-challenge/goal-13_480.png?raw=true)|
 
 
 
