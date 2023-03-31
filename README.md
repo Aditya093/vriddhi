@@ -94,3 +94,10 @@ Climate Action: 'Vriddhi' can contribute to achieving the goal of climate action
  - Tesseract OCR from google is also required.
  - Configure path of tesseract OCR in app.py file
  - run app.py flask file and serve API using ngrok or some other software.
+
+
+## Further Enhancements
+
+- More advanced Deep learning models for advanced tasks.
+- More automation in the application.
+- Making Progress Screen More interactive
