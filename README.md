@@ -2,6 +2,24 @@
 
 A next generation farming application which optimizes the efforts of farmers to gain an optimist yield from their production
 
+
+## Table of Contents
+
+<ol>
+    <li>
+     <a href="#Abstract">Abstract</a>
+ </li>
+    <li><a href="#Problems-with-current-Agriculter-world">Problems with current Agriculter world</a></li>
+    <li><a href="#Features">Features</a></li>
+    <li><a href="#Technology">Technology</a></li>
+    <li><a href="#Firebase">Our goals/a></li>
+    <li><a href="#Screenshots">How our app completes these Goals?</a></li>
+ 
+    <li><a href="#Screenshots">Further Enhancements</a></li>
+   
+    
+ </ol>
+ 
 ## Abstract
 
 Agriculture is one of the most fundamental aspects of human life. Agriculture has developed with human evolution. 
