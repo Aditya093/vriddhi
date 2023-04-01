@@ -1,6 +1,5 @@
 {
    "Apple_Scab": {
-    
     "disease": "Apple Scab",
     "scientific_name": "Venturia inaequalis",
     "symptoms": [
@@ -464,8 +463,7 @@
         "treatments": [
           "Apply fungicides preventively, starting at the onset of disease or when conditions favor disease development",
           "Ensure proper air circulation and reduce humidity by avoiding overhead irrigation and providing adequate plant spacing",
-          "Remove and destroy infected plant debris",
-          "Apply sulfur or potassium bicarbonate to lower pH and create an unfavorable environment for the fungus"
+          "Remove and destroy infected plant debris"
         ],
         "prevention": [
           "Plant resistant strawberry varieties",

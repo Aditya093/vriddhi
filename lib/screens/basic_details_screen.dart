@@ -31,11 +31,12 @@ class _BasicDetailsFormState extends State<BasicDetailsForm> {
   final GlobalKey<FormBuilderState> _formKey = GlobalKey<FormBuilderState>(); //global key  to uniquely identify the form widget and helps in validating
 
   void _submitForm(){
-    if (_formKey.currentState!.validate()) {
+    if (_formKey.currentState!.validate() == true) {
       _formKey.currentState!.save();
+
       Map<String, dynamic> formData = _formKey.currentState!.value;
-      // data['timestamp'] = DateTime.now().millisecondsSinceEpoch;
-      // await _database.push().set(data);
+
+      Navigator.push(context,MaterialPageRoute(builder: (context) => SoilDetailsScreen(),),);
 
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
@@ -84,14 +85,20 @@ class _BasicDetailsFormState extends State<BasicDetailsForm> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            '1. Location',
+                            '1.Location',
                             style: kFormTextFieldLabelStyle,
                           ),
-                          FormBuilderTextField(
-                            name: "location",
-                            decoration: kFormTextFieldStyle,
-                            validator: FormBuilderValidators.required(),
-                          ),
+
+                            Opacity(
+                              opacity: 0.5,
+                              child: FormBuilderTextField(
+                                name: "location",
+                                enabled: false,
+                                decoration: kFormTextFieldStyle.copyWith(
+                                    hintText: "Sarkhej"),
+                                validator: FormBuilderValidators.required(),
+                              ),
+                            ),
                         ],
                       ),
                     ),
@@ -115,34 +122,34 @@ class _BasicDetailsFormState extends State<BasicDetailsForm> {
                         ],
                       ),
                     ),
+                    // Padding(
+                    //   padding: EdgeInsets.all(12.0),
+                    //   child: Column(
+                    //     crossAxisAlignment: CrossAxisAlignment.start,
+                    //     children: [
+                    //       Text(
+                    //         '3. Annual Income',
+                    //         style: kFormTextFieldLabelStyle,
+                    //       ),
+                    //       FormBuilderTextField(
+                    //         name: "annual_income",
+                    //         decoration: kFormTextFieldStyle.copyWith(
+                    //             hintText: "( in rupees )"),
+                    //         validator: FormBuilderValidators.compose([
+                    //           FormBuilderValidators.required(),
+                    //           FormBuilderValidators.numeric()
+                    //         ]),
+                    //       ),
+                    //     ],
+                    //   ),
+                    // ),
                     Padding(
                       padding: EdgeInsets.all(12.0),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            '3. Annual Income',
-                            style: kFormTextFieldLabelStyle,
-                          ),
-                          FormBuilderTextField(
-                            name: "annual_income",
-                            decoration: kFormTextFieldStyle.copyWith(
-                                hintText: "( in rupees )"),
-                            validator: FormBuilderValidators.compose([
-                              FormBuilderValidators.required(),
-                              FormBuilderValidators.numeric()
-                            ]),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.all(12.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            '4. Past Grown Crop',
+                            '3. Past Grown Crop',
                             style: kFormTextFieldLabelStyle,
                           ),
                           FormBuilderTextField(
@@ -161,7 +168,7 @@ class _BasicDetailsFormState extends State<BasicDetailsForm> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            '5. WorkForce',
+                            '4. WorkForce',
                             style: kFormTextFieldLabelStyle,
                           ),
                           FormBuilderTextField(
@@ -188,11 +195,8 @@ class _BasicDetailsFormState extends State<BasicDetailsForm> {
                             onPressed: () {
                               //will move forward to soil details screen
                               _submitForm();
-                              try{
-                                Navigator.push(context,MaterialPageRoute(builder: (context) => SoilDetailsScreen(),),);
-                              }catch(e){
-                                print(e);
-                              }
+                              Navigator.push(context,MaterialPageRoute(builder: (context) => SoilDetailsScreen(),),);
+
                             },
                             child: Text('Submit'),
                           ),

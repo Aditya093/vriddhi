@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:vriddhi_0/constants.dart';
 import 'package:vriddhi_0/utilities/all_cards.dart';
+import 'package:vriddhi_0/widgets/reusable_widgets.dart';
 
 class BlogInfoScreen extends StatelessWidget {
   static const String id = 'blog_info_screen';
@@ -10,7 +10,7 @@ class BlogInfoScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
+      appBar: ReusableWidgets.smallAppBar("Blogs"),
       body: Container(
         padding: EdgeInsets.all(8.0),
         child:SingleChildScrollView(
@@ -19,10 +19,10 @@ class BlogInfoScreen extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         children: const [
 
-          Padding(padding: EdgeInsets.only(top: 25),),
-          Text("Blogs",
-            style: kFormPrimaryHeadingStyle,
-          ),
+          Padding(padding: EdgeInsets.only(top: 8),),
+          // Text("Blogs",
+          //   style: kFormPrimaryHeadingStyle,
+          // ),
           SizedBox(width:16),
           BlogCard(
             title: 'Barnhardt Cotton’s Circle of Life',

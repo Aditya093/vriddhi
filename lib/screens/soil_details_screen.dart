@@ -1,37 +1,54 @@
 import 'package:flutter/material.dart';
 import 'package:vriddhi_0/constants.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:vriddhi_0/services/weather.dart';
 import 'dart:io';
 import 'dart:async';
-import 'package:vriddhi_0/widgets/result_modal.dart';
+import 'package:vriddhi_0/utilities/result_modal.dart';
 import 'package:vriddhi_0/widgets/reusable_widgets.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+import 'package:path/path.dart';
+import 'package:async/async.dart';
+import 'package:vriddhi_0/url.dart';
 
-
+WeatherModel weather = WeatherModel();
 class SoilDetailsScreen extends StatelessWidget {
   static const String id = 'soil_details_screen';
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: kBackgroundColor,
-        appBar: ReusableWidgets.smallAppBar('Predict'),
-        body: SoilDetailsForm(),
-      );
+      backgroundColor: kBackgroundColor,
+      appBar: ReusableWidgets.smallAppBar('Predict'),
+      body: SoilDetailsForm(),
+    );
   }
 }
+
 class SoilDetailsForm extends StatefulWidget {
   @override
   State<SoilDetailsForm> createState() => _SoilDetailsFormState();
 }
 
 class _SoilDetailsFormState extends State<SoilDetailsForm> {
-
+  //Variables
   bool _showFields = false; // private variable that decides whether to show more textfields or not.
-
   File? image;
-  String report = '';
-  // bool showProcessing = false;
-  bool buttonShow = true;
+  String cropName = '';
+  String probabilty = '';
+  bool buttonShow = false;
+  bool gotResponse = false;
+  late int temperature;
+  late int humidity;
+
+  //Methods
+  string2float(probs) {
+    var number = double.parse(probs);
+    number = number * 100;
+    var prob = number.toString();
+    return prob.substring(0, 2);
+  }
 
   final ImagePicker picker = ImagePicker();
 
@@ -41,6 +58,60 @@ class _SoilDetailsFormState extends State<SoilDetailsForm> {
 
     setState(() {
       image = File(img!.path);
+    });
+  }
+
+  Future<void> getLocationData() async{
+    var weatherData = await weather.getLocationWeather();
+    //Switching to Next Screen Location Screen
+    dynamic temp = weatherData['main']['temp'];
+    temperature = temp.toInt();
+    dynamic humidity = weatherData['main']['humidity'];
+    this.humidity = humidity.toInt();
+  }
+
+  Future upload(File imageFile) async {
+    // open a bytestream
+    var stream = http.ByteStream(DelegatingStream.typed(imageFile.openRead()));
+    // get file length
+    var length = await imageFile.length();
+
+    // string to uri
+    var uri = Uri.parse(USOilImage);
+
+    // create multipart request
+    var request = http.MultipartRequest("POST", uri);
+
+    // multipart that takes file
+    var multipartFile = http.MultipartFile('image', stream, length,
+        filename: basename(imageFile.path));
+
+    print("Done image uploaded");
+
+    await getLocationData();
+    // add file to multipart
+    request.files.add(multipartFile);
+    // send
+    request.fields["humidity"] = "${humidity}";
+    request.fields["temperature"] = "${temperature}";
+    request.fields["rainfall"] = "75";
+
+    var response = await request.send();
+
+    if (response.statusCode == 200)
+      gotResponse = true;
+
+    // listen for response
+    response.stream.transform(utf8.decoder).listen((value) {
+      setState(() {
+        print(value);
+        cropName = jsonDecode(value)["crop_1"];
+        probabilty = jsonDecode(value)["crop_1_probs"];
+        probabilty = string2float(probabilty);
+        print(cropName);
+        print(probabilty);
+        // showProcessing = false;
+      });
     });
   }
 
@@ -57,7 +128,6 @@ class _SoilDetailsFormState extends State<SoilDetailsForm> {
                 "Crop Prediction",
                 style: kFormPrimaryHeadingStyle,
               ),
-
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -101,7 +171,9 @@ class _SoilDetailsFormState extends State<SoilDetailsForm> {
                                             onPressed: () {
                                               Navigator.of(context).pop();
                                             },
-                                            child: Text('OK'),
+                                            child: Text('OK',
+                                                style:
+                                                    kFormTextFieldLabelStyle),
                                           ),
                                         ],
                                       );
@@ -134,7 +206,10 @@ class _SoilDetailsFormState extends State<SoilDetailsForm> {
                                               //will redirect the page to soil testing page.
                                               Navigator.of(context).pop();
                                             },
-                                            child: Text('OK'),
+                                            child: Text(
+                                              'OK',
+                                              style: kFormTextFieldLabelStyle,
+                                            ),
                                           ),
                                         ],
                                       );
@@ -143,8 +218,7 @@ class _SoilDetailsFormState extends State<SoilDetailsForm> {
                                 },
                                 child: Text(
                                   'No',
-                                  style:
-                                  TextStyle(color: kButtonPositiveColor),
+                                  style: TextStyle(color: kButtonPositiveColor),
                                 ),
                               ),
                             ],
@@ -167,16 +241,20 @@ class _SoilDetailsFormState extends State<SoilDetailsForm> {
                     SizedBox(height: 10.0),
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: kButtonPositiveColor, // Background color
+                        backgroundColor:
+                            kButtonPositiveColor, // Background color
                       ),
                       child: Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          Icon( // <-- Icon
+                          Icon(
+                            // <-- Icon
                             Icons.upload,
                             size: 24.0,
                           ),
-                          Text('Upload Soil Tests',),
+                          Text(
+                            'Upload Soil Tests',
+                          ),
                           // <-- Text
                           SizedBox(
                             width: 5,
@@ -187,57 +265,86 @@ class _SoilDetailsFormState extends State<SoilDetailsForm> {
                         await getImage(ImageSource.gallery);
                         setState(() {
                           // showProcessing = true;
-                          // buttonShow = false;
+                          buttonShow = true;
                         });
-                      } ,
+                      },
                     ),
                     SizedBox(
                       height: 30.0,
                     ),
                     image != null
                         ? Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 20),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(8),
-                        child: Image.file(
-                          //to show image, you type like this.
-                          File(image!.path),
-                          fit: BoxFit.cover,
-                          width: MediaQuery.of(context).size.width,
-                          height: 300,
-                        ),
-                      ),
-                    ) : const Text(
-                      "No image choosen",
-                      style: TextStyle(
-                          fontSize: 20,
-                          color: Color.fromARGB(255, 163, 163, 163)),
-                    ),
+                            padding: const EdgeInsets.symmetric(horizontal: 20),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(8),
+                              child: Image.file(
+                                //to show image, you type like this.
+                                File(image!.path),
+                                fit: BoxFit.cover,
+                                width: MediaQuery.of(context).size.width,
+                                height: 300,
+                              ),
+                            ),
+                          )
+                        : const Text(
+                            "No image choosen",
+                            style: TextStyle(
+                                fontSize: 20,
+                                color: Color.fromARGB(255, 163, 163, 163)),
+                          ),
                     SizedBox(
-                      height:30.0,
+                      height: 30.0,
                     ),
                     if (buttonShow)
                       ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: kButtonNegativeColor, // Background color
+                          backgroundColor:
+                              kButtonNegativeColor, // Background color
                         ),
-                        child: Text("Done", style: TextStyle(color: kButtonPositiveColor)), // <-- Text
-                        onPressed:  () async {
-                          setState(() {
-                            // showProcessing = true;
-                          });
-                          // upload(image!);
-                          showModalBottomSheet(
-                            isScrollControlled: true,
-                            context: context,
-                            builder: (context) => SingleChildScrollView(
-                              child:Container(
-                                padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
-                                child: ResultModal(),
-                              ),
-                            ),
-                          );
-                        } ,
+                        child: Text("Done",
+                            style: TextStyle(
+                                color: kButtonPositiveColor)), // <-- Text
+                        onPressed: () async {
+                          try {
+                            await upload(image!);
+                            if (gotResponse)
+                              showModalBottomSheet(
+                                isScrollControlled: true,
+                                context: context,
+                                builder: (context) => SingleChildScrollView(
+                                    child: Container(
+                                  padding: EdgeInsets.only(
+                                      bottom: MediaQuery.of(context)
+                                          .viewInsets
+                                          .bottom),
+                                  child: ResultModal(
+                                    cropName: cropName,
+                                    probability: probabilty,
+                                  ),
+                                )),
+                              );
+                            else{
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: Text('Please try again'),
+                                ),
+                              );
+                            }
+                          } catch (e) {
+                            AlertDialog(
+                              title: Text("Error"),
+                              content: Text("Error with the server!"),
+                              actions: [
+                                TextButton(
+                                  child: Text("Try Again"),
+                                  onPressed: () {
+                                    Navigator.of(context).pop();
+                                  },
+                                ),
+                              ],
+                            );
+                          }
+                        },
                       ),
                   ],
                 ),
@@ -248,4 +355,3 @@ class _SoilDetailsFormState extends State<SoilDetailsForm> {
     );
   }
 }
-

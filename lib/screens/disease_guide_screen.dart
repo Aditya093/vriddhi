@@ -88,7 +88,7 @@ class _DiseaseGuideScreenState extends State<DiseaseGuideScreen> {
                     itemCount: displayList.length,
                   ),
                 ),
-                //Nav Bar
+
               ],
             ),
           ),

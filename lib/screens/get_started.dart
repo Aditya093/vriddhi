@@ -32,7 +32,7 @@ class GetStartedScreen extends StatelessWidget {
                   width:158.0,
                   child: ElevatedButton(
                     onPressed: (){
-                      Navigator.pushNamed(context, RegistrationScreen.id);
+                      Navigator.pushReplacementNamed(context, RegistrationScreen.id);
                     } ,
                     child: Text('Get Started'),
                     style: ElevatedButton.styleFrom(

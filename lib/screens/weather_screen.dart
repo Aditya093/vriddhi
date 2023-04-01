@@ -103,7 +103,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
                       Expanded(
                         flex: 5,
                         child: Image.asset(
-                            'assets/images/weather/Weather_ThunderStorm.png',
+                            'assets/images/weather/Weather_Cloudy.png',
                         ),
                       ),
                       SizedBox(height: 10,),
@@ -114,7 +114,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
                             child: Column(
                               children: [
                                 Text(
-                                  'Today, 27 March 2023',
+                                  'Today, 31st March 2023',
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
                                     fontSize: 20,

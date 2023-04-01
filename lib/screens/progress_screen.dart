@@ -9,7 +9,10 @@ import 'package:vriddhi_0/widgets/stacked_app_and_box.dart';
 import 'package:change_case/change_case.dart';
 
 class ProgressScreen extends StatefulWidget {
+  ProgressScreen({required this.cropName});
+  final String cropName;
   static const String id = 'progress_screen';
+
 
   @override
   State<ProgressScreen> createState() => _ProgressScreenState();
@@ -23,22 +26,22 @@ class _ProgressScreenState extends State<ProgressScreen> {
   List _tasks = [];
   final List _levels = [];
   bool isLoading = true;
-  final String cropName = "Maize";
+  // final String cropName = widget.cropName;
   bool isDoneAllTasks = false;
   bool isCurrentLevelCardVisible = true;
   int totalLevelsDone = 0;
+
   //methods
   Future<void> readJson() async {
     final String response = await rootBundle.loadString('assets/task.json');
     final data = await jsonDecode(response) as Map;
     setState(() {
-      final levelData = data[cropName] as Map;
+      final levelData = data[widget.cropName.toCapitalCase()] as Map;
       for (final name in levelData.keys) {
         _levels.add(name);
       }
 
-      _tasks = data[cropName]["level $current_level"];
-      print("success 1");
+      _tasks = data[widget.cropName.toCapitalCase()]["level $current_level"];
       setState(() {
         isLoading = false;
       });
@@ -49,8 +52,6 @@ class _ProgressScreenState extends State<ProgressScreen> {
   void initState() {
     super.initState();
     readJson();
-
-    print("success 2");
   }
 
   @override
@@ -98,7 +99,7 @@ class _ProgressScreenState extends State<ProgressScreen> {
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 20),
                 child: Text(
-                  "Crop : $cropName",
+                  "Crop : ${widget.cropName.toCapitalCase()}",
                   style: kTitleOfInfoCardsTS,
                 ),
               ),
@@ -150,6 +151,7 @@ class _ProgressScreenState extends State<ProgressScreen> {
                                                     .viewInsets
                                                     .bottom),
                                             child: TaskModal(
+                                              taskNumber: index,
                                               taskTitle: title,
                                               duration: duration,
                                               description: description,

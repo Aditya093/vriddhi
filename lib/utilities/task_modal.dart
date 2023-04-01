@@ -3,13 +3,14 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:vriddhi_0/constants.dart';
 class TaskModal extends StatefulWidget {
   // const TaskModal({super.key});
-  TaskModal({required this.duration, required this.taskTitle, required this.description, required this.resources ,required this.dependancies,@required this.onTapofDone });
+  TaskModal({required this.taskNumber,required this.duration, required this.taskTitle, required this.description, required this.resources ,required this.dependancies,@required this.onTapofDone });
   final String taskTitle;
   final String description;
   final String duration;
   final String resources;
   final String dependancies;
   final VoidCallback? onTapofDone;
+  final int taskNumber;
 
   @override
   State<TaskModal> createState() => _TaskModalState();
@@ -34,7 +35,7 @@ class _TaskModalState extends State<TaskModal> {
             children: [
               Icon(FontAwesomeIcons.minus, size: 30.0,),
               Text(
-                'Task 1',
+                'Task ${widget.taskNumber}',
                 style: kFormPrimaryHeadingStyle,
               ),
               Column(

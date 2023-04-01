@@ -1,3 +1,4 @@
+import 'package:change_case/change_case.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -10,10 +11,11 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:path/path.dart';
 import 'package:async/async.dart';
-
+import 'package:vriddhi_0/screens/disease_details_screen.dart';
+import 'package:vriddhi_0/screens/disease_guide_screen.dart';
+import 'package:vriddhi_0/url.dart';
 
 import 'package:vriddhi_0/widgets/reusable_widgets.dart';
-
 
 class DiseaseDetectionScreen extends StatelessWidget {
   static const String id = 'disease_detection_screen';
@@ -34,38 +36,57 @@ class DiseaseDetectionFeature extends StatefulWidget {
   const DiseaseDetectionFeature({Key? key}) : super(key: key);
 
   @override
-  State<DiseaseDetectionFeature> createState() => _DiseaseDetectionFeatureState();
+  State<DiseaseDetectionFeature> createState() =>
+      _DiseaseDetectionFeatureState();
 }
 
 class _DiseaseDetectionFeatureState extends State<DiseaseDetectionFeature> {
   File? image;
   String report = '';
-  // bool showProcessing = false;
+  bool gotResponse = false;
   bool buttonShow = true;
-
   final ImagePicker picker = ImagePicker();
+  List<String> diseaseCauses = [];
 
+  Future<void> readJson() async {
+    final String response = await rootBundle.loadString('assets/disease_guide.json');
+    final data = await jsonDecode(response) ;
+    setState(()  {
+      final diseaseData = data[toDiseaseCase(report)];
+      dynamic diseaseCauses = data[toDiseaseCase(report)]["causes"];
+      this.diseaseCauses = diseaseCauses;
+      print("success 1");
+    });
+  }
+
+  String toDiseaseCase(String input) {
+    List<String> words = input.split(' ');
+    for (int i = 0; i < words.length; i++) {
+      words[i] = "${words[i][0].toUpperCase()}${words[i].substring(1)}";
+    }
+    return words.join('_');
+  }
   //we can upload from gallery
   Future getImage(ImageSource source) async {
-    try{
+    try {
       var img = await picker.pickImage(source: source);
 
       setState(() {
         image = File(img!.path);
       });
-    } on PlatformException catch (e){
+    } on PlatformException catch (e) {
       print(e);
     }
   }
 
-  upload(File imageFile) async {
+  Future upload(File imageFile) async {
     // open a bytestream
     var stream = http.ByteStream(DelegatingStream.typed(imageFile.openRead()));
     // get file length
     var length = await imageFile.length();
 
     // string to uri
-    var uri = Uri.parse("https://1753-2405-201-2003-a0a0-f0c9-f730-966-7749.in.ngrok.io/predict");
+    var uri = Uri.parse(UDiseaseURL);
 
     // create multipart request
     var request = http.MultipartRequest("POST", uri);
@@ -76,21 +97,20 @@ class _DiseaseDetectionFeatureState extends State<DiseaseDetectionFeature> {
 
     // add file to multipart
     request.files.add(multipartFile);
-    print("Done image uploaded");
     // send
 
     var response = await request.send();
+
+    if (response.statusCode == 200)
+      gotResponse = true;
+
     // listen for response
     response.stream.transform(utf8.decoder).listen((value) {
       setState(() {
-        print("Done image uploaded");
         report = jsonDecode(value)["class1"];
-        // showProcessing = false;
-        print(report);
       });
     });
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -139,7 +159,7 @@ class _DiseaseDetectionFeatureState extends State<DiseaseDetectionFeature> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 ElevatedButton(
-                  onPressed: () async{
+                  onPressed: () async {
                     setState(() {
                       // showProcessing = true;
                     });
@@ -153,7 +173,7 @@ class _DiseaseDetectionFeatureState extends State<DiseaseDetectionFeature> {
                       backgroundColor: kButtonNegativeColor),
                 ),
                 ElevatedButton(
-                  onPressed: () async{
+                  onPressed: () async {
                     setState(() {
                       // showProcessing = true;
                     });
@@ -169,7 +189,7 @@ class _DiseaseDetectionFeatureState extends State<DiseaseDetectionFeature> {
               ],
             ),
             SizedBox(
-              height:30.0,
+              height: 30.0,
             ),
             ElevatedButton(
               style: ElevatedButton.styleFrom(
@@ -178,7 +198,8 @@ class _DiseaseDetectionFeatureState extends State<DiseaseDetectionFeature> {
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Icon( // <-- Icon
+                  Icon(
+                    // <-- Icon
                     FontAwesomeIcons.microscope,
                     size: 20.0,
                   ),
@@ -189,21 +210,34 @@ class _DiseaseDetectionFeatureState extends State<DiseaseDetectionFeature> {
                   // <-- Text
                 ],
               ),
-              onPressed: (){
-                setState(() {
-                  // showProcessing = true;
-                });
-                upload(image!);
-                showModalBottomSheet(
-                  isScrollControlled: true,
-                  context: context,
-                  builder: (context) => SingleChildScrollView(
-                    child:Container(
-                      padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
-                      child: DiseaseResultModal(diseaseResult: report),
-                    ),
-                  ),
-                );
+              onPressed: () async {
+                try {
+                  await upload(image!);
+                  if (gotResponse){
+                    readJson();
+                    showModalBottomSheet(
+                      isScrollControlled: true,
+                      context: context,
+                      builder: (context) => SingleChildScrollView(
+                        child: Container(
+                            padding: EdgeInsets.only(
+                                bottom: MediaQuery.of(context)
+                                    .viewInsets
+                                    .bottom),
+                            child: DiseaseResultModal(diseaseResult: report,)
+                        ),),
+                    );
+                  }
+                  else{
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text('Please try again'),
+                      ),
+                    );
+                  }
+                } catch (e) {
+                  print("Exception caught");
+                }
               },
             )
           ],
@@ -214,7 +248,6 @@ class _DiseaseDetectionFeatureState extends State<DiseaseDetectionFeature> {
 }
 
 class DiseaseResultModal extends StatefulWidget {
-
   DiseaseResultModal({required this.diseaseResult});
 
   late String diseaseResult;
@@ -228,63 +261,69 @@ class _DiseaseResultModalState extends State<DiseaseResultModal> {
   Widget build(BuildContext context) {
     return Container(
       color: Color(0xff757575),
-      child:Container(
-          padding: EdgeInsets.only(left: 20.0, right:20.0, bottom: 20.0),
-          decoration: BoxDecoration(
-            color: Color(0xFFF8F8F6),
-            borderRadius: BorderRadius.only(
-              topRight: Radius.circular(20.0),
-              topLeft: Radius.circular(20.0),
+      child: Container(
+        padding: EdgeInsets.only(left: 20.0, right: 20.0, bottom: 20.0),
+        decoration: BoxDecoration(
+          color: Color(0xFFF8F8F6),
+          borderRadius: BorderRadius.only(
+            topRight: Radius.circular(20.0),
+            topLeft: Radius.circular(20.0),
+          ),
+        ),
+        child: Column(
+          children: [
+            Icon(
+              FontAwesomeIcons.minus,
+              size: 30.0,
             ),
-          ),
-          child: Column(
-            children: [
-              Icon(FontAwesomeIcons.minus, size: 30.0,),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    "Result",
-                    style: kFormPrimaryHeadingStyle,
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  "Result",
+                  style: kFormPrimaryHeadingStyle,
+                ),
+                Text(
+                  'Results are based on our study, real results may vary',
+                  style: kFormSecondaryHeadingStyle,
+                ),
+                SizedBox(height: 5.0),
+                Center(
+                  child: Text(
+                    widget.diseaseResult.toCapitalCase(),
+                    style:
+                        kFormPrimaryHeadingStyle.copyWith(color: kDangerColor),
                   ),
-                  Text(
-                    'Results are based on our study, real results may vary',
-                    style: kFormSecondaryHeadingStyle,
-                  ),
-                  SizedBox(height:5.0),
-                  Center(
+                ),
+                // Text('Causes: ', style: kFormTextFieldLabelStyle),
+                // Text(
+                //   '1. Fungal infection by Puccinia sorghi\n2.Favors warm temperatures (60-80°F) and high humidity\n3.Spreads rapidly in fields with high nitrogen levels',
+                //   style: kFormTextFieldLabelStyle.copyWith(fontSize: 15.0),
+                // ),
+                SizedBox(
+                  height: 20.0,
+                ),
+                Center(
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => DiseaseDetailsScreen(diseaseName: 'Strawberry_Leaf_Scorch')));
+                    },
                     child: Text(
-                      widget.diseaseResult,
-                      style: kFormPrimaryHeadingStyle.copyWith(color: Color(0xFFc71e1e)),
+                      'Know More',
+                      style: TextStyle(color: Colors.white, height: 1),
                     ),
-                  ),
-                  Text(
-                    'Causes: ',
-                    style: kFormTextFieldLabelStyle
-                  ),
-                  Text(
-                      '1. Fungal infection by Puccinia sorghi\n2.Favors warm temperatures (60-80°F) and high humidity\n3.Spreads rapidly in fields with high nitrogen levels',
-                      style: kFormTextFieldLabelStyle.copyWith(fontSize: 15.0),
-                  ),
-                  SizedBox(height: 20.0,),
-                  //aa kare che kaam
-                  Center(
-                    child: ElevatedButton(
-                      onPressed: (){},
-                      child: Text('Know More', style: TextStyle(color: Colors.white, height: 1),),
-                      style: ElevatedButton.styleFrom(
-                        textStyle: TextStyle(
-                          fontFamily: "Catamaran",
-                        ),
-                        backgroundColor: kButtonPositiveColor,
+                    style: ElevatedButton.styleFrom(
+                      textStyle: TextStyle(
+                        fontFamily: "Catamaran",
                       ),
+                      backgroundColor: kButtonPositiveColor,
                     ),
                   ),
-                ],
-              ),
-            ],
-          ),
-
+                ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }

@@ -75,6 +75,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
         body: Padding(
           padding: const EdgeInsets.all(15.0),
           child: GridView.builder(
+            physics: NeverScrollableScrollPhysics(),
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 3,
               mainAxisSpacing: 8,

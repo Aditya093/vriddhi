@@ -80,13 +80,13 @@ class _HomeScreenState extends State<HomeScreen> {
             const RectangleCard(
                 relatedImagePath: 'assets/images/crops/Crop_Maize.png',
                 titleText: 'Maize',
-                descriptionText: '',
+                descriptionText: 'Zea mays',
 
             ),
             RectangleCard(
                 relatedImagePath: 'assets/images/crops/Crop_Rice.png',
                 titleText: 'Rice',
-                descriptionText: '',
+                descriptionText: 'Oryza sativa',
               ),
           ],
         ),

@@ -43,11 +43,3 @@ app.*.map.json
 /android/app/profile
 /android/app/release
 
-# Access Tokens
-*/access_tokens.dart
-
-# Firestore
-*/google-services.json
-
-#backend - data
-*/task.json

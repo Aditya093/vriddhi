@@ -45,6 +45,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                     borderRadius:
                         BorderRadius.only(bottomLeft: Radius.circular(40))),
                 margin: EdgeInsets.only(left: 65, bottom: 50),
+                // child: Text("Vriddhi", style: TextStyle(fontSize: 25),),
               ),
               Container(
                 margin: EdgeInsets.only(bottom: 60, left: 5),

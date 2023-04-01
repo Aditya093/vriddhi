@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:vriddhi_0/constants.dart';
@@ -21,22 +22,18 @@ import 'package:vriddhi_0/screens/soil_testing_screen.dart';
 import 'package:vriddhi_0/screens/splash_screen.dart';
 import 'package:vriddhi_0/screens/weather_screen.dart';
 
-void main()  async {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   runApp(Vriddhi());
 }
 
 class Vriddhi extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSwatch().copyWith(
-          // secondary: Colors.green,
-          primary: kBackgroundColor,
-        ),
+
         fontFamily: 'Jaldi',
         textTheme: TextTheme(
           bodyLarge: TextStyle(height: 1),
@@ -47,21 +44,21 @@ class Vriddhi extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       initialRoute: SplashScreen.id,
       routes: {
-        SplashScreen.id : (context) => SplashScreen(),
-        GetStartedScreen.id : (context) => GetStartedScreen(),
-        RegistrationScreen.id : (context) => RegistrationScreen(),
-        LoginScreen.id : (context) => LoginScreen(),
-        HomeScreen.id : (context) => HomeScreen(),
-        CropGuideScreen.id :(context) => CropGuideScreen(),
-        ProgressScreen.id: (context) => ProgressScreen(),
+        SplashScreen.id: (context) => SplashScreen(),
+        GetStartedScreen.id: (context) => GetStartedScreen(),
+        RegistrationScreen.id: (context) => RegistrationScreen(),
+        LoginScreen.id: (context) => LoginScreen(),
+        HomeScreen.id: (context) => HomeScreen(),
+        CropGuideScreen.id: (context) => CropGuideScreen(),
+        ProgressScreen.id: (context) => ProgressScreen(cropName: "Maize",),
         SoilDetailsScreen.id: (context) => SoilDetailsScreen(),
-        BasicDetailsScreen.id : (context) => BasicDetailsScreen(),
-        CurrentBottomNavBarScreen.id : (context) => CurrentBottomNavBarScreen(),
-        WeatherScreen.id : (context) => WeatherScreen(),
-        ExploreScreen.id : (context) => ExploreScreen(),
-        DiseaseDetectionScreen.id : (context) => DiseaseDetectionScreen(),
-        AgriPoolScreen.id : (context) => AgriPoolScreen(),
-        AgriPoolFeatureScreen.id: (context) =>AgriPoolFeatureScreen(),
+        BasicDetailsScreen.id: (context) => BasicDetailsScreen(),
+        CurrentBottomNavBarScreen.id: (context) => CurrentBottomNavBarScreen(),
+        WeatherScreen.id: (context) => WeatherScreen(),
+        ExploreScreen.id: (context) => ExploreScreen(),
+        DiseaseDetectionScreen.id: (context) => DiseaseDetectionScreen(),
+        AgriPoolScreen.id: (context) => AgriPoolScreen(),
+        AgriPoolFeatureScreen.id: (context) => AgriPoolFeatureScreen(),
         DiseaseGuideScreen.id: (context) => DiseaseGuideScreen(),
         SoilTestingScreen.id: (context) => SoilTestingScreen(),
         NewsScreen.id: (context) => NewsScreen(),

@@ -10,6 +10,8 @@ const kSearchBarTextColor = Color(0xff000000);
 const kBackgroundColor = Color(0xFFF2F3F4);
 const kCardColor = Color(0xffccdbdc);
 const kCardColorSecond = Color(0xffffffff);
+const kDangerColor = Color(0xFFc71e1e);
+
 
 const kProgressBoxTitleTS = TextStyle(
   fontSize: 20,
@@ -103,25 +105,3 @@ const kGreySubtitleTS = TextStyle(
   height: 2
 );
 
-const crop_mapper = {0: 'apple',
-1: 'banana',
-2: 'blackgram',
-3: 'chickpea',
-4: 'coconut',
-5: 'coffee',
-6: 'cotton',
-7: 'grapes',
-8: 'jute',
-9: 'kidneybeans',
-10: 'lentil',
-11: 'maize',
-12: 'mango',
-13: 'mothbeans',
-14: 'mungbean',
-15: 'muskmelon',
-16: 'orange',
-17: 'papaya',
-18: 'pigeonpeas',
-19: 'pomegranate',
-20: 'rice',
-21: 'watermelon'};

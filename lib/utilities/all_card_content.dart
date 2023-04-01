@@ -1,4 +1,3 @@
-import 'package:change_case/change_case.dart';
 import 'package:flutter/material.dart';
 import 'package:vriddhi_0/constants.dart';
 import 'dart:math';
@@ -43,7 +42,7 @@ class CardContentWeather extends StatelessWidget {
         children: [
           //Weather Text1
           Text(
-            'Welcome, User!',
+            'Welcome, Vriddhi!',
             style: TextStyle(
               fontSize: 30,
               color: kNavyBlueColor,
@@ -51,9 +50,9 @@ class CardContentWeather extends StatelessWidget {
           ),
           //Weather text2
           Text(
-            '13-03-2023 Monday',
+            '31-03-2023 Friday',
             style: TextStyle(
-              fontSize: 10,
+              fontSize: 15,
               color: kNavyBlueColor,
             ),
           ),
@@ -63,7 +62,7 @@ class CardContentWeather extends StatelessWidget {
               children: [
                 //Temp- text
                 Text(
-                  '30°C',
+                  '31°C',
                   style: TextStyle(
                       decoration: TextDecoration.none,
                       color: kNavyBlueColor,
@@ -181,3 +180,23 @@ class CardContentProgressBox extends StatelessWidget {
   }
 }
 //Feature Icons Content
+
+//Disease Cards content
+class DiseaseListTile extends StatelessWidget {
+  DiseaseListTile({required this.imagePath, required this.title,required this.id});
+
+  final String imagePath;
+  final String title;
+  final int id;
+
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      leading: ClipRRect(child: Image.asset(imagePath,height: 45,width: 45,), borderRadius: BorderRadius.circular(10.0),),
+      title: Text(title, style: kFormTextFieldLabelStyle.copyWith(fontSize: 16.0),),
+      trailing: Icon(Icons.navigate_next),
+      hoverColor: Colors.transparent,
+    );
+  }
+}
+

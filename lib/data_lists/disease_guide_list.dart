@@ -1,5 +1,4 @@
 import 'package:vriddhi_0/utilities/all_card_content.dart';
-import 'package:vriddhi_0/utilities/all_cards.dart';
 
 class DiseaseGuideList {
   static final List<DiseaseListTile> diseaseGuideList = [

@@ -7,6 +7,7 @@ import'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:vriddhi_0/constants.dart';
 import 'package:vriddhi_0/screens/current_screen.dart';
 import 'package:vriddhi_0/screens/registration_screen.dart';
+import 'package:vriddhi_0/services/Authentication.dart';
 
 class LoginScreen extends StatelessWidget {
   static final String id = 'login_screen';
@@ -127,9 +128,14 @@ class _LoginFormState extends State<LoginForm> {
                     onPressed: (){} ,
                     child: ListView(
                       children: [
-                        ListTile(
-                          leading: Icon(FontAwesomeIcons.google, color: kButtonPositiveColor,),
-                          title: Text("Sign In with Google", style: TextStyle(color: kButtonPositiveColor,fontSize: 15.0)),
+                        GestureDetector(
+                          onTap: (){
+                            Authentication.signInWithGoogle(context: context);
+                          },
+                          child: ListTile(
+                            leading: Icon(FontAwesomeIcons.google, color: kButtonPositiveColor,),
+                            title: Text("Sign In with Google", style: TextStyle(color: kButtonPositiveColor,fontSize: 15.0)),
+                          ),
                         ),
                       ],
                     ),

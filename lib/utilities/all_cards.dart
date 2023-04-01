@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:vriddhi_0/constants.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
+
 class SquareCard extends StatelessWidget {
   SquareCard({
     @required this.colour,
@@ -559,22 +558,4 @@ class BlogCard extends StatelessWidget {
   }
 }
 
-
-
-class DiseaseListTile extends StatelessWidget {
-  DiseaseListTile({required this.imagePath, required this.title,required this.id});
-
-  final String imagePath;
-  final String title;
-  final int id;
-
-  @override
-  Widget build(BuildContext context) {
-    return ListTile(
-      leading: ClipRRect(child: Image.asset(imagePath,height: 45,width: 45,), borderRadius: BorderRadius.circular(10.0),),
-      title: Text(title, style: kFormTextFieldLabelStyle.copyWith(fontSize: 16.0),),
-      trailing: Icon(Icons.navigate_next),
-      hoverColor: Colors.transparent,
-    );
-  }
-}
+//

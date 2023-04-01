@@ -20,7 +20,7 @@ class _CurrentBottomNavBarScreenState extends State<CurrentBottomNavBarScreen> {
     HomeScreen(),
     CropGuideScreen(),
     ExploreScreen(),
-    ProgressScreen(),
+    ProgressScreen(cropName: "Maize",),
     UserProfileScreen(),
   ];
   @override

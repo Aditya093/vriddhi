@@ -5,7 +5,11 @@ import 'package:form_builder_validators/form_builder_validators.dart';
 // import 'package:google_sign_in/google_sign_in.dart';
 import'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:vriddhi_0/constants.dart';
+import 'package:vriddhi_0/screens/current_screen.dart';
 import 'package:vriddhi_0/screens/login_screen.dart';
+import 'package:vriddhi_0/services/Authentication.dart';
+
+import 'home_screen.dart';
 
 class RegistrationScreen extends StatelessWidget {
   static const String id = 'registration_screen';
@@ -122,7 +126,9 @@ class _RegistrationFormState extends State<RegistrationForm> {
                   height:36.0,
                   width:158.0,
                   child: ElevatedButton(
-                    onPressed: (){} ,
+                    onPressed: (){
+                      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> CurrentBottomNavBarScreen()));
+                    } ,
                     child: Text('Register'),
                     style: ElevatedButton.styleFrom(
                       textStyle: TextStyle(
@@ -144,9 +150,23 @@ class _RegistrationFormState extends State<RegistrationForm> {
                     onPressed: (){} ,
                     child: ListView(
                       children: [
-                        ListTile(
-                          leading: Icon(FontAwesomeIcons.google, color: kButtonPositiveColor,),
-                          title: Text("Sign Up with Google", style: TextStyle(color: kButtonPositiveColor,fontSize: 15.0)),
+                        GestureDetector(
+                          onTap:()async{
+                            var user =
+                                await Authentication.signInWithGoogle(context: context);
+                            if(user !=null){
+                              Navigator.of(context).pushReplacement(
+                                MaterialPageRoute(
+                                  builder: (context) => CurrentBottomNavBarScreen(
+                                  ),
+                                ),
+                              );
+                            }
+                          },
+                          child: ListTile(
+                            leading: Icon(FontAwesomeIcons.google, color: kButtonPositiveColor,),
+                            title: Text("Sign Up with Google", style: TextStyle(color: kButtonPositiveColor,fontSize: 15.0)),
+                          ),
                         ),
                       ],
                     ),
