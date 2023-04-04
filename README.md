@@ -15,7 +15,10 @@ A next generation farming application which optimizes the efforts of farmers to 
     <li><a href="#Our-Goals">Our goals</a></li>
     <li><a href="#How-our-app-completes-these-Goals?">How our app completes these Goals?</a></li>
     <li><a href="How-to-run-our-application?">How to run our application?</a></li>
+    <li><a href="#Screenshots">Screenshots</a></li>
+    <li><a href="#Demo-Video-Link">Demo Video</a></li>
     <li><a href="#Further-Enhancements">Further Enhancements</a></li>
+    <li><a href="#Upcoming-Features">Upcoming Features</a></li>
     
  </ol>
  
@@ -97,24 +100,102 @@ Climate Action: 'Vriddhi' can contribute to achieving the goal of climate action
 
 ## How to run our application?
 
-### Frontend
-
-  - Open Android Studio -> File -> New -> Project from Version Control
-  - Paste the HTTPS web URL from the Code Dropdown into the URL textfield
-  - Rename the directory as \vriddhi_0 and click clone.
-  - In urllist.dart please change the url according to URL of backend.
-
-### Backend
-
+### Requirements
+ - Android Studio or smartphone.
+ - Flutter Installed.
  - Our backend server is built in flask, so python is required.
  - Apart from python, tensorflow, flask are required.
  - Tesseract OCR from google is also required.
  - Configure path of tesseract OCR in app.py file
  - run app.py flask file and serve API using ngrok or some other software.
 
+## Steps to Run
+
+### Step-1: Copy the https link from github
+
+![](https://github.com/AyushSolanki-17/StaticServer/blob/main/SolutionChallenge/Steps/1.jpeg?raw=true)
+
+
+### Step-2: In Android Studio, Click on File->New->Project From Version Control
+
+![](https://github.com/AyushSolanki-17/StaticServer/blob/main/SolutionChallenge/Steps/2.jpeg?raw=true)
+
+### Step-3: Paste the https url and mention the folder name as vridhhi_0
+
+![](https://github.com/AyushSolanki-17/StaticServer/blob/main/SolutionChallenge/Steps/3.jpeg?raw=true)
+
+### Step-4: Get Dependencies and open url.dart
+
+
+### Step-5: Open the command prompt and navigate to BACKEND-SERVER folder.
+
+![](https://github.com/AyushSolanki-17/StaticServer/blob/main/SolutionChallenge/Steps/4.jpeg?raw=true)
+
+### Step-6: Run following commands to start flask server. Note: you need to configure the requirements shown above.
+
+```
+set FLASK_APP=app.py
+flask run
+```
+
+![](https://github.com/AyushSolanki-17/StaticServer/blob/main/SolutionChallenge/Steps/5.jpeg?raw=true)
+
+### Step-7: Use port forwarding tools like ngrok and link it to the server running on your pc. After that copy the Forwarding link
+
+![](https://github.com/AyushSolanki-17/StaticServer/blob/main/SolutionChallenge/Steps/6.jpeg?raw=true)
+
+### Step-8: Paste it in the url dart UBaseURL
+
+![](https://github.com/AyushSolanki-17/StaticServer/blob/main/SolutionChallenge/Steps/7.jpeg?raw=true)
+
+### Step-9: Run in emulator or smartphone
+
+
+## Screenshots
+
+<div align="center">
+    <img src="https://github.com/AyushSolanki-17/StaticServer/blob/main/SolutionChallenge/Screenshots/3.jpeg?raw=true" alt="Image 1" width="200" height="412" />
+    <img src="https://github.com/AyushSolanki-17/StaticServer/blob/main/SolutionChallenge/Screenshots/6.jpeg?raw=true" alt="Image 1" width="200" height="412" />
+    <img src="https://github.com/AyushSolanki-17/StaticServer/blob/main/SolutionChallenge/Screenshots/4.jpeg?raw=true" alt="Image 2" width="200" height="412" />
+    <img src="https://github.com/AyushSolanki-17/StaticServer/blob/main/SolutionChallenge/Screenshots/5.jpeg?raw=true" alt="Image 3" width="200" height="412" />
+</div>
+
+
+<div align="center">
+    <img src="https://github.com/AyushSolanki-17/StaticServer/blob/main/SolutionChallenge/Screenshots/7.jpeg?raw=true" alt="Image 2" width="200" height="412" />
+    <img src="https://github.com/AyushSolanki-17/StaticServer/blob/main/SolutionChallenge/Screenshots/1.jpeg?raw=true" alt="Image 2" width="200" height="412" />
+    <img src="https://github.com/AyushSolanki-17/StaticServer/blob/main/SolutionChallenge/Screenshots/8.jpeg?raw=true" alt="Image 3" width="200" height="412" />
+    <img src="https://github.com/AyushSolanki-17/StaticServer/blob/main/SolutionChallenge/Screenshots/9.jpeg?raw=true" alt="Image 2" width="200" height="412" />
+</div>
+
+<div align="center">
+    <img src="https://github.com/AyushSolanki-17/StaticServer/blob/main/SolutionChallenge/Screenshots/11.jpeg?raw=true" alt="Image 1" width="200" height="412" />
+    <img src="https://github.com/AyushSolanki-17/StaticServer/blob/main/SolutionChallenge/Screenshots/newblog.jpeg?raw=true" alt="Image 2" width="200" height="412" />
+    <img src="https://github.com/AyushSolanki-17/StaticServer/blob/main/SolutionChallenge/Screenshots/13.jpeg?raw=true" alt="Image 3" width="200" height="412" />
+    <img src="https://github.com/AyushSolanki-17/StaticServer/blob/main/SolutionChallenge/Screenshots/14.jpeg?raw=true" alt="Image 2" width="200" height="412" />
+</div>
+
+
+<div align="center">
+    <img src="https://github.com/AyushSolanki-17/StaticServer/blob/main/SolutionChallenge/Screenshots/2.jpeg?raw=true" alt="Image 3" width="200" height="412" />
+    <img src="https://github.com/AyushSolanki-17/StaticServer/blob/main/SolutionChallenge/Screenshots/10.jpeg?raw=true" alt="Image 3" width="200" height="412" />
+    <img src="https://github.com/AyushSolanki-17/StaticServer/blob/main/SolutionChallenge/Screenshots/15.jpeg?raw=true" alt="Image 3" width="200" height="412" />
+    <img src="https://github.com/AyushSolanki-17/StaticServer/blob/main/SolutionChallenge/Screenshots/16.jpeg?raw=true" alt="Image 3" width="200" height="412" />
+</div>
+
+## Demo Video Link
+
+https://youtu.be/Bm0T17vbvGM
 
 ## Further Enhancements
 
 - More advanced Deep learning models for advanced tasks.
 - More automation in the application.
 - Making Progress Screen More interactive
+
+## Upcoming Features
+
+- Google Maps to select location.
+- Trees Planatation Program Guide.
+- Crop History 
+- Focusing on AgriPool feature and building a unique one stop database of Plant related Images.
