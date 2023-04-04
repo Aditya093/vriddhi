@@ -18,7 +18,7 @@ A next generation farming application which optimizes the efforts of farmers to 
     <li><a href="#Screenshots">Screenshots</a></li>
     <li><a href="#Demo-Video-Link">Demo Video</a></li>
     <li><a href="#Further-Enhancements">Further Enhancements</a></li>
-    <li><a href="#Upcoming-Features">Further Enhancements</a></li>
+    <li><a href="#Upcoming-Features">Upcoming Features</a></li>
     
  </ol>
  
@@ -170,7 +170,7 @@ flask run
 
 <div align="center">
     <img src="https://github.com/AyushSolanki-17/StaticServer/blob/main/SolutionChallenge/Screenshots/11.jpeg?raw=true" alt="Image 1" width="200" height="412" />
-    <img src="https://github.com/AyushSolanki-17/StaticServer/blob/main/SolutionChallenge/Screenshots/12.jpeg?raw=true" alt="Image 2" width="200" height="412" />
+    <img src="https://github.com/AyushSolanki-17/StaticServer/blob/main/SolutionChallenge/Screenshots/newblog.jpeg?raw=true" alt="Image 2" width="200" height="412" />
     <img src="https://github.com/AyushSolanki-17/StaticServer/blob/main/SolutionChallenge/Screenshots/13.jpeg?raw=true" alt="Image 3" width="200" height="412" />
     <img src="https://github.com/AyushSolanki-17/StaticServer/blob/main/SolutionChallenge/Screenshots/14.jpeg?raw=true" alt="Image 2" width="200" height="412" />
 </div>
