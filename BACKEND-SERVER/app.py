@@ -105,10 +105,11 @@ def predict():
     img = load_img(os.path.join(app.config['UPLOAD_FOLDER'], filename), target_size=(256, 256))
     img=img.resize((256,256))
     x = img_to_array(img)
-    im = x
     im=preprocess_input(x)
     im = np.expand_dims(im, axis=0)
+    im=im/255.0
     preds=noleafmodel.predict(im)
+    preds=preds.argmax(axis=-1)[0]
     if preds[0][0] == 0:
         result = {'class1': 'The Object is either not a leaf or image is blurry.'}
         return jsonify(result)
