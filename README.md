@@ -18,6 +18,7 @@ A next generation farming application which optimizes the efforts of farmers to 
     <li><a href="#Screenshots">Screenshots</a></li>
     <li><a href="#Demo-Video-Link">Demo Video</a></li>
     <li><a href="#Further-Enhancements">Further Enhancements</a></li>
+    <li><a href="#Upcoming-Features">Further Enhancements</a></li>
     
  </ol>
  
@@ -192,3 +193,9 @@ https://youtu.be/Bm0T17vbvGM
 - More automation in the application.
 - Making Progress Screen More interactive
 
+## Upcoming Features
+
+- Google Maps to select location.
+- Trees Planatation Program Guide.
+- Crop History 
+- Focusing on AgriPool feature and building a unique one stop database of Plant related Images.
