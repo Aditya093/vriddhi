@@ -4,10 +4,7 @@ import 'package:vriddhi_0/data_lists/crop_guide_list.dart';
 import 'package:vriddhi_0/data_lists/disease_guide_list.dart';
 import 'package:vriddhi_0/screens/disease_details_screen.dart';
 import 'package:vriddhi_0/utilities/all_card_content.dart';
-import 'package:vriddhi_0/utilities/all_cards.dart';
 import 'package:vriddhi_0/widgets/reusable_rounded_card.dart';
-import 'package:vriddhi_0/widgets/reusable_widgets.dart';
-//
 
 class DiseaseGuideScreen extends StatefulWidget {
   static const String id = 'disease_guide_screen';

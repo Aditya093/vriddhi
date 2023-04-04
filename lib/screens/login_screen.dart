@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
@@ -18,11 +19,6 @@ class LoginScreen extends StatelessWidget {
       backgroundColor: kBackgroundColor,
       appBar: AppBar(
         backgroundColor: kPrimaryAppbarColor,
-        // leading: Image.asset(
-        //   'assetFolder/Applogo/logo.png',
-        //   fit: BoxFit.contain,
-        //   height: 30,
-        // ),
         leadingWidth: 80,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(15.0),
@@ -42,7 +38,10 @@ class LoginForm extends StatefulWidget {
 
 class _LoginFormState extends State<LoginForm> {
   final GlobalKey<FormBuilderState> _formKey = GlobalKey <FormBuilderState>();
-
+  late String email;
+  late String password;
+  final _auth = FirebaseAuth.instance;
+  bool showSpinner = false;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -77,6 +76,9 @@ class _LoginFormState extends State<LoginForm> {
                     padding: const EdgeInsets.all(8.0),
                     child: FormBuilderTextField(
                       name: 'email',
+                      onChanged: (value) {
+                        email = value!;
+                      },
                       decoration: kFormLabelTextFieldStyle.copyWith(labelText: "Email", hintText: "Enter your email-id"),
                       validator: FormBuilderValidators.compose([
                         FormBuilderValidators.required(),
@@ -88,6 +90,9 @@ class _LoginFormState extends State<LoginForm> {
                     padding: const EdgeInsets.all(8.0),
                     child: FormBuilderTextField(
                         name: 'password',
+                        onChanged: (value) {
+                          password = value!;
+                        },
                         decoration: kFormLabelTextFieldStyle.copyWith(labelText: "Password", hintText: "Enter your password"),
                         obscureText: true,
                         validator: FormBuilderValidators.compose([FormBuilderValidators.required(), FormBuilderValidators.minLength(8)])
@@ -104,9 +109,23 @@ class _LoginFormState extends State<LoginForm> {
                   height:36.0,
                   width:158.0,
                   child: ElevatedButton(
-                    onPressed: (){
-                      Navigator.pushNamed(context, CurrentBottomNavBarScreen.id);
-                    } ,
+                    onPressed: () async {
+                      try{
+                        setState(() {
+                          showSpinner = true;
+                        });
+                        final user = await _auth.signInWithEmailAndPassword(email: email, password: password);
+                        if(user != null){
+                          Navigator.pushReplacementNamed(context, CurrentBottomNavBarScreen.id);
+                        }
+                        setState(() {
+                          showSpinner = false;
+                        });
+                      }catch(e){
+                        print(e);
+                      }
+
+                    },
                     child: Text('Login'),
                     style: ElevatedButton.styleFrom(
                       textStyle: TextStyle(

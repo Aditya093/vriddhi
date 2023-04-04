@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
@@ -14,17 +15,17 @@ import 'home_screen.dart';
 class RegistrationScreen extends StatelessWidget {
   static const String id = 'registration_screen';
 
+  // late String email;
+  // late String password;
+  // final _auth = FirebaseAuth.instance;
+  // bool showSpinner = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: kBackgroundColor,
       appBar: AppBar(
         backgroundColor: kPrimaryAppbarColor,
-        // leading: Image.asset(
-        //   'assets/images/logo/logo_without_text.png',
-        //   fit: BoxFit.contain,
-        //   height: 30,
-        // ),
         leadingWidth: 80,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(15.0),
@@ -43,6 +44,11 @@ class RegistrationForm extends StatefulWidget {
 }
 
 class _RegistrationFormState extends State<RegistrationForm> {
+  late String email;
+  late String password;
+  final _auth = FirebaseAuth.instance;
+  bool showSpinner = false;
+  bool isTermsCicked = false;
 
   final GlobalKey<FormBuilderState> _formKey = GlobalKey <FormBuilderState>();
 
@@ -90,6 +96,9 @@ class _RegistrationFormState extends State<RegistrationForm> {
                     padding: const EdgeInsets.all(8.0),
                     child: FormBuilderTextField(
                       name: 'email',
+                      onChanged: (value) {
+                        email = value!;
+                      },
                       decoration: kFormLabelTextFieldStyle.copyWith(labelText: "Email", hintText: "Enter your email-id"),
                       validator: FormBuilderValidators.compose([
                         FormBuilderValidators.required(),
@@ -101,6 +110,9 @@ class _RegistrationFormState extends State<RegistrationForm> {
                     padding: const EdgeInsets.all(8.0),
                     child: FormBuilderTextField(
                         name: 'password',
+                        onChanged: (value) {
+                          password = value!;
+                        },
                         decoration: kFormLabelTextFieldStyle.copyWith(labelText: "Password", hintText: "Enter your password"),
                         obscureText: true,
                         validator: FormBuilderValidators.compose([FormBuilderValidators.required(), FormBuilderValidators.minLength(8)])
@@ -108,6 +120,9 @@ class _RegistrationFormState extends State<RegistrationForm> {
                   ),
                   FormBuilderCheckbox(
                     name: 'agree',
+                    onChanged: (value){
+                      this.isTermsCicked = value!;
+                    },
                     initialValue: false,
                     checkColor: Colors.white,
                     activeColor: kPrimaryGreenColor,
@@ -126,9 +141,27 @@ class _RegistrationFormState extends State<RegistrationForm> {
                   height:36.0,
                   width:158.0,
                   child: ElevatedButton(
-                    onPressed: (){
-                      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> CurrentBottomNavBarScreen()));
-                    } ,
+                    onPressed: () async {
+                      setState(() {
+                        showSpinner=true;
+                      });
+                      try {
+                        final newUser =
+                        await _auth.createUserWithEmailAndPassword(
+                            email: email, password: password);
+                        if (newUser != null && isTermsCicked == true) {
+                          Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> CurrentBottomNavBarScreen()));
+                        }
+                        else if(isTermsCicked == false){
+                          AlertDialog(content: Text("Please Accept the terms and conditions"),);
+                        }
+                        setState(() {
+                          showSpinner = false;
+                        });
+                      } catch (e) {
+                        print(e);
+                      }
+                    },
                     child: Text('Register'),
                     style: ElevatedButton.styleFrom(
                       textStyle: TextStyle(

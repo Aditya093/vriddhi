@@ -306,7 +306,7 @@ class _DiseaseResultModalState extends State<DiseaseResultModal> {
                 Center(
                   child: ElevatedButton(
                     onPressed: () {
-                      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => DiseaseDetailsScreen(diseaseName: 'Strawberry_Leaf_Scorch')));
+                      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => DiseaseDetailsScreen(diseaseName: widget.diseaseResult)));
                     },
                     child: Text(
                       'Know More',
