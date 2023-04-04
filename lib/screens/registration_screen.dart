@@ -20,11 +20,6 @@ class RegistrationScreen extends StatelessWidget {
       backgroundColor: kBackgroundColor,
       appBar: AppBar(
         backgroundColor: kPrimaryAppbarColor,
-        // leading: Image.asset(
-        //   'assets/images/logo/logo_without_text.png',
-        //   fit: BoxFit.contain,
-        //   height: 30,
-        // ),
         leadingWidth: 80,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(15.0),
