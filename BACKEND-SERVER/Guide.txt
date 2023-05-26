@@ -1,7 +1,0 @@
-Create data 1. Introduction 2. Climate 3. Soil 4. Varieties Recommended 5. Sowing and Seed / Planting ,for cotton in json format
-
-Create data 1. Method of Planting 2. Care 3. Land Preparation 4. Spacing 5. Manuring ,for coconut in json format
-
-Create data 1. Fertilizers 2. Inter-cultural operation 3. Weeding 4. Replanting or Under Planting 5. Nutritional Deficiencies and Their Management ,for coconut in json format
-
-Create data  1. Special Problems 2. Insect, Pest and Their Management 3. Disease and Their Management 4. Harvesting 5. Yield ,for coconut in json format

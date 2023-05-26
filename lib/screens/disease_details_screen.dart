@@ -5,7 +5,6 @@ import 'package:vriddhi_0/constants.dart';
 import 'package:change_case/change_case.dart';
 
 class DiseaseDetailsScreen extends StatefulWidget {
-  static const String id = 'crop_details_screen';
 
   DiseaseDetailsScreen({required this.diseaseName});
   final String diseaseName;
@@ -16,6 +15,11 @@ class DiseaseDetailsScreen extends StatefulWidget {
 
 class _DiseaseDetailsScreenState extends State<DiseaseDetailsScreen> {
   //variables
+  String disScName = "";
+  String disSymptoms = "";
+  String disCauses = "";
+  String disTreatment = "";
+  String disPrevention = "";
 
   String toDiseaseCase(String input) {
     List<String> words = input.split(' ');
@@ -26,13 +30,32 @@ class _DiseaseDetailsScreenState extends State<DiseaseDetailsScreen> {
   }
 
   Future<void> readJson() async {
-    final String response = await rootBundle.loadString('assets/disease_guide.json');
-    final data = await jsonDecode(response) ;
-    setState(()  {
-      // final diseaseData = data[toDiseaseCase(widget.diseaseName)];
-      final dynamic diseaseScientificName = data[toDiseaseCase(widget.diseaseName)][3];
-      print(diseaseScientificName);
-      print("success 1");
+    final String response =
+        await rootBundle.loadString('assets/disease_guide.json');
+    final data = await jsonDecode(response);
+    setState(() {
+      final diseaseScientificName =
+          data[toDiseaseCase(widget.diseaseName)]["scientific_name"];
+      this.disScName = diseaseScientificName;
+      final disSymptoms = data[toDiseaseCase(widget.diseaseName)]["symptoms"];
+      this.disSymptoms  = disSymptoms
+          .map((item) => '${disSymptoms.indexOf(item) + 1}. $item')
+          .join('\n');
+      final disCauses = data[toDiseaseCase(widget.diseaseName)]["causes"];
+      this.disCauses  = disCauses
+          .map((item) => '${disCauses.indexOf(item) + 1}. $item')
+          .join('\n');
+      final disTreatments =
+          data[toDiseaseCase(widget.diseaseName)]["treatments"];
+      this.disTreatment  = disTreatments
+          .map((item) => '${disTreatments.indexOf(item) + 1}. $item')
+          .join('\n');
+      final disPrevention =
+          data[toDiseaseCase(widget.diseaseName)]["prevention"];
+      this.disPrevention  = disPrevention
+          .map((item) => '${disPrevention.indexOf(item) + 1}. $item')
+          .join('\n');
+      // print(this.disPrevention);
     });
   }
 
@@ -40,7 +63,6 @@ class _DiseaseDetailsScreenState extends State<DiseaseDetailsScreen> {
   void initState() {
     super.initState();
     readJson();
-    print("success 2");
   }
 
   @override
@@ -77,99 +99,93 @@ class _DiseaseDetailsScreenState extends State<DiseaseDetailsScreen> {
                 height: 10,
               ),
               Container(
-                  padding: EdgeInsets.all(10),
-                  child: Column(
-                    children: [
-                      // Icon(FontAwesomeIcons.minus, size: 30.0,),
-
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                "Scientific Name : ",
+                padding: EdgeInsets.all(10),
+                child: Column(
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "Scientific Name : ",
+                              style: kFormTextFieldLabelStyle.copyWith(
+                                  fontWeight: FontWeight.w600),
+                            ),
+                            Text(disScName,
                                 style: kFormTextFieldLabelStyle.copyWith(
-                                    fontWeight: FontWeight.w600),
-                              ),
-                              Text("Diplocarpon earliana",
-                                  style: kFormTextFieldLabelStyle.copyWith(
-                                      fontSize: 18)),
-                            ],
-                          ),
-                          SizedBox(height: 8.0),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                "Symptoms :  ",
+                                    fontSize: 18)),
+                          ],
+                        ),
+                        SizedBox(height: 8.0),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "Symptoms :  ",
+                              style: kFormTextFieldLabelStyle.copyWith(
+                                  fontWeight: FontWeight.w600),
+                            ),
+                            Text(disSymptoms,
                                 style: kFormTextFieldLabelStyle.copyWith(
-                                    fontWeight: FontWeight.w600),
-                              ),
-                              Text(
-                                  "1.Small, purple-red spots on the upper surface of leaves\n2.Spots may turn brown and develop a yellow halo\n3.Leaves may become distorted and curl upwards\n4.Infected leaves may drop prematurely, leading to reduced plant vigor\n5.Fruit quality and yield may be reduced",
-                                  style: kFormTextFieldLabelStyle.copyWith(
-                                      fontSize: 18)),
-                            ],
-                          ),
-                          SizedBox(height: 8.0),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                "Causes : ",
+                                    fontSize: 18)),
+                          ],
+                        ),
+                        SizedBox(height: 8.0),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "Causes : ",
+                              style: kFormTextFieldLabelStyle.copyWith(
+                                  fontWeight: FontWeight.w600),
+                            ),
+                            Text(disCauses,
                                 style: kFormTextFieldLabelStyle.copyWith(
-                                    fontWeight: FontWeight.w600),
-                              ),
-                              Text(
-                                  "1.Fungal infection by Diplocarpon earliana\n2.Favored by warm, humid conditions\n3.Spread by wind and splashing water",
-                                  style: kFormTextFieldLabelStyle.copyWith(
-                                      fontSize: 18)),
-                            ],
-                          ),
-                          SizedBox(
-                            height: 8.0,
-                          ),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                "Treatments :  ",
+                                    fontSize: 18)),
+                          ],
+                        ),
+                        SizedBox(
+                          height: 8.0,
+                        ),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "Treatments :  ",
+                              style: kFormTextFieldLabelStyle.copyWith(
+                                  fontWeight: FontWeight.w600),
+                            ),
+                            Text(disTreatment,
                                 style: kFormTextFieldLabelStyle.copyWith(
-                                    fontWeight: FontWeight.w600),
-                              ),
-                              Text(
-                                  "1.Apply fungicides preventively, starting at the onset of disease or when conditions favor disease development\n2.Ensure proper air circulation and reduce humidity by avoiding overhead irrigation and providing adequate plant spacing\n3.Remove and destroy infected plant debris\nRemove and destroy infected plant debris",
-                                   style: kFormTextFieldLabelStyle.copyWith(
-                                  fontSize: 18)),
-                            ],
-                          ),
-                          SizedBox(
-                            height: 8.0,
-                          ),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                "Prevention : ",
+                                    fontSize: 18)),
+                          ],
+                        ),
+                        SizedBox(
+                          height: 8.0,
+                        ),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "Prevention : ",
+                              style: kFormTextFieldLabelStyle.copyWith(
+                                  fontWeight: FontWeight.w600),
+                            ),
+                            Text(disPrevention,
                                 style: kFormTextFieldLabelStyle.copyWith(
-                                    fontWeight: FontWeight.w600),
-                              ),
-                              Text(
-                                  "1.Plant resistant strawberry varieties\n2.Ensure proper air circulation and reduce humidity\n3.Avoid overhead irrigation\n4.Rotate crops to reduce disease pressure\n5.Apply preventative fungicides",
-                                  style: kFormTextFieldLabelStyle.copyWith(
-                                      fontSize: 18)),
-                            ],
-                          ),
-                          SizedBox(
-                            height: 8.0,
-                          ),
-                        ],
-                      )
-                    ],
-                  )),
-              // {"Disease Scienctific Name": }
+                                    fontSize: 18)),
+                          ],
+                        ),
+                        SizedBox(
+                          height: 8.0,
+                        ),
+                      ],
+                    )
+                  ],
+                ),
+              ),
             ],
           ),
         ),

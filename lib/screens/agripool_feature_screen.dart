@@ -7,7 +7,6 @@ import 'package:vriddhi_0/constants.dart';
 import 'package:vriddhi_0/utilities/agripool_modal.dart';
 
 class AgriPoolFeatureScreen extends StatefulWidget {
-  static const String id = 'agripool_feature_screen';
 
   const AgriPoolFeatureScreen({Key? key}) : super(key: key);
 

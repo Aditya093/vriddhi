@@ -1,22 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:vriddhi_0/constants.dart';
 import 'package:vriddhi_0/data_lists/all_features_list.dart';
-import 'package:vriddhi_0/screens/basic_details_screen.dart';
-import 'package:vriddhi_0/screens/blog_info_screen.dart';
-import 'package:vriddhi_0/screens/crop_guide_screen.dart';
-import 'package:vriddhi_0/screens/disease_detection_screen.dart';
-import 'package:vriddhi_0/screens/disease_guide_screen.dart';
-import 'package:vriddhi_0/screens/loading_screen.dart';
-import 'package:vriddhi_0/screens/news_screen.dart';
-import 'package:vriddhi_0/screens/soil_testing_screen.dart';
-import 'package:vriddhi_0/screens/weather_screen.dart';
-import 'package:vriddhi_0/utilities/all_card_content.dart';
+import 'package:vriddhi_0/screens/weather_loading_screen.dart';
 import 'package:vriddhi_0/utilities/all_cards.dart';
 import 'package:vriddhi_0/widgets/reusable_widgets.dart';
-import 'package:vriddhi_0/screens/agripool_screen.dart';
+
 
 class ExploreScreen extends StatefulWidget {
-  static final String id = 'explore_screen';
   @override
   State<ExploreScreen> createState() => _ExploreScreenState();
 }
@@ -25,41 +15,44 @@ class _ExploreScreenState extends State<ExploreScreen> {
   void onTapped(int index){
     switch(index){
       case 0: {
-        Navigator.pushNamed(context, CropGuideScreen.id);
+        Navigator.pushNamed(context, '/crop_guide');
       }
       break;
       case 1: {
-        Navigator.pushNamed(context, BasicDetailsScreen.id);
+        Navigator.pushNamed(context, '/basic_details');
       }
       break;
       case 2: {
-        Navigator.pushNamed(context, DiseaseDetectionScreen.id);
+        Navigator.pushNamed(context, 'disease_detection');
       }
       break;
       case 3: {
-        Navigator.pushNamed(context, SoilTestingScreen.id);
+        Navigator.pushNamed(context, '/soil_testing');
       }
       break;
       case 4: {
-        Navigator.push(context, MaterialPageRoute(builder: (context)=>LoadingScreen()));
+        Navigator.push(context, MaterialPageRoute(builder: (context)=>WeatherLoadingScreen()));
       }
       break;
       case 5: {
-        Navigator.pushNamed(context, BlogInfoScreen.id);
+        Navigator.pushNamed(context, '/blog_info');
       }
       break;
       case 6: {
-        Navigator.pushNamed(context, AgriPoolScreen.id);
+        Navigator.pushNamed(context,'/agri_pool');
       }
       break;
       case 7: {
-        Navigator.pushNamed(context, DiseaseGuideScreen.id);
+        Navigator.pushNamed(context, '/disease_guide');
       }
       break;
       case 8: {
-        Navigator.pushNamed(context, NewsScreen.id);
+        Navigator.pushNamed(context, '/news');
       }
       break;
+      case 9: {
+        Navigator.pushNamed(context, '/farming_technique');
+      }
       break;
     }
 

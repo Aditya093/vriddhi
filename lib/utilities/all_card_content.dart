@@ -96,7 +96,7 @@ class CardContentProgressBox extends StatelessWidget {
         //ProgressTextBar
         Container(
           decoration: BoxDecoration(
-            color: kCardColor,
+            color: kLightTealCardColor,
             borderRadius: BorderRadius.only(
               topLeft: Radius.circular(20),
               topRight: Radius.circular(20),
@@ -128,7 +128,7 @@ class CardContentProgressBox extends StatelessWidget {
         Container(
           decoration: BoxDecoration(
             // color: kSecondaryBgColor,
-            color: kCardColor,
+            color: kLightTealCardColor,
             borderRadius: BorderRadius.only(
               bottomLeft: Radius.circular(20),
               bottomRight: Radius.circular(20),

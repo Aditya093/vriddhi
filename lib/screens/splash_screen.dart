@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:vriddhi_0/constants.dart';
-import 'package:vriddhi_0/screens/get_started.dart';
+
 
 class SplashScreen extends StatefulWidget {
-  static final String id = 'splash_screen';
   @override
   State<SplashScreen> createState() => _SplashScreenState();
 }
@@ -17,7 +16,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
   void navigateToHomeScreen() async {
     await Future.delayed(Duration(milliseconds: 2000), () {});
-    Navigator.pushReplacementNamed(context, GetStartedScreen.id);
+    Navigator.pushReplacementNamed(context, '/current_bottom_navbar');
   }
 
   @override

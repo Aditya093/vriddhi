@@ -12,7 +12,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:path/path.dart';
 import 'package:async/async.dart';
 import 'package:vriddhi_0/screens/disease_details_screen.dart';
-import 'package:vriddhi_0/screens/disease_guide_screen.dart';
 import 'package:vriddhi_0/url.dart';
 
 import 'package:vriddhi_0/widgets/reusable_widgets.dart';
@@ -306,7 +305,7 @@ class _DiseaseResultModalState extends State<DiseaseResultModal> {
                 Center(
                   child: ElevatedButton(
                     onPressed: () {
-                      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => DiseaseDetailsScreen(diseaseName: 'Strawberry_Leaf_Scorch')));
+                      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => DiseaseDetailsScreen(diseaseName: widget.diseaseResult)));
                     },
                     child: Text(
                       'Know More',

@@ -1,21 +1,63 @@
 import 'package:flutter/material.dart';
-import 'package:vriddhi_0/screens/basic_details_screen.dart';
-import 'package:vriddhi_0/screens/crop_guide_screen.dart';
-import 'package:vriddhi_0/screens/disease_detection_screen.dart';
-import 'package:vriddhi_0/screens/explore_screen.dart';
+import 'package:vriddhi_0/data_lists/all_features_list.dart';
+import 'package:vriddhi_0/screens/weather_loading_screen.dart';
 import 'package:vriddhi_0/utilities/all_card_content.dart';
 import 'package:vriddhi_0/utilities/all_cards.dart';
 import 'package:vriddhi_0/widgets/heading_row_of_card.dart';
 import 'package:vriddhi_0/widgets/stacked_app_and_box.dart';
 
 class HomeScreen extends StatefulWidget {
-  static const String id = 'home_screen';
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  //variables
+  List<SmallSquareCard> featureList = AllFeaturesList.allFeaturesList;
+  //functions
+  void onTapped(int index){
+    switch(index){
+      case 0: {
+        Navigator.pushNamed(context, '/crop_classification');
+      }
+      break;
+      case 1: {
+        Navigator.pushNamed(context, '/basic_details');
+      }
+      break;
+      case 2: {
+        Navigator.pushNamed(context, 'disease_detection');
+      }
+      break;
+      case 3: {
+        Navigator.pushNamed(context, '/soil_testing');
+      }
+      break;
+      case 4: {
+        Navigator.push(context, MaterialPageRoute(builder: (context)=>WeatherLoadingScreen()));
+      }
+      break;
+      case 5: {
+        Navigator.pushNamed(context, '/blog_info');
+      }
+      break;
+      case 6: {
+        Navigator.pushNamed(context,'/agri_pool');
+      }
+      break;
+      case 7: {
+        Navigator.pushNamed(context, '/disease_guide');
+      }
+      break;
+      case 8: {
+        Navigator.pushNamed(context, '/news');
+      }
+      break;
+    }
+
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -28,12 +70,11 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             //Explore + View All
             Padding(
-
               padding: const EdgeInsets.only(left: 20.0, right: 20.0),
               child: HeadingRowOfRectCards(
                 heading: 'Explore',
                 onTapViewAll: () {
-                  Navigator.pushNamed(context, ExploreScreen.id);
+                  Navigator.pushNamed(context, '/explore');
                 },
               ),
             ),
@@ -42,36 +83,31 @@ class _HomeScreenState extends State<HomeScreen> {
               height: 10,
             ),
 
-             RectangleCard(
-                relatedImagePath:
-                    'assets/images/feature_icons/Feature_CropGuide.png',
-                titleText: 'Crop Book',
-                onTapped: (){Navigator.pushNamed(context, CropGuideScreen.id);},
-                descriptionText: 'An extensive guide of crops',
+            Padding(
+              padding: const EdgeInsets.only(left: 20,right: 20,bottom:0),
+              child: GridView.builder(
+                shrinkWrap: true,
+                physics: NeverScrollableScrollPhysics(),
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 3,
+                    mainAxisSpacing: 8,
+                    crossAxisSpacing: 8,
+                ),
+                itemBuilder: (BuildContext context, int index) {
+                  final current_feature = featureList[index];
+                  return SmallSquareCard(title: current_feature.title, imagePath: current_feature.imagePath,onTapCard: () => onTapped(index));
+                },
+                itemCount: 3,
               ),
-
-             RectangleCard(
-                relatedImagePath:
-                    'assets/images/feature_icons/Feature_Disease_Prediction.png',
-                titleText: 'Disease Detection',
-                descriptionText: 'Detect the disease of the crop',
-                onTapped:  (){Navigator.pushNamed(context, DiseaseDetectionScreen.id);},
             ),
-             RectangleCard(
-                relatedImagePath:
-                    'assets/images/feature_icons/Feature_Crop.png',
-                titleText: 'Predict Crop',
-                descriptionText: 'Predict the most suitable crop for land',
-                onTapped:  (){Navigator.pushNamed(context, BasicDetailsScreen.id);},
 
-             ),
-            //Crops + View All
+            // Crops + View All
             Padding(
               padding: const EdgeInsets.only(left: 20.0, right: 20.0),
               child: HeadingRowOfRectCards(
                 heading: 'Crops',
                 onTapViewAll: (){
-                  Navigator.pushNamed(context, CropGuideScreen.id);
+                  Navigator.pushNamed(context, '/crop_guide');
                 },
               ),
             ),

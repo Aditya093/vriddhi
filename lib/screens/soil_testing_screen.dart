@@ -12,8 +12,6 @@ class SoilTestingScreen extends StatelessWidget {
        appBar: ReusableWidgets.smallAppBar("Soil Testing"),
       body: Column(
             children: [
-
-
               Expanded(
                 child: ListView(
                   children: [
@@ -29,7 +27,7 @@ class SoilTestingScreen extends StatelessWidget {
                         padding: EdgeInsets.only(top:10.0,left: 5.0,right: 5.0,bottom: 10.0),
                         child:Card(
 
-                          color: kCardColor,
+                          color: kLightTealCardColor,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10),
                           ),
@@ -43,10 +41,7 @@ class SoilTestingScreen extends StatelessWidget {
                                 style: kFormPrimaryHeadingStyle,
 
                                 ),
-
                               ),
-
-
                               SizedBox(height: 15),
                               Align(
                                 alignment: Alignment.centerLeft,
@@ -57,7 +52,6 @@ class SoilTestingScreen extends StatelessWidget {
 
                                   ),
                                 ),
-
                               ),
                               SizedBox(height: 10),
                               Align(
@@ -96,7 +90,6 @@ class SoilTestingScreen extends StatelessWidget {
                               SizedBox(height: 50,width: double.infinity,),
 
                             ],
-                          //  ha pan
                           ),
                         )
                     ),
@@ -104,7 +97,7 @@ class SoilTestingScreen extends StatelessWidget {
                         padding: EdgeInsets.only(top:10.0,left: 5.0,right: 5.0,bottom: 10.0),
                         child:Card(
 
-                          color: kCardColor,
+                          color: kLightTealCardColor,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10),
                           ),
@@ -120,8 +113,6 @@ class SoilTestingScreen extends StatelessWidget {
                                 ),
 
                               ),
-
-
                               SizedBox(height: 15),
                               Align(
                                 alignment: Alignment.centerLeft,
@@ -129,10 +120,8 @@ class SoilTestingScreen extends StatelessWidget {
                                   padding: EdgeInsets.only(left:15.0),
                                   child:Text("Soil sample analysis for 15 parameters:",
                                     style:kTitleOfInfoCardsTS,
-
                                   ),
                                 ),
-
                               ),
                               SizedBox(height: 10),
                               Align(
