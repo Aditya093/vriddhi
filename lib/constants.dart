@@ -8,7 +8,7 @@ const kDescriptionFontColor = Color(0xff9B9B9B);
 const kBottomNavBarColor = Color(0xffccdbdc);
 const kSearchBarTextColor = Color(0xff000000);
 const kBackgroundColor = Color(0xFFF2F3F4);
-const kCardColor = Color(0xffccdbdc);
+const kLightTealCardColor = Color(0xffccdbdc);
 const kCardColorSecond = Color(0xffffffff);
 const kDangerColor = Color(0xFFc71e1e);
 
@@ -19,7 +19,7 @@ const kProgressBoxTitleTS = TextStyle(
 );
 const kProgressBoxbottomTS = TextStyle(fontSize: 16, color: kNavyBlueColor);
 const kTitleOfInfoCardsTS =
-    TextStyle(fontSize: 20, color: kNavyBlueColor, fontWeight: FontWeight.bold);
+    TextStyle(fontSize: 23, color: kNavyBlueColor, fontWeight: FontWeight.bold);
 const kTitleOfWeekCardsTS = TextStyle(
     fontSize: 25,
     color: kNavyBlueColor,

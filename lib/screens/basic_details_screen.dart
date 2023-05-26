@@ -7,7 +7,6 @@ import 'package:vriddhi_0/widgets/reusable_widgets.dart';
 
 
 class BasicDetailsScreen extends StatelessWidget {
-  static const String id = 'basic_details_screen';
 
   @override
   Widget build(BuildContext context) {

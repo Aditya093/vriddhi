@@ -11,7 +11,6 @@ import 'package:vriddhi_0/screens/registration_screen.dart';
 import 'package:vriddhi_0/services/Authentication.dart';
 
 class LoginScreen extends StatelessWidget {
-  static final String id = 'login_screen';
 
   @override
   Widget build(BuildContext context) {
@@ -116,7 +115,7 @@ class _LoginFormState extends State<LoginForm> {
                         });
                         final user = await _auth.signInWithEmailAndPassword(email: email, password: password);
                         if(user != null){
-                          Navigator.pushReplacementNamed(context, CurrentBottomNavBarScreen.id);
+                          Navigator.pushReplacementNamed(context, '/current_bottom_navbar');
                         }
                         setState(() {
                           showSpinner = false;
@@ -177,7 +176,7 @@ class _LoginFormState extends State<LoginForm> {
                           text: "Register Here !",
                           style: TextStyle(color: kPrimaryGreenColor, fontSize: 16.0),
                           recognizer: TapGestureRecognizer()
-                            ..onTap = (){Navigator.pushNamed(context, RegistrationScreen.id);},
+                            ..onTap = (){Navigator.pushNamed(context, '/registeration');},
                         ),
                       ],
                     ),),

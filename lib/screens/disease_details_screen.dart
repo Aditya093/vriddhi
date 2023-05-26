@@ -5,7 +5,6 @@ import 'package:vriddhi_0/constants.dart';
 import 'package:change_case/change_case.dart';
 
 class DiseaseDetailsScreen extends StatefulWidget {
-  static const String id = 'crop_details_screen';
 
   DiseaseDetailsScreen({required this.diseaseName});
   final String diseaseName;

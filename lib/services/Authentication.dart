@@ -23,82 +23,73 @@ class Authentication {
     User? user = FirebaseAuth.instance.currentUser;
 
     if (user != null) {
-
       // Add home page link
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(
           builder: (context) => HomeScreen(
-            // user: user,
-            //no same state
-          ),
+              // user: user,
+              //no same state
+              ),
         ),
       );
     }
 
     return firebaseApp;
   }
-
+  //sign-in with google
   static Future<User?> signInWithGoogle({required BuildContext context}) async {
     FirebaseAuth auth = FirebaseAuth.instance;
     User? user;
-
-
-
-      final GoogleSignIn googleSignIn = GoogleSignIn();
-print("Works");
-      final GoogleSignInAccount? googleSignInAccount =
-      await googleSignIn.signIn();
+    final GoogleSignIn googleSignIn = GoogleSignIn();
+    print("Works");
+    final GoogleSignInAccount? googleSignInAccount =
+        await googleSignIn.signIn();
     print("Here");
-      if (googleSignInAccount != null) {
+    if (googleSignInAccount != null) {
+      final GoogleSignInAuthentication googleSignInAuthentication =
+          await googleSignInAccount.authentication;
 
-        final GoogleSignInAuthentication googleSignInAuthentication =
-        await googleSignInAccount.authentication;
+      final AuthCredential credential = GoogleAuthProvider.credential(
+        accessToken: googleSignInAuthentication.accessToken,
+        idToken: googleSignInAuthentication.idToken,
+      );
+      print(credential);
+      try {
+        final UserCredential userCredential =
+            await auth.signInWithCredential(credential);
 
-        final AuthCredential credential = GoogleAuthProvider.credential(
-          accessToken: googleSignInAuthentication.accessToken,
-          idToken: googleSignInAuthentication.idToken,
-        );
-        // try no ok
-        print(credential);
-        try {
-          final UserCredential userCredential =
-          await auth.signInWithCredential(credential);
-
-          user = userCredential.user;
-        } on FirebaseAuthException catch (e) {
-          if (e.code == 'account-exists-with-different-credential') {
-            ScaffoldMessenger.of(context).showSnackBar(
-              Authentication.customSnackBar(
-                content:
-                'The account already exists with a different credential',
-              ),
-            );
-          } else if (e.code == 'invalid-credential') {
-            ScaffoldMessenger.of(context).showSnackBar(
-              Authentication.customSnackBar(
-                content:
-                'Error occurred while accessing credentials. Try again.',
-              ),
-            );
-          }
-        } catch (e) {
+        user = userCredential.user;
+      } on FirebaseAuthException catch (e) {
+        if (e.code == 'account-exists-with-different-credential') {
           ScaffoldMessenger.of(context).showSnackBar(
             Authentication.customSnackBar(
-              content: 'Error occurred using Google Sign In. Try again.',
+              content: 'The account already exists with a different credential',
+            ),
+          );
+        } else if (e.code == 'invalid-credential') {
+          ScaffoldMessenger.of(context).showSnackBar(
+            Authentication.customSnackBar(
+              content: 'Error occurred while accessing credentials. Try again.',
             ),
           );
         }
+      } catch (e) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          Authentication.customSnackBar(
+            content: 'Error occurred using Google Sign In. Try again.',
+          ),
+        );
       }
-
+    }
 
     return user;
   }
 
+  //sign-out of google
   static Future<void> signOut({required BuildContext context}) async {
     final GoogleSignIn googleSignIn = GoogleSignIn();
 
     try {
-
       await googleSignIn.signOut();
 
       await FirebaseAuth.instance.signOut();

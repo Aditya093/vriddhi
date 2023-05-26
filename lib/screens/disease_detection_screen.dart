@@ -12,7 +12,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:path/path.dart';
 import 'package:async/async.dart';
 import 'package:vriddhi_0/screens/disease_details_screen.dart';
-import 'package:vriddhi_0/screens/disease_guide_screen.dart';
 import 'package:vriddhi_0/url.dart';
 
 import 'package:vriddhi_0/widgets/reusable_widgets.dart';

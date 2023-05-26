@@ -10,7 +10,7 @@ class HeadingRowOfRectCards extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(top: 5),
+      margin: EdgeInsets.only(top: 18),
       child: Row(
         children: [
           //Explore Text
@@ -20,13 +20,13 @@ class HeadingRowOfRectCards extends StatelessWidget {
           ),
           //Text Button - View All
           Spacer(),
-          TextButton(
-            onPressed: onTapViewAll,
-            child: Text(
-              'View All',
-              style: TextStyle(fontSize: 15, color: kNavyBlueColor),
-            ),
-          ),
+          // TextButton(
+          //   onPressed: onTapViewAll,
+          //   child: Text(
+          //     'View All',
+          //     style: TextStyle(fontSize: 15, color: kNavyBlueColor),
+          //   ),
+          // ),
         ],
       ),
     );

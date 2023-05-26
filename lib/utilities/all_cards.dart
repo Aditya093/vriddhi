@@ -14,7 +14,7 @@ class SquareCard extends StatelessWidget {
     return Card(
       color: colour,
       child: cardChild,
-      margin: EdgeInsets.all(15.0),
+      margin: EdgeInsets.all(5.0),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(15.0),
       ),
@@ -32,7 +32,7 @@ class BoxCard extends StatelessWidget {
     return GestureDetector(
       onTap: onTapped,
       child: Card(
-        color: kCardColor,
+        color: kLightTealCardColor,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(20)),
         ),
@@ -65,7 +65,7 @@ class RectangleCard extends StatelessWidget {
         onTap: onTapped,
         child: Card(
           margin: const EdgeInsets.only(left: 20, right: 20, bottom: 8),
-          color: kCardColor,
+          color: kLightTealCardColor,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.all(
               Radius.circular(10),
@@ -148,6 +148,7 @@ class SmallSquareCard extends StatelessWidget {
     return GestureDetector(
       onTap: onTapCard,
       child: Card(
+        color: kLightTealCardColor,
         elevation: 4,
         // margin: EdgeInsets.all(8),
         shape: RoundedRectangleBorder(
@@ -267,7 +268,7 @@ class SmallWeatherSpecsCard extends StatelessWidget {
       ),
       child: Card(
         elevation: 2,
-        color: kCardColor,
+        color: kLightTealCardColor,
         // margin: EdgeInsets.all(8),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10),
@@ -451,7 +452,7 @@ class _DynamicDropdownLevelCardsState extends State<DynamicDropdownLevelCards> {
                   });
                 },
                 child: Card(
-                  color: kCardColor,
+                  color: kLightTealCardColor,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),

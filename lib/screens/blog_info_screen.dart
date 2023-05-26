@@ -3,7 +3,6 @@ import 'package:vriddhi_0/utilities/all_cards.dart';
 import 'package:vriddhi_0/widgets/reusable_widgets.dart';
 
 class BlogInfoScreen extends StatelessWidget {
-  static const String id = 'blog_info_screen';
 
   const BlogInfoScreen({super.key});
 
