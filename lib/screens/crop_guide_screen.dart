@@ -1,39 +1,84 @@
+
+
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:vriddhi_0/constants.dart';
-import 'package:vriddhi_0/data_lists/crop_guide_list.dart';
 import 'package:vriddhi_0/screens/crop_details_screen.dart';
-import 'package:vriddhi_0/utilities/all_card_content.dart';
 import 'package:vriddhi_0/utilities/all_cards.dart';
+
 
 // late CropGuideContent cropGuideObject ;
 class CropGuideScreen extends StatefulWidget {
-  static const String id = 'crop_guide_screen';
+  CropGuideScreen({required this.category});
+  late final String? category;
   @override
   State<CropGuideScreen> createState() => _CropGuideScreenState();
 }
 
 class _CropGuideScreenState extends State<CropGuideScreen> {
+  //variables
+  List<Map<String, dynamic>> cropList = [];
+  late List<Map<String, dynamic>>  displayList = List.from(cropList);
+  //copy of original list (cropList)
+  // List displayList =
+  // List.from(cropList);
 
-  List<CardContentCropGuide> displayList =
-      List.from(CropGuideList.cropGuideList);
-  void onTapped(int index){
-    switch(index){
-      case 0: {
-        Navigator.pushNamed(context, CropDetailsScreen.id);
-      }
-      break;
+  void onTapped(int index) {
+    switch (index) {
+      case 0:
+        {
+          Navigator.pushNamed(context, 'crop_details');
+        }
+        break;
+    }
+  }
+
+
+
+  
+  // Fetch data from Firebase and extract title names and image URLs
+  Future<List<Map<String, dynamic>>> fetchData() async {
+    QuerySnapshot snapshot =
+        await FirebaseFirestore.instance.collection('crop_guide').where('Crop Type',isEqualTo: widget.category).get();
+
+    List<Map<String, dynamic>> data = [];
+    for (DocumentSnapshot doc in snapshot.docs) {
+      String titleName = doc['Crop Name'];
+      String imageURL = doc['Image'];
+      int id = doc['ID'];
+      data.add({
+        'id': id,
+        'title': titleName,
+        'imageURL':
+            'https://raw.githubusercontent.com/AyushSolanki-17/StaticServer/main/SolutionChallenge/Vriddhi%20Crops/$imageURL',
+      });
     }
 
+    return data;
   }
 
   void updateList(String value) {
     setState(() {
-      displayList = CropGuideList.cropGuideList
+      displayList = cropList
           .where((element) =>
-              element.title.toLowerCase().contains(value.toLowerCase()))
+          element['title'].toLowerCase().contains(value.toLowerCase()))
           .toList();
+
     });
   }
+
+  void initState() {
+    super.initState();
+    fetchData().then((result) {
+      setState(() {
+        cropList = result;
+        displayList = cropList;
+      });
+
+    });
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -71,36 +116,54 @@ class _CropGuideScreenState extends State<CropGuideScreen> {
                     // suffixIconColor: kSearchBarColor,
                   ),
                 ),
-                // GridView.builder(gridDelegate: gridDelegate)
+
                 Expanded(
                   child: GridView.builder(
+                    itemCount: displayList.length,
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 2,
+                      crossAxisCount: 2, // Number of cards in a row
                     ),
-                    itemBuilder: (BuildContext context, int index) {
-                      CropGuideList().sortingList();
-                      final current_crop = displayList[index];
+                    itemBuilder: (context, index) {
+                      String title = displayList[index]['title'];
+                      String imageURL = displayList[index]['imageURL'];
+
                       return GestureDetector(
-                        onTap: (){
-                          // print("${displayList[index].id}");
+                      onTap: (){
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => CropDetailsScreen(cropId: displayList[index].id),
+                              builder: (context) => CropDetailsScreen(cropId: cropList[index]['id'], imageURL: cropList[index]['imageURL'],),
                             ),
                           );
                         },
                         child: SquareCard(
-                          colour: Colors.white,
-                          cardChild: current_crop,
-                          // onPress: () => onTapped(index),
+                          cardChild: Column(
+                            children: [
+                              Expanded(
+                                child: CachedNetworkImage(
+                                  imageUrl: imageURL,
+                                  fit: BoxFit.cover,
+                                  placeholder: (context, url) =>
+                                      CircularProgressIndicator(),
+                                  errorWidget: (context, url, error) =>
+                                      Icon(Icons.error),
+                                ),
+                              ),
+                              SizedBox(height: 8.0),
+                              Text(
+                                title,
+                                style: TextStyle(
+                                  fontSize: 16.0,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       );
                     },
-                    itemCount: displayList.length,
                   ),
                 ),
-                //Nav Bar
               ],
             ),
           ),
@@ -110,63 +173,29 @@ class _CropGuideScreenState extends State<CropGuideScreen> {
   }
 }
 
-// class CropCard extends StatelessWidget {
-//   CropCard({required this.cropName, required this.cropImagePath});
-//   final String cropName;
-//   final String cropImagePath;
-//   @override
-//   Widget build(BuildContext context) {
-//     return Container(
-//       height: 200,
-//       width: 150,
-//       color: Colors.yellow,
-//       child: Stack(children: [
-//         //Title container
-//         Align(
-//           alignment: Alignment.topLeft,
-//           child: Container(
-//             decoration: BoxDecoration(
-//                 color: Colors.white,
-//                 borderRadius: BorderRadius.all(
-//                   Radius.circular(25),
-//                 )),
-//             height: 170,
-//             width: 150,
-//             margin: EdgeInsets.only(top: 20, right: 10),
-//             child: Container(
-//               padding: EdgeInsets.only(left: 15),
-//               margin: EdgeInsets.only(top: 110, bottom: 2),
-//               height: 50,
-//               width: 50,
-//               // color: Colors.blue,
-//
-//               //Crop Title
-//               child: Container(
-//                 alignment: Alignment.topCenter,
-//                 margin: EdgeInsets.only(right: 18),
-//                 child: Text(
-//                   cropName,
-//                   style: TextStyle(
-//                     color: kFontColor,
-//                     fontSize: 28,
-//                     fontWeight: FontWeight.bold,
-//                   ),
-//                 ),
-//               ),
-//             ),
+// child: GridView.builder(
+//   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+//     crossAxisCount: 2,
+//   ),
+//   itemBuilder: (BuildContext context, int index) {
+//     CropGuideList().sortingList();
+//     final current_crop = displayList[index];
+//     return GestureDetector(
+//       onTap: (){
+//         // print("${displayList[index].id}");
+//         Navigator.push(
+//           context,
+//           MaterialPageRoute(
+//             builder: (context) => CropDetailsScreen(cropId: displayList[index].id),
 //           ),
-//         ),
-//         //Image Container
-//         Align(
-//           alignment: Alignment.topCenter,
-//           child: Container(
-//             margin: EdgeInsets.only(right: 32, top: 20),
-//             height: 120,
-//             width: 120,
-//             child: Image.asset(cropImagePath),
-//           ),
-//         ),
-//       ]),
+//         );
+//       },
+//       child: SquareCard(
+//         colour: Colors.white,
+//         cardChild: current_crop,
+//         // onPress: () => onTapped(index),
+//       ),
 //     );
-//   }
-// }
+//   },
+//   itemCount: displayList.length,
+// ),

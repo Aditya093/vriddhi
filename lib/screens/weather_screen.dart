@@ -92,7 +92,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
               Expanded(
                 flex: 7,
                 child: Card(
-                  color: kCardColor,
+                  color: kLightTealCardColor,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),

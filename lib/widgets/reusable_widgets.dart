@@ -15,14 +15,14 @@ class ReusableWidgets {
         width: 10,
       ),
       // leadingWidth: 80,
-      actions: [
-        Icon(
-          Icons.add_alert_sharp,
-          color: kPrimaryGreenColor,
-          size: 30.0,
-        ),
-        SizedBox(width: 10.0),
-      ],
+      // actions: [
+      //   Icon(
+      //     Icons.add_alert_sharp,
+      //     color: kPrimaryGreenColor,
+      //     size: 30.0,
+      //   ),
+      //   SizedBox(width: 10.0),
+      // ],
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.only(bottomLeft: Radius.circular(15), bottomRight: Radius.circular(15),),
       ),

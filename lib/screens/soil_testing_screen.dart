@@ -12,8 +12,6 @@ class SoilTestingScreen extends StatelessWidget {
        appBar: ReusableWidgets.smallAppBar("Soil Testing"),
       body: Column(
             children: [
-
-
               Expanded(
                 child: ListView(
                   children: [
@@ -29,7 +27,7 @@ class SoilTestingScreen extends StatelessWidget {
                         padding: EdgeInsets.only(top:10.0,left: 5.0,right: 5.0,bottom: 10.0),
                         child:Card(
 
-                          color: kCardColor,
+                          color: kLightTealCardColor,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10),
                           ),
@@ -104,7 +102,7 @@ class SoilTestingScreen extends StatelessWidget {
                         padding: EdgeInsets.only(top:10.0,left: 5.0,right: 5.0,bottom: 10.0),
                         child:Card(
 
-                          color: kCardColor,
+                          color: kLightTealCardColor,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10),
                           ),

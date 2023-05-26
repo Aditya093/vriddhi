@@ -2,8 +2,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:vriddhi_0/constants.dart';
-import 'package:vriddhi_0/screens/login_screen.dart';
-import 'package:vriddhi_0/screens/registration_screen.dart';
+
 
 class GetStartedScreen extends StatelessWidget {
   static const String id = 'get_started_screen';
@@ -32,7 +31,7 @@ class GetStartedScreen extends StatelessWidget {
                   width:158.0,
                   child: ElevatedButton(
                     onPressed: (){
-                      Navigator.pushReplacementNamed(context, RegistrationScreen.id);
+                      Navigator.pushReplacementNamed(context, '/registeration');
                     } ,
                     child: Text('Get Started'),
                     style: ElevatedButton.styleFrom(
@@ -54,7 +53,7 @@ class GetStartedScreen extends StatelessWidget {
                           text: "Sign In !",
                           style: TextStyle(color: kButtonPositiveColor, fontSize: 16.0),
                           recognizer: TapGestureRecognizer()
-                            ..onTap = (){Navigator.pushNamed(context, LoginScreen.id);},
+                            ..onTap = (){Navigator.pushNamed(context, '/login');},
                         ),
                       ],
                     ),),

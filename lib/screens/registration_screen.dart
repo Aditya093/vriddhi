@@ -3,22 +3,16 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
-// import 'package:google_sign_in/google_sign_in.dart';
 import'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:vriddhi_0/constants.dart';
 import 'package:vriddhi_0/screens/current_screen.dart';
 import 'package:vriddhi_0/screens/login_screen.dart';
 import 'package:vriddhi_0/services/Authentication.dart';
 
-import 'home_screen.dart';
 
 class RegistrationScreen extends StatelessWidget {
-  static const String id = 'registration_screen';
-
-  // late String email;
-  // late String password;
-  // final _auth = FirebaseAuth.instance;
-  // bool showSpinner = false;
+  // RegistrationScreen({required this.onSignIn});
+  // final Function(User) onSignIn;
 
   @override
   Widget build(BuildContext context) {
@@ -44,12 +38,14 @@ class RegistrationForm extends StatefulWidget {
 }
 
 class _RegistrationFormState extends State<RegistrationForm> {
+  //Firebase-Authentication variables
   late String email;
   late String password;
   final _auth = FirebaseAuth.instance;
   bool showSpinner = false;
   bool isTermsCicked = false;
 
+  //form variables
   final GlobalKey<FormBuilderState> _formKey = GlobalKey <FormBuilderState>();
 
   @override
@@ -65,7 +61,8 @@ class _RegistrationFormState extends State<RegistrationForm> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Container(
+                  //Heading and static text
+                  Padding(
                     padding: EdgeInsets.all(8.0),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -82,6 +79,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
                     ),
                   ),
                   SizedBox(height: 10.0),
+                  //Form Input-1 (Name)
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: FormBuilderTextField(
@@ -92,11 +90,13 @@ class _RegistrationFormState extends State<RegistrationForm> {
                       ]),
                     ),
                   ),
+                  //Form Input-2 (Email)
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: FormBuilderTextField(
                       name: 'email',
                       onChanged: (value) {
+                        //Firebase instance email
                         email = value!;
                       },
                       decoration: kFormLabelTextFieldStyle.copyWith(labelText: "Email", hintText: "Enter your email-id"),
@@ -106,6 +106,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
                       ]),
                     ),
                   ),
+                  //Form Input-3 (Password)
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: FormBuilderTextField(
@@ -115,20 +116,22 @@ class _RegistrationFormState extends State<RegistrationForm> {
                         },
                         decoration: kFormLabelTextFieldStyle.copyWith(labelText: "Password", hintText: "Enter your password"),
                         obscureText: true,
-                        validator: FormBuilderValidators.compose([FormBuilderValidators.required(), FormBuilderValidators.minLength(8)])
+                        validator: FormBuilderValidators.compose([FormBuilderValidators.required(), FormBuilderValidators.minLength(6)])
                     ),
                   ),
+                  // Form Input-4 (Checkbox of Terms and Conditions)
                   FormBuilderCheckbox(
                     name: 'agree',
                     onChanged: (value){
-                      this.isTermsCicked = value!;
+                      setState(() {
+                        this.isTermsCicked = value!;
+                      });
                     },
                     initialValue: false,
                     checkColor: Colors.white,
                     activeColor: kPrimaryGreenColor,
                     title: Text('I agree to all terms and conditions.', style: TextStyle(color: kButtonPositiveColor, fontSize: 15.0, fontFamily: "Jaldi"),),
                     validator: FormBuilderValidators.compose([FormBuilderValidators.required(),
-                      // FormBuilderValidators.,
                     ]),
                   ),
                 ],
@@ -137,14 +140,21 @@ class _RegistrationFormState extends State<RegistrationForm> {
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                //Register Button
                 SizedBox(
                   height:36.0,
                   width:158.0,
                   child: ElevatedButton(
                     onPressed: () async {
+                      //Process of Firebase Registered User
                       setState(() {
                         showSpinner=true;
                       });
+                      if(showSpinner == true){
+                        CircularProgressIndicator(
+                          color: kPrimaryAppColor,
+                        );
+                      }
                       try {
                         final newUser =
                         await _auth.createUserWithEmailAndPassword(
@@ -155,6 +165,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
                         else if(isTermsCicked == false){
                           AlertDialog(content: Text("Please Accept the terms and conditions"),);
                         }
+                        // onSignIn();
                         setState(() {
                           showSpinner = false;
                         });
@@ -171,11 +182,15 @@ class _RegistrationFormState extends State<RegistrationForm> {
                     ),
                   ),
                 ),
+                //Space
                 SizedBox(height: 20.0,),
+                //Part 2
                 Text(
                   "OR"
                 ),
+                //Space
                 SizedBox(height: 20.0,),
+                //Register with Google
                 SizedBox(
                   height:60.0,
                   width:258.0,
@@ -211,7 +226,9 @@ class _RegistrationFormState extends State<RegistrationForm> {
                     ),
                   ),
                 ),
+                //Space
                 SizedBox(height: 20.0,),
+                //Pre-Registered user Option
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -222,7 +239,7 @@ class _RegistrationFormState extends State<RegistrationForm> {
                           text: "Login now !",
                           style: TextStyle(color: kPrimaryGreenColor, fontSize: 16.0),
                           recognizer: TapGestureRecognizer()
-                            ..onTap = (){Navigator.pushNamed(context, LoginScreen.id);},
+                            ..onTap = (){Navigator.pushNamed(context, '/login');},
                         ),
                       ],
                     ),),

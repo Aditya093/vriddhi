@@ -38,6 +38,10 @@ class AllFeaturesList {
       title: 'News\nFeed',
       imagePath: 'assets/images/feature_icons/Feature_News.png',
     ),
+    SmallSquareCard(
+      title: 'Farming\nTechnique',
+      imagePath: 'assets/images/feature_icons/Feature_News.png',
+    ),
 
   ];
 }

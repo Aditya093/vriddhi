@@ -9,7 +9,6 @@ import 'package:vriddhi_0/widgets/reusable_widgets.dart';
 
 class NewsScreen extends StatefulWidget
 {
-  static final String id = 'news_screen';
 
   const NewsScreen({super.key});
   @override

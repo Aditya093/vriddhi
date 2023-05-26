@@ -7,7 +7,6 @@ import 'package:vriddhi_0/utilities/all_cards.dart';
 import 'package:vriddhi_0/widgets/reusable_widgets.dart';
 
 class AgriPoolScreen extends StatefulWidget {
-  static const String id = 'agripool_screen';
 
   @override
   State<AgriPoolScreen> createState() => _AgriPoolScreenState();

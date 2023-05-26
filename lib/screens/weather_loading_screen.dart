@@ -10,12 +10,12 @@ WeatherModel weather = WeatherModel();
 
 
 //loading Screen the first screen
-class LoadingScreen extends StatefulWidget {
+class WeatherLoadingScreen extends StatefulWidget {
   @override
-  _LoadingScreenState createState() => _LoadingScreenState();
+  _WeatherLoadingScreenState createState() => _WeatherLoadingScreenState();
 }
 //Child class of LoadingScreen
-class _LoadingScreenState extends State<LoadingScreen> {
+class _WeatherLoadingScreenState extends State<WeatherLoadingScreen> {
   //Variables
 
 

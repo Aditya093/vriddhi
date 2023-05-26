@@ -14,15 +14,15 @@ class BigAppBar extends StatelessWidget {
           bottomRight: Radius.circular(10),
         ),
       ),
-      padding: EdgeInsets.only(left: 10, right: 10, bottom: 40, top: 15),
+      padding: EdgeInsets.only(left: 15, right: 20, ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           //Logo
           Image.asset(
             'assets/images/logo/logo.png',
-            height: 100,
-            width: 100,
+            height: 120,
+            width: 120,
           ),
           //User Circle - floating action button
           Spacer(),
@@ -37,7 +37,7 @@ class BigAppBar extends StatelessWidget {
                   width: 150,
                 ),
               ),
-              radius: 25,
+              radius: 27,
               backgroundColor: kButtonPositiveColor,
             ),
           ),

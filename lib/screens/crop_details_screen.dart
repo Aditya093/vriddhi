@@ -6,22 +6,24 @@ import 'package:change_case/change_case.dart';
 
 class CropDetailsScreen extends StatefulWidget {
   static const String id = 'crop_details_screen';
-  final int cropId;
-  CropDetailsScreen({required this.cropId});
+  final dynamic cropId;
+  final String imageURL;
+  CropDetailsScreen({required this.cropId,required this.imageURL});
   @override
   State<CropDetailsScreen> createState() => _CropDetailsScreenState();
 }
 
 class _CropDetailsScreenState extends State<CropDetailsScreen> {
   //variables
-  final String collection = 'crop_data';
+  final String collection = 'crop_guide';
   final db = FirebaseFirestore.instance;
+
   bool _isLoading = false;
   late String fertilizers,
       crop,
       sowingAndSeedPlanting,
       varietiesRecommended,
-      growthClimate,
+      climate,
       interCulturalOperation,
       introduction,
       landPrep,
@@ -31,53 +33,64 @@ class _CropDetailsScreenState extends State<CropDetailsScreen> {
       rePlantingOrUnderPlanting,
       soil,
       spacing,
-      youngPalms,
-      weeding;
+      care,
+      weeding,yeild,diseaseAndTheirManagement,insectPestAndTheirManagement,specialProblems;
 
 
   //all the methods
 
 
-  void getData() async {
-    await db.collection(collection).where("id", isEqualTo: widget.cropId).get().then(
+  Future<void> getData() async {
+    await db.collection(collection).where("ID", isEqualTo: widget.cropId).get().then(
       (querySnapshot) async {
         for (var docSnapshot in querySnapshot.docs) {
-          await docSnapshot.data();
-          var fertilizers = docSnapshot["fertilizers"];
-          this.fertilizers = fertilizers;
-          var crop = docSnapshot["crop"];
+          // await docSnapshot.data();
+          var crop = docSnapshot["Crop Name"];
           this.crop = crop;
-          var sowingAndSeedPlanting = docSnapshot["Sowing and seed planting"];
+          print(this.crop);
+          var fertilizers = docSnapshot["Fertilizers"];
+          this.fertilizers = fertilizers;
+          var sowingAndSeedPlanting = docSnapshot["Sowing and Seed Planting"];
           this.sowingAndSeedPlanting = sowingAndSeedPlanting;
-          var varietiesRecommended = docSnapshot["Varieties recommended"];
+          var varietiesRecommended = docSnapshot["Varieties Recommended"];
           this.varietiesRecommended = varietiesRecommended;
-          var growthClimate = docSnapshot["growth climate"];
-          this.growthClimate = growthClimate;
-          var interCulturalOperation = docSnapshot["intercultural operation"];
+          var climate = docSnapshot["Climate"];
+          this.climate = climate;
+          var interCulturalOperation = docSnapshot["Inter-cultural operations"];
           this.interCulturalOperation = interCulturalOperation;
-          var introduction = docSnapshot["introduction"];
+          var introduction = docSnapshot["Introduction"];
           this.introduction = introduction;
-          var landPrep = docSnapshot["land preparation"];
+          var landPrep = docSnapshot["Land preparation"];
           this.landPrep = landPrep;
-          var manuring = docSnapshot["manuring"];
+          var manuring = docSnapshot["Manuring"];
           this.manuring = manuring;
-          var methodOfPlanting = docSnapshot["method of planting"];
+          var methodOfPlanting = docSnapshot["Method of Planting"];
           this.methodOfPlanting = methodOfPlanting;
           var nutritionalDeficienciesAndTheirManagement =
-              docSnapshot["nutritional deficiencies and their management"];
+              docSnapshot["Nutritional Deficiencies and Their Management"];
           this.nutritionalDeficienciesAndTheirManagement =
               nutritionalDeficienciesAndTheirManagement;
           var rePlantingOrUnderPlanting =
-              docSnapshot["re-planting or under-planting"];
+              docSnapshot["Replanting or Underplanting"];
           this.rePlantingOrUnderPlanting = rePlantingOrUnderPlanting;
-          var soil = docSnapshot["soil"];
+          var soil = docSnapshot["Soil"];
           this.soil = soil;
-          var spacing = docSnapshot["spacing"];
+          var spacing = docSnapshot["Spacing"];
           this.spacing = spacing;
-          var weeding = docSnapshot["weeding"];
+          var weeding = docSnapshot["Weeding"];
           this.weeding = weeding;
-          var youngPalms = docSnapshot["young palms"];
-          this.youngPalms = youngPalms;
+          var care = docSnapshot["Care"];
+          this.care = care;
+          var yeild = docSnapshot["Yield"];
+          this.yeild = yeild;
+          var specialProbs = docSnapshot["Special problems"];
+          this.specialProblems = specialProbs;
+          var diseaseMang = docSnapshot["Disease and Their Management"];
+          this.diseaseAndTheirManagement = diseaseMang;
+          var insectPestMang = docSnapshot["Insect, Pest and Their Management"];
+          this.insectPestAndTheirManagement = insectPestMang;
+
+
           setState(() {
             _isLoading = true;
           });
@@ -86,6 +99,7 @@ class _CropDetailsScreenState extends State<CropDetailsScreen> {
       },
       onError: (e) => print("Error completing: $e"),
     );
+
   }
 
 
@@ -117,7 +131,7 @@ class _CropDetailsScreenState extends State<CropDetailsScreen> {
                     ),
                   ),
                   Center(
-                      child: Image.asset('assets/images/crops/Crop_${crop.toPascalCase()}.png',height: 200,width: 200,),),
+                      child: Image.network(widget.imageURL,height: 200,width: 200,),),
                   //Characteristics
                   // Text(
                   //   'Characteristics',
@@ -130,12 +144,12 @@ class _CropDetailsScreenState extends State<CropDetailsScreen> {
                   Column(
                     children: {
                       'Introduction' : introduction,
-                      'Climate': growthClimate,
+                      'Climate': climate,
                       'Soil': soil,
                       'Varieties Recommended': varietiesRecommended,
                       'Sowing and Seed Planting': sowingAndSeedPlanting,
                       'Method of Planting': methodOfPlanting,
-                      'Care': youngPalms,
+                      'Care': care,
                       'Land Preparation': landPrep,
                       'Spacing': spacing,
                       'Manuring': manuring,
@@ -144,7 +158,10 @@ class _CropDetailsScreenState extends State<CropDetailsScreen> {
                       'Weeding': weeding,
                       'Replanting or Under Planting': rePlantingOrUnderPlanting,
                       'Nutritional Deficiences and their Management': nutritionalDeficienciesAndTheirManagement,
-
+                      'Insect, Pest and Their Management': insectPestAndTheirManagement,
+                      'Yield': yeild,
+                      'Disease Management': diseaseAndTheirManagement,
+                      'Special Problems':specialProblems,
                     }.entries.map((entry) {
                       // doSomething(entry.key);
                       return DropdownToggleCard(title: entry.key, content: entry.value);

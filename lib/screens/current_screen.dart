@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:vriddhi_0/constants.dart';
 import 'package:vriddhi_0/screens/basic_details_screen.dart';
 import 'package:vriddhi_0/screens/crop_guide_screen.dart';
+import 'package:vriddhi_0/screens/crops_classfication_screen.dart';
 import 'package:vriddhi_0/screens/explore_screen.dart';
 import 'package:vriddhi_0/screens/home_screen.dart';
 import 'package:vriddhi_0/screens/progress_screen.dart';
@@ -9,7 +10,6 @@ import 'package:vriddhi_0/screens/user_profile_screen.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class CurrentBottomNavBarScreen extends StatefulWidget {
-  static const String id = 'current_screen';
   @override
   State<CurrentBottomNavBarScreen> createState() => _CurrentBottomNavBarScreenState();
 }
@@ -18,7 +18,7 @@ class _CurrentBottomNavBarScreenState extends State<CurrentBottomNavBarScreen> {
   int _currentIndex = 0;
   List<Widget> widgetListForBottomNav =  [
     HomeScreen(),
-    CropGuideScreen(),
+    CropClassificationScreen(),
     ExploreScreen(),
     ProgressScreen(cropName: "Maize",),
     UserProfileScreen(),

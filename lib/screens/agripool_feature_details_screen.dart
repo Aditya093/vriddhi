@@ -3,7 +3,6 @@ import 'package:vriddhi_0/constants.dart';
 import 'package:vriddhi_0/screens/agripool_feature_screen.dart';
 
 class AgriPoolFeatureDetailsScreen extends StatelessWidget {
-  static const String id = 'agripool_feature_details_screen';
   final String featureName;
   AgriPoolFeatureDetailsScreen({required this.featureName});
 
@@ -71,7 +70,7 @@ class AgriPoolFeatureDetailsScreen extends StatelessWidget {
               Center(
                 child: ElevatedButton(
                   onPressed: (){
-                    Navigator.pushNamed(context, AgriPoolFeatureScreen.id);
+                    Navigator.pushNamed(context, '/agri_pool_feature');
                   } ,
                   child: Text('Next'),
                   style: ElevatedButton.styleFrom(
