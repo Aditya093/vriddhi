@@ -14,7 +14,7 @@ A next generation farming application which optimizes the efforts of farmers to 
     <li><a href="#Technology">Technology</a></li>
     <li><a href="#Our-Goals">Our goals</a></li>
     <li><a href="#How-our-app-completes-these-Goals?">How our app completes these Goals?</a></li>
-    <li><a href="How-to-run-our-application?">How to run our application?</a></li>
+    <li><a href="#How-to-run-our-application?">How to run our application?</a></li>
     <li><a href="#Screenshots">Screenshots</a></li>
     <li><a href="#Demo-Video-Link">Demo Video</a></li>
     <li><a href="#Further-Enhancements">Further Enhancements</a></li>
@@ -126,12 +126,17 @@ Climate Action: 'Vriddhi' can contribute to achieving the goal of climate action
 
 ### Step-4: Get Dependencies and open url.dart
 
+### Step-5: Open this drive link and download all the .h5 files which are mandatory to run the project. Link: https://drive.google.com/drive/folders/115QAgxu86BPbekAen2oEP1n1Rr28ivH8
 
-### Step-5: Open the command prompt and navigate to BACKEND-SERVER folder.
+
+### Step-6: Paste these downloaded files into BACKEND-SERVER folder and in app.py Edit Their path.
+
+
+### Step-7: Open the command prompt and navigate to BACKEND-SERVER folder.
 
 ![](https://github.com/AyushSolanki-17/StaticServer/blob/main/SolutionChallenge/Steps/4.jpeg?raw=true)
 
-### Step-6: Run following commands to start flask server. Note: you need to configure the requirements shown above.
+### Step-8: Run following commands to start flask server. Note: you need to configure the requirements shown above.
 
 ```
 set FLASK_APP=app.py
@@ -140,15 +145,15 @@ flask run
 
 ![](https://github.com/AyushSolanki-17/StaticServer/blob/main/SolutionChallenge/Steps/5.jpeg?raw=true)
 
-### Step-7: Use port forwarding tools like ngrok and link it to the server running on your pc. After that copy the Forwarding link
+### Step-9: Use port forwarding tools like ngrok and link it to the server running on your pc. After that copy the Forwarding link
 
 ![](https://github.com/AyushSolanki-17/StaticServer/blob/main/SolutionChallenge/Steps/6.jpeg?raw=true)
 
-### Step-8: Paste it in the url dart UBaseURL
+### Step-10: Paste it in the url dart UBaseURL
 
 ![](https://github.com/AyushSolanki-17/StaticServer/blob/main/SolutionChallenge/Steps/7.jpeg?raw=true)
 
-### Step-9: Run in emulator or smartphone
+### Step-11: Run in emulator or smartphone
 
 
 ## Screenshots

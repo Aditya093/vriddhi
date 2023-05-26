@@ -41,10 +41,7 @@ class SoilTestingScreen extends StatelessWidget {
                                 style: kFormPrimaryHeadingStyle,
 
                                 ),
-
                               ),
-
-
                               SizedBox(height: 15),
                               Align(
                                 alignment: Alignment.centerLeft,
@@ -55,7 +52,6 @@ class SoilTestingScreen extends StatelessWidget {
 
                                   ),
                                 ),
-
                               ),
                               SizedBox(height: 10),
                               Align(
@@ -94,7 +90,6 @@ class SoilTestingScreen extends StatelessWidget {
                               SizedBox(height: 50,width: double.infinity,),
 
                             ],
-                          //  ha pan
                           ),
                         )
                     ),
@@ -118,8 +113,6 @@ class SoilTestingScreen extends StatelessWidget {
                                 ),
 
                               ),
-
-
                               SizedBox(height: 15),
                               Align(
                                 alignment: Alignment.centerLeft,
@@ -127,10 +120,8 @@ class SoilTestingScreen extends StatelessWidget {
                                   padding: EdgeInsets.only(left:15.0),
                                   child:Text("Soil sample analysis for 15 parameters:",
                                     style:kTitleOfInfoCardsTS,
-
                                   ),
                                 ),
-
                               ),
                               SizedBox(height: 10),
                               Align(
