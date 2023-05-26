@@ -109,7 +109,8 @@ def predict():
     im=preprocess_input(x)
     im = np.expand_dims(im, axis=0)
     preds=noleafmodel.predict(im)
-    if preds[0][0] == 0:
+    preds=preds.argmax(axis=-1)[0]
+    if preds==1:
         result = {'class1': 'The Object is either not a leaf or image is blurry.'}
         return jsonify(result)
     prediction = imgmodel.predict(im)[0]
