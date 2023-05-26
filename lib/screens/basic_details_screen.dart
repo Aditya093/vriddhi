@@ -86,7 +86,6 @@ class _BasicDetailsFormState extends State<BasicDetailsForm> {
                             '1.Location',
                             style: kFormTextFieldLabelStyle,
                           ),
-
                             Opacity(
                               opacity: 0.5,
                               child: FormBuilderTextField(

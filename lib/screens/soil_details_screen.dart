@@ -309,8 +309,8 @@ class _SoilDetailsFormState extends State<SoilDetailsForm> {
                                 color: kButtonPositiveColor)), // <-- Text
                         onPressed: () async {
                           try {
-                            await upload(image!);
-                            if (gotResponse)
+                            // await upload(image!);
+                            if (true)
                               showModalBottomSheet(
                                 isScrollControlled: true,
                                 context: context,
