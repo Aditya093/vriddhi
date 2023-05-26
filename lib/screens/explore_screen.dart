@@ -6,11 +6,10 @@ import 'package:vriddhi_0/screens/blog_info_screen.dart';
 import 'package:vriddhi_0/screens/crop_guide_screen.dart';
 import 'package:vriddhi_0/screens/disease_detection_screen.dart';
 import 'package:vriddhi_0/screens/disease_guide_screen.dart';
+import 'package:vriddhi_0/screens/farming_techniques_screen.dart';
 import 'package:vriddhi_0/screens/loading_screen.dart';
 import 'package:vriddhi_0/screens/news_screen.dart';
 import 'package:vriddhi_0/screens/soil_testing_screen.dart';
-import 'package:vriddhi_0/screens/weather_screen.dart';
-import 'package:vriddhi_0/utilities/all_card_content.dart';
 import 'package:vriddhi_0/utilities/all_cards.dart';
 import 'package:vriddhi_0/widgets/reusable_widgets.dart';
 import 'package:vriddhi_0/screens/agripool_screen.dart';
@@ -60,9 +59,11 @@ class _ExploreScreenState extends State<ExploreScreen> {
         Navigator.pushNamed(context, NewsScreen.id);
       }
       break;
+      case 9: {
+        Navigator.pushNamed(context, FarmingTechniquesScreen.id);
+      }
       break;
     }
-
   }
 
   List<SmallSquareCard> featureList = AllFeaturesList.allFeaturesList;
@@ -82,7 +83,6 @@ class _ExploreScreenState extends State<ExploreScreen> {
               crossAxisSpacing: 8
             ),
             itemBuilder: (BuildContext context, int index) {
-
               final current_feature = featureList[index];
               return SmallSquareCard(title: current_feature.title, imagePath: current_feature.imagePath,onTapCard: () => onTapped(index));
             },

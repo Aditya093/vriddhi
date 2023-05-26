@@ -20,7 +20,10 @@ import 'package:vriddhi_0/screens/registration_screen.dart';
 import 'package:vriddhi_0/screens/soil_details_screen.dart';
 import 'package:vriddhi_0/screens/soil_testing_screen.dart';
 import 'package:vriddhi_0/screens/splash_screen.dart';
+import 'package:vriddhi_0/screens/user_profile_screen.dart';
 import 'package:vriddhi_0/screens/weather_screen.dart';
+import 'package:vriddhi_0/screens/farming_techniques_screen.dart';
+
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -33,7 +36,6 @@ class Vriddhi extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
-
         fontFamily: 'Jaldi',
         textTheme: TextTheme(
           bodyLarge: TextStyle(height: 1),
@@ -63,6 +65,11 @@ class Vriddhi extends StatelessWidget {
         SoilTestingScreen.id: (context) => SoilTestingScreen(),
         NewsScreen.id: (context) => NewsScreen(),
         BlogInfoScreen.id: (context) => BlogInfoScreen(),
+        UserInformation.routeName: (context) => UserInformation(),
+        TermsOfServiceScreen.routeName: (context) => TermsOfServiceScreen(),
+        PrivacyPolicyScreen.routeName: (context) => PrivacyPolicyScreen(),
+        AboutUsScreen.routeName: (context) => AboutUsScreen(),
+        FarmingTechniquesScreen.id: (context) => FarmingTechniquesScreen(),
       },
     );
   }

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:vriddhi_0/constants.dart';
 import 'package:change_case/change_case.dart';
-import 'package:vriddhi_0/screens/crop_details_screen.dart';
+// import 'package:vriddhi_0/screens/crop_details_screen.dart';
 import 'package:vriddhi_0/screens/crop_guide_screen.dart';
 import 'package:vriddhi_0/screens/progress_screen.dart';
 
@@ -133,9 +133,73 @@ class _ResultModalState extends State<ResultModal> {
                               ),
                             ],
                           ),
+                          Column(
+                            children: [
+                              Center(
+                                child: Text(
+                                  "Expected Produce and Profit",
+                                  style: kFormTextFieldLabelStyle.copyWith(
+                                      fontWeight: FontWeight.w700),
+                                ),
+                              ),
+                              SizedBox(
+                                height: 20.0,
+                              ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  Container(
+                                    padding: EdgeInsets.all(10.0),
+                                    child: Row(
+                                      children: [
+                                        Icon(FontAwesomeIcons.seedling,
+                                            color: kButtonPositiveColor,
+                                            size: 20.0),
+                                        SizedBox(width: 6.0),
+                                        Text(
+                                          "39.19 Qtl",
+                                          style: kFormTextFieldLabelStyle,
+                                        ),
+                                      ],
+                                    ),
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(16.0),
+                                      color: Color(0xFF88D197),
+                                    ),
+                                  ),
+                                  Container(
+                                    padding: EdgeInsets.all(10.0),
+                                    child: Row(
+                                      children: [
+                                        Icon(FontAwesomeIcons.indianRupeeSign,
+                                            color: kButtonPositiveColor,
+                                            size: 20.0),
+                                        SizedBox(width: 6.0),
+                                        Text(
+                                          "81457 rupees",
+                                          style: kFormTextFieldLabelStyle,
+                                        ),
+                                      ],
+                                    ),
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(16.0),
+                                      color: Color(0xFF88D197),
+                                    ),
+                                  )
+                                ],
+                              ),
+                              SizedBox(height: 20.0),
+                              Text(
+                                "(* Results Based on Historical Data, Actual Results May Vary )",
+                                style: kFormSecondaryHeadingStyle.copyWith(
+                                    fontSize: 10.0),
+                              ),
+                            ],
+                          ),
                           SizedBox(
                             height: 15.0,
-                          )
+                          ),
                         ],
                       ),
                     ),
@@ -150,11 +214,17 @@ class _ResultModalState extends State<ResultModal> {
                           width: 98.0,
                           child: ElevatedButton(
                             onPressed: () {
-                              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => CropGuideScreen()));
+                              Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => CropGuideScreen()));
                             },
                             child: Text(
                               'Know More',
-                              style: TextStyle(color: kButtonPositiveColor,height: 1,fontSize: 13),
+                              style: TextStyle(
+                                  color: kButtonPositiveColor,
+                                  height: 1,
+                                  fontSize: 13),
                             ),
                             style: ElevatedButton.styleFrom(
                               textStyle: TextStyle(
@@ -169,7 +239,12 @@ class _ResultModalState extends State<ResultModal> {
                           width: 98.0,
                           child: ElevatedButton(
                             onPressed: () {
-                              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => ProgressScreen(cropName: widget.cropName,)));
+                              Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => ProgressScreen(
+                                            cropName: widget.cropName,
+                                          )));
                             },
                             child: Text('Next'),
                             style: ElevatedButton.styleFrom(
