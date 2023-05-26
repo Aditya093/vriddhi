@@ -39,9 +39,8 @@ class AllFeaturesList {
       imagePath: 'assets/images/feature_icons/Feature_News.png',
     ),
     SmallSquareCard(
-      title: 'Farming\nTechnique',
-      imagePath: 'assets/images/feature_icons/Feature_News.png',
+      title: 'Farming\nTechniques',
+      imagePath: 'assets/images/feature_icons/Feature_Gardening.png',
     ),
-
   ];
 }
