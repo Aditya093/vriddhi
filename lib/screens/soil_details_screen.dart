@@ -41,6 +41,7 @@ class _SoilDetailsFormState extends State<SoilDetailsForm> {
   bool gotResponse = false;
   late int temperature;
   late int humidity;
+  bool showProcessing = true;
 
   //Methods
   string2float(probs) {
@@ -77,7 +78,7 @@ class _SoilDetailsFormState extends State<SoilDetailsForm> {
     var length = await imageFile.length();
 
     // string to uri
-    var uri = Uri.parse(USOilImage);
+    var uri = Uri.parse(UNewCrop);
 
     // create multipart request
     var request = http.MultipartRequest("POST", uri);
@@ -94,7 +95,9 @@ class _SoilDetailsFormState extends State<SoilDetailsForm> {
     // send
     request.fields["humidity"] = "${humidity}";
     request.fields["temperature"] = "${temperature}";
-    request.fields["rainfall"] = "75";
+    request.fields["rainfall"] = "0";
+    request.fields["area"] = "200";
+
 
     var response = await request.send();
 
@@ -110,7 +113,7 @@ class _SoilDetailsFormState extends State<SoilDetailsForm> {
         probabilty = string2float(probabilty);
         print(cropName);
         print(probabilty);
-        // showProcessing = false;
+        showProcessing = false;
       });
     });
   }

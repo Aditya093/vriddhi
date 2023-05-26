@@ -7,7 +7,6 @@ import 'package:vriddhi_0/widgets/reusable_widgets.dart';
 
 
 class BasicDetailsScreen extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -112,6 +111,7 @@ class _BasicDetailsFormState extends State<BasicDetailsForm> {
                           ),
                           FormBuilderTextField(
                               name: "farming_area",
+
                               decoration: kFormTextFieldStyle.copyWith(
                                   hintText: "( in square meters )"),
                               validator: FormBuilderValidators.compose([
