@@ -37,6 +37,8 @@ class _SoilDetailsFormState extends State<SoilDetailsForm> {
   File? image;
   String cropName = '';
   String probabilty = '';
+  String price = '';
+  String prod = '';
   bool buttonShow = false;
   bool gotResponse = false;
   late int temperature;
@@ -111,6 +113,8 @@ class _SoilDetailsFormState extends State<SoilDetailsForm> {
         cropName = jsonDecode(value)["crop_1"];
         probabilty = jsonDecode(value)["crop_1_probs"];
         probabilty = string2float(probabilty);
+        price = jsonDecode(value)["price"];
+        prod = jsonDecode(value)["production"];
         print(cropName);
         print(probabilty);
         showProcessing = false;
@@ -309,7 +313,7 @@ class _SoilDetailsFormState extends State<SoilDetailsForm> {
                                 color: kButtonPositiveColor)), // <-- Text
                         onPressed: () async {
                           try {
-                            // await upload(image!);
+                            await upload(image!);
                             if (true)
                               showModalBottomSheet(
                                 isScrollControlled: true,
@@ -323,6 +327,8 @@ class _SoilDetailsFormState extends State<SoilDetailsForm> {
                                   child: ResultModal(
                                     cropName: cropName,
                                     probability: probabilty,
+                                    price: price,
+                                    production: prod,
                                   ),
                                 )),
                               );

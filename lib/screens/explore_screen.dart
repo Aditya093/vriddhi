@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:vriddhi_0/constants.dart';
-import 'package:vriddhi_0/data_lists/all_features_list.dart';
+import 'package:vriddhi_0/data_lists/allDataList.dart';
 import 'package:vriddhi_0/screens/weather_loading_screen.dart';
 import 'package:vriddhi_0/utilities/all_cards.dart';
 import 'package:vriddhi_0/widgets/reusable_widgets.dart';
@@ -15,7 +15,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
   void onTapped(int index){
     switch(index){
       case 0: {
-        Navigator.pushNamed(context, '/crop_guide');
+        Navigator.pushNamed(context, '/crop_classification');
       }
       break;
       case 1: {
@@ -58,7 +58,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
 
   }
 
-  List<SmallSquareCard> featureList = AllFeaturesList.allFeaturesList;
+  List<SmallSquareCard> featureList = AllDataList.allFeaturesList;
   @override
   Widget build(BuildContext context) {
     return SafeArea(

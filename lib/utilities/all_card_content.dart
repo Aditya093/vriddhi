@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:vriddhi_0/constants.dart';
+import 'package:vriddhi_0/global_listeners/temperature_data.dart';
 import 'dart:math';
+
+import 'package:vriddhi_0/global_listeners/user_data.dart';
 
 //crop guide content of square card
 class CardContentCropGuide extends StatelessWidget {
@@ -35,6 +39,8 @@ class CardContentCropGuide extends StatelessWidget {
 class CardContentWeather extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final userData = Provider.of<UserData>(context);
+    final temperatureData = Provider.of<WeatherDataAll>(context);
     return Padding(
       padding: EdgeInsets.only(top: 25, left: 20, right: 20),
       child: Column(
@@ -42,7 +48,7 @@ class CardContentWeather extends StatelessWidget {
         children: [
           //Weather Text1
           Text(
-            'Welcome, Vriddhi!',
+            'Welcome, ${userData.username}',
             style: TextStyle(
               fontSize: 30,
               color: kNavyBlueColor,
@@ -62,7 +68,7 @@ class CardContentWeather extends StatelessWidget {
               children: [
                 //Temp- text
                 Text(
-                  '31°C',
+                  '${temperatureData.temperature}°C',
                   style: TextStyle(
                       decoration: TextDecoration.none,
                       color: kNavyBlueColor,

@@ -16,8 +16,9 @@ class WeatherScreen extends StatefulWidget {
 class _WeatherScreenState extends State<WeatherScreen> {
   late int temperature;
   late int wind;
-  late String cityName;
   late int humidity;
+  late String cityName;
+
   // late int rain;
   late String condition;
 

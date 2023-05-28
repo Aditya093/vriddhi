@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:vriddhi_0/screens/weather_screen.dart';
 
@@ -30,7 +29,6 @@ class _WeatherLoadingScreenState extends State<WeatherLoadingScreen> {
     var weatherData = await weather.getLocationWeather();
     //Switching to Next Screen Location Screen
     Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) =>  WeatherScreen(locationWeather: weatherData,)));
-
   }
 
 

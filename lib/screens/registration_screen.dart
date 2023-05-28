@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 import'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:provider/provider.dart';
 import 'package:vriddhi_0/constants.dart';
+import 'package:vriddhi_0/global_listeners/user_data.dart';
 import 'package:vriddhi_0/screens/current_screen.dart';
 import 'package:vriddhi_0/screens/login_screen.dart';
 import 'package:vriddhi_0/services/Authentication.dart';
@@ -39,8 +41,10 @@ class RegistrationForm extends StatefulWidget {
 
 class _RegistrationFormState extends State<RegistrationForm> {
   //Firebase-Authentication variables
+
   late String email;
   late String password;
+  late String username;
   final _auth = FirebaseAuth.instance;
   bool showSpinner = false;
   bool isTermsCicked = false;
@@ -50,6 +54,11 @@ class _RegistrationFormState extends State<RegistrationForm> {
 
   @override
   Widget build(BuildContext context) {
+
+    //Authentication + username params
+    final userData = Provider.of<UserData>(context);
+    final auth = Authentication(userData);
+
     return Container(
       padding: EdgeInsets.all(20.0),
       child: SingleChildScrollView(
@@ -85,9 +94,23 @@ class _RegistrationFormState extends State<RegistrationForm> {
                     child: FormBuilderTextField(
                       name: 'name',
                       decoration: kFormLabelTextFieldStyle.copyWith(labelText: "Name", hintText: "Enter Your Name"),
-                      validator: FormBuilderValidators.compose([
-                        FormBuilderValidators.required(),
-                      ]),
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Please enter a username';
+                        }
+                        return null;
+                      },
+                      onChanged: (value) {
+                        // Save the username value
+                        if(value != null){
+                          username = value;
+                        }
+                        else{
+                          username = 'Hello';
+                        }
+
+
+                      },
                     ),
                   ),
                   //Form Input-2 (Email)
@@ -147,28 +170,14 @@ class _RegistrationFormState extends State<RegistrationForm> {
                   child: ElevatedButton(
                     onPressed: () async {
                       //Process of Firebase Registered User
-                      setState(() {
-                        showSpinner=true;
-                      });
-                      if(showSpinner == true){
-                        CircularProgressIndicator(
-                          color: kPrimaryAppColor,
-                        );
-                      }
                       try {
-                        final newUser =
-                        await _auth.createUserWithEmailAndPassword(
-                            email: email, password: password);
-                        if (newUser != null && isTermsCicked == true) {
+                        if (isTermsCicked == true) {
+                          await  auth.registerUser(email, password, username);
                           Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> CurrentBottomNavBarScreen()));
                         }
                         else if(isTermsCicked == false){
                           AlertDialog(content: Text("Please Accept the terms and conditions"),);
                         }
-                        // onSignIn();
-                        setState(() {
-                          showSpinner = false;
-                        });
                       } catch (e) {
                         print(e);
                       }

@@ -7,10 +7,13 @@ import 'package:vriddhi_0/screens/crop_guide_screen.dart';
 import 'package:vriddhi_0/screens/progress_screen.dart';
 
 class ResultModal extends StatefulWidget {
-  const ResultModal({required this.cropName, required this.probability});
+  const ResultModal({required this.cropName, required this.probability, required this.production, required
+  this.price});
 
   final String cropName;
   final String probability;
+  final String production;
+  final String price;
 
   @override
   State<ResultModal> createState() => _ResultModalState();
@@ -158,7 +161,7 @@ class _ResultModalState extends State<ResultModal> {
                                             size: 20.0),
                                         SizedBox(width: 6.0),
                                         Text(
-                                          "39.19 Qtl",
+                                          "${widget.production} Qtl",
                                           style: kFormTextFieldLabelStyle,
                                         ),
                                       ],
@@ -177,7 +180,7 @@ class _ResultModalState extends State<ResultModal> {
                                             size: 20.0),
                                         SizedBox(width: 6.0),
                                         Text(
-                                          "81457 rupees",
+                                          "${widget.price} rs",
                                           style: kFormTextFieldLabelStyle,
                                         ),
                                       ],
@@ -214,10 +217,10 @@ class _ResultModalState extends State<ResultModal> {
                           width: 98.0,
                           child: ElevatedButton(
                             onPressed: () {
-                              Navigator.pushReplacement(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => CropGuideScreen()));
+                              // Navigator.pushReplacement(
+                              //     context,
+                              //     MaterialPageRoute(
+                              //         builder: (context) => CropGuideScreen()));
                             },
                             child: Text(
                               'Know More',
