@@ -183,17 +183,19 @@ class CardContentProgressBox extends StatelessWidget {
 
 //Disease Cards content
 class DiseaseListTile extends StatelessWidget {
-  DiseaseListTile({required this.imagePath, required this.title,required this.id});
+  DiseaseListTile({required this.scientific_name, required this.imagePath, required this.title,required this.id,});
 
   final String imagePath;
   final String title;
   final int id;
+  final String scientific_name;
 
   @override
   Widget build(BuildContext context) {
     return ListTile(
       leading: ClipRRect(child: Image.asset(imagePath,height: 45,width: 45,), borderRadius: BorderRadius.circular(10.0),),
       title: Text(title, style: kFormTextFieldLabelStyle.copyWith(fontSize: 16.0),),
+      subtitle: Text(scientific_name, style:kFormSecondaryHeadingStyle),
       trailing: Icon(Icons.navigate_next),
       hoverColor: Colors.transparent,
     );

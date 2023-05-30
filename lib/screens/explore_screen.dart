@@ -15,7 +15,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
   void onTapped(int index){
     switch(index){
       case 0: {
-        Navigator.pushNamed(context, '/crop_guide');
+        Navigator.pushNamed(context, '/crop_classification');
       }
       break;
       case 1: {
@@ -23,7 +23,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
       }
       break;
       case 2: {
-        Navigator.pushNamed(context, 'disease_detection');
+        Navigator.pushNamed(context, '/disease_detection');
       }
       break;
       case 3: {

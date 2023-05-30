@@ -12,7 +12,7 @@ import 'package:vriddhi_0/screens/current_screen.dart';
 import 'package:vriddhi_0/screens/disease_detection_screen.dart';
 import 'package:vriddhi_0/screens/disease_guide_screen.dart';
 import 'package:vriddhi_0/screens/explore_screen.dart';
-import 'package:vriddhi_0/screens/farming_technique_screen.dart';
+import 'package:vriddhi_0/screens/farming_techniques_screen.dart';
 import 'package:vriddhi_0/screens/get_started.dart';
 import 'package:vriddhi_0/screens/home_screen.dart';
 import 'package:vriddhi_0/screens/landing_page.dart';
@@ -23,6 +23,7 @@ import 'package:vriddhi_0/screens/registration_screen.dart';
 import 'package:vriddhi_0/screens/soil_details_screen.dart';
 import 'package:vriddhi_0/screens/soil_testing_screen.dart';
 import 'package:vriddhi_0/screens/splash_screen.dart';
+// import 'package:vriddhi_0/screens/test.dart';
 import 'package:vriddhi_0/screens/weather_screen.dart';
 
 void main() async {

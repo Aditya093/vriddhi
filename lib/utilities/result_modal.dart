@@ -213,12 +213,12 @@ class _ResultModalState extends State<ResultModal> {
                           height: 36.0,
                           width: 98.0,
                           child: ElevatedButton(
-                            onPressed: () {
-                              Navigator.pushReplacement(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => CropGuideScreen()));
-                            },
+                            onPressed: () {},
+                            //   Navigator.pushReplacement(
+                            //       context,
+                            //       MaterialPageRoute(
+                            //           // builder: (context) => CropGuideScreen()));
+                            // },
                             child: Text(
                               'Know More',
                               style: TextStyle(

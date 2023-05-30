@@ -1,6 +1,6 @@
 # Vriddhi
 
-A next generation farming application which optimizes the efforts of farmers to gain an optimist yield from their production
+A next generation farming application which optimizes the efforts of farmers to gain an optimist yield from their production.
 
 
 ## Table of Contents
