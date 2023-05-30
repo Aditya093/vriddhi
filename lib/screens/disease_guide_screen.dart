@@ -1,8 +1,7 @@
 import 'package:change_case/change_case.dart';
 import 'package:flutter/material.dart';
 import 'package:vriddhi_0/constants.dart';
-import 'package:vriddhi_0/data_lists/crop_guide_list.dart';
-import 'package:vriddhi_0/data_lists/disease_guide_list.dart';
+import 'package:vriddhi_0/data_lists/allDataList.dart';
 import 'package:vriddhi_0/screens/disease_details_screen.dart';
 import 'package:vriddhi_0/utilities/all_card_content.dart';
 import 'package:vriddhi_0/widgets/reusable_rounded_card.dart';
@@ -14,12 +13,12 @@ class DiseaseGuideScreen extends StatefulWidget {
 
 class _DiseaseGuideScreenState extends State<DiseaseGuideScreen> {
 
-  List<DiseaseListTile> displayList = List.from(DiseaseGuideList.diseaseGuideList);
+  List<DiseaseListTile> displayList = List.from(AllDataList.diseaseGuideList);
 
 
   void updateList(String value) {
     setState(() {
-      displayList = DiseaseGuideList.diseaseGuideList
+      displayList = AllDataList.diseaseGuideList
           .where((element) =>
           element.title.toLowerCase().contains(value.toLowerCase()))
           .toList();
@@ -67,7 +66,7 @@ class _DiseaseGuideScreenState extends State<DiseaseGuideScreen> {
                 Expanded(
                   child: ListView.builder(
                     itemBuilder: (BuildContext context, int index) {
-                      DiseaseGuideList().sortingList();
+                      AllDataList().diseaseListSorting();
                       final current_disease = displayList[index];
                       return GestureDetector(
                         onTap: (){

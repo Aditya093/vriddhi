@@ -1,7 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:vriddhi_0/constants.dart';
-import 'package:vriddhi_0/data_lists/agripool_features.dart';
+import 'package:vriddhi_0/data_lists/allDataList.dart';
 import 'package:vriddhi_0/screens/agripool_feature_details_screen.dart';
 import 'package:vriddhi_0/utilities/all_cards.dart';
 import 'package:vriddhi_0/widgets/reusable_widgets.dart';
@@ -15,7 +15,7 @@ class AgriPoolScreen extends StatefulWidget {
 class _AgriPoolScreenState extends State<AgriPoolScreen> {
 
 
-  List<SmallSquareCard> featureList = AgriPoolFeatures.agripoolfeatures;
+  List<SmallSquareCard> featureList = AllDataList.agripoolfeatures;
   @override
   Widget build(BuildContext context) {
     return SafeArea(

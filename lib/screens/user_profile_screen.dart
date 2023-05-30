@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:vriddhi_0/constants.dart';
+import 'package:vriddhi_0/services/Authentication.dart';
 import 'package:vriddhi_0/utilities/all_cards.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
@@ -34,7 +35,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
           //2 containers in the ratio 2:3
           //1st container ... which is stacked with three containers mainly
           Expanded(
-            flex: 2,
+            flex: 3,
             child: Stack(
               alignment: AlignmentDirectional.bottomEnd,
               children: [
@@ -138,7 +139,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
           ),
           //2nd container... having other cards
           Expanded(
-              flex: 3,
+              flex: 5,
               child: Container(
                 padding: EdgeInsets.only(top: 4),
                 child: Column(
@@ -160,7 +161,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                     GestureDetector(
                       onTap: () {
                         Navigator.pushNamed(
-                            context, TermsOfServiceScreen.routeName);
+                            context, '/terms_of_service');
                       },
                       child: UserProfileRectangleCards(
                         leadingIcon: FontAwesomeIcons.clipboard,
@@ -174,6 +175,15 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                       child: UserProfileRectangleCards(
                         leadingIcon: FontAwesomeIcons.circleInfo,
                         title: 'About Us',
+                      ),
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        Authentication.signOut(context: context);
+                      },
+                      child: UserProfileRectangleCards(
+                        leadingIcon: FontAwesomeIcons.arrowRightFromBracket,
+                        title: 'Logout',
                       ),
                     ),
                     // Spacer(),
@@ -198,7 +208,6 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
 }
 
 class TermsOfServiceScreen extends StatelessWidget {
-  static const routeName = '/terms-of-service';
 
   @override
   Widget build(BuildContext context) {
@@ -245,14 +254,14 @@ class AboutUsScreen extends StatelessWidget {
   }
 }
 
-class User {
+class UserInfoData {
   final String name;
   final String email;
   final String location;
   final String imageUrl;
   final String currentCrop;
 
-  User({
+  UserInfoData({
     required this.name,
     required this.email,
     required this.location,
@@ -263,7 +272,7 @@ class User {
 
 class UserInformation extends StatelessWidget {
   static const routeName = '/user-information';
-  final User user = User(
+  final UserInfoData user = UserInfoData(
       name: 'John Doe',
       email: 'johndoe@example.com',
       location: 'New York, USA',

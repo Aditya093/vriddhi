@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:vriddhi_0/constants.dart';
+import 'package:vriddhi_0/global_listeners/temperature_data.dart';
+import 'package:vriddhi_0/screens/current_screen.dart';
+import 'package:vriddhi_0/services/weather.dart';
+
 
 
 class SplashScreen extends StatefulWidget {

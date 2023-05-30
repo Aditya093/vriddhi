@@ -1,52 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:vriddhi_0/constants.dart';
+import 'package:vriddhi_0/data_lists/allDataList.dart';
 import 'package:vriddhi_0/screens/crop_guide_screen.dart';
 import 'package:vriddhi_0/utilities/all_cards.dart';
 import 'package:vriddhi_0/widgets/reusable_widgets.dart';
 
 class CropClassificationScreen extends StatelessWidget {
   //variables
-  // final List<Map<String,String>> categories = [
-  //   'Vegetables' : 'Vegetable',
-  //   'Fruits':'Fruit',
-  //   'Cereals':'Cereals',
-  //   'Oilseeds and Nuts':'Oilseeds',
-  //   'Pulses':'Pulses',
-  //   'Herbs':'Herbs',
-  //   'Flowers':'Flowers',
-  // ];
-  List<Map<String, String>> categories = [
-    {
-      'display': 'Vegetables',
-      'value': 'Vegetable',
-    },
-    {
-      'display': 'Fruits',
-      'value': 'Fruit',
-    },
-    {
-      'display': 'Cereals',
-      'value': 'Cereals',
-    },
-    {
-      'display': 'Oilseeds and Nuts',
-      'value': 'Oilseeds',
-    },
-    {
-      'display': 'Pulses',
-      'value': 'Pulses',
-    },
-    {
-      'display': 'Herbs',
-      'value': 'Herbs',
-    },
-    {
-      'display': 'Flowers',
-      'value': 'Flowers',
-    },
-  ];
-
-
+  List<Map<String, String>> categoriesList = AllDataList.categoriesList;
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -61,23 +22,22 @@ class CropClassificationScreen extends StatelessWidget {
               children: [
                 Expanded(
                   child: GridView.builder(
-                    itemCount: categories.length,
+                    itemCount: categoriesList.length,
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
                     ),
                     itemBuilder: (context, index) {
                       return GestureDetector(
                         onTap: () {
-                          Navigator.push(context, MaterialPageRoute(builder: (context)=>CropGuideScreen(category: categories[index]['value'])));
+                          Navigator.push(context, MaterialPageRoute(builder: (context)=>CropGuideScreen(category: categoriesList[index]['value'])));
                         },
                         child: SquareCard(
                           cardChild: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Image.asset('assets/images/categories/category_${categories[index]['display']}.png',height: 120,width: 120,),
+                              Image.asset('assets/images/categories/category_${categoriesList[index]['display']}.png',height: 120,width: 120,),
                               SizedBox(height: 5,),
-                              Text(categories[index]['display']!),
-
+                              Text(categoriesList[index]['display']!),
                             ],
                           ),
 
