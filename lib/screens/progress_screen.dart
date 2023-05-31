@@ -14,6 +14,12 @@ import 'package:vriddhi_0/utilities/all_cards.dart';
 import 'package:vriddhi_0/utilities/task_modal.dart';
 import 'package:vriddhi_0/widgets/stacked_app_and_box.dart';
 import 'package:change_case/change_case.dart';
+import 'package:material_dialogs/material_dialogs.dart';
+import 'package:material_dialogs/widgets/buttons/icon_button.dart';
+import 'package:lottie/lottie.dart';
+// import 'package:material_dialogs/widgets/buttons/rounded_button.dart';
+
+
 
 class ProgressScreen extends StatefulWidget {
   static const String id = 'progress_screen';
@@ -22,7 +28,7 @@ class ProgressScreen extends StatefulWidget {
   State<ProgressScreen> createState() => _ProgressScreenState();
 }
 
-class _ProgressScreenState extends State<ProgressScreen> {
+class _ProgressScreenState extends State<ProgressScreen>{
   //variables
   String selectedCrop = '';
   Map<dynamic, dynamic> allJsonData = {};
@@ -82,7 +88,47 @@ class _ProgressScreenState extends State<ProgressScreen> {
     });
   }
 
-  @override
+  void _openDialog() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return Dialog(
+          child: Container(
+            padding: EdgeInsets.all(16),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Lottie.asset(
+                  'assets/lottie_animations.json',
+                  height: 200,
+                  width: 200,
+                ),
+                SizedBox(height: 16),
+                Text(
+                  'Level ${current_level - 1} Completed',
+                  style: kFormTextFieldLabelStyle,
+                ),
+                SizedBox(height: 16),
+                ElevatedButton(onPressed: () {
+                  Navigator.pop(context);
+                }, child: Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Text('OK',),
+                ),
+                  style: ElevatedButton.styleFrom(
+                    textStyle: TextStyle(
+                      fontFamily: "Catamaran",
+                    ),
+                    backgroundColor: kButtonPositiveColor,
+                ),
+                )],
+            ),
+          ),
+        );
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     //Provider Accessing
@@ -203,14 +249,22 @@ class _ProgressScreenState extends State<ProgressScreen> {
                                                   markTaskCompleted(index);
                                                   if (totalTasksLeft == 0) {
                                                     totalLevelsDone++;
-                                                    if(totalLevelsDone == numberOfTotalLevels){
+                                                    if (totalLevelsDone ==
+                                                        numberOfTotalLevels) {
                                                       //All Levels Are Completed
                                                       //do something
-                                                      setState(()  {
+                                                      ScaffoldMessenger.of(
+                                                          context).showSnackBar(
+                                                        SnackBar(
+                                                          content: Text(
+                                                              '${selectedCrop} grown successfully'),
+                                                        ),
+                                                      );
+                                                      setState(() {
                                                         updateSelectedCrop('');
                                                       });
                                                     }
-                                                    else{
+                                                    else {
                                                       isDoneAllTasks = true;
                                                       current_level += 1;
                                                       levelCompletion = 1 -
@@ -220,10 +274,12 @@ class _ProgressScreenState extends State<ProgressScreen> {
                                                       taskStatus.clear();
                                                       getTasks();
                                                     }
-
                                                   }
                                                   Navigator.pop(context);
                                                 });
+                                                if(totalTasksLeft == 0){
+                                                  _openDialog();
+                                                }
                                               },
                                             ),
                                           ),

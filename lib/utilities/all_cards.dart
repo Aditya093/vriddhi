@@ -486,34 +486,6 @@ class TaskCard extends StatelessWidget {
             ),
           ),
         ),
-      child: Column(
-        children: [
-          Card(
-            color: kLightTealCardColor,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(10),
-            ),
-            child: ListTile(
-              contentPadding:const EdgeInsets.all(10),
-              leading:const Icon(
-                FontAwesomeIcons.hourglassStart,
-                size: 30.0,
-                color: kButtonPositiveColor,
-              ),
-              title: Text(
-                title,
-                style: const TextStyle(
-                    fontSize: 20,
-                    height: 1.5,
-                    color: kNavyBlueColor,
-                    fontWeight: FontWeight.bold),
-              ),
-            ),
-          ),
-          Padding(
-              padding: const EdgeInsets.all(1.0),
-              child: dropdownChild),
-        ],
       ),
     );
   }
@@ -582,5 +554,3 @@ class BlogCard extends StatelessWidget {
     );
   }
 }
-
-//

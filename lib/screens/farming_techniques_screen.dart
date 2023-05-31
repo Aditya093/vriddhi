@@ -51,7 +51,7 @@ class _FarmingTechniquesScreenState extends State<FarmingTechniquesScreen> {
           List<dynamic> disadv = item["farming_technique"]["advantages"];
           String disadvantages= disadv.map((item) => '${disadv.indexOf(item) + 1}. $item').join('\n');
           Map<String, dynamic> learningVideo = item["learning_video"];
-          // String videoURL = learningVideo["video_link"];
+          String videoURL = learningVideo["video_link"];
           return Card(
             color: Color(0xFFCCDBDC),
             margin: EdgeInsets.all(8.0),
@@ -137,28 +137,4 @@ class _FarmingTechniquesScreenState extends State<FarmingTechniquesScreen> {
     );
   }
 }
-
-
-// Image.asset("assets/images/scenes_farming/Scene_Start.png", width:240.0, height: 220.0,),
-// SizedBox(
-//   height: 190,
-//   child: Ink.image(
-//     image: NetworkImage('https://img.youtube.com/vi/$videoURL/0.jpg'),
-//     fit: BoxFit.cover,
-//     child: InkWell(
-//       onTap: () {
-//         _playVideo('https://www.youtube.com/watch?v=$videoURL');
-//       },
-//       child: Align(
-//         alignment: Alignment.center,
-//         child: Icon(
-//           Icons.play_circle_filled,
-//           size: 50,
-//           color: Colors.white,
-//         ),
-//       ),
-//     ),
-//   ),
-// ),
-
 

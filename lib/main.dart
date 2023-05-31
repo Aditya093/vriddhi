@@ -6,7 +6,7 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:provider/provider.dart';
 import 'package:vriddhi_0/constants.dart';
 import 'package:vriddhi_0/global_listeners/location_data.dart';
-// import 'package:vriddhi_0/global_listeners/selected_crop.dart';
+import 'package:vriddhi_0/global_listeners/selected_crop.dart';
 import 'package:vriddhi_0/global_listeners/temperature_data.dart';
 import 'package:vriddhi_0/global_listeners/user_data.dart';
 import 'package:vriddhi_0/screens/agripool_feature_screen.dart';
@@ -32,7 +32,7 @@ import 'package:vriddhi_0/screens/user_profile_screen.dart';
 import 'package:vriddhi_0/screens/weather_screen.dart';
 
 void main() async {
-WidgetsFlutterBinding.ensureInitialized();
+  WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   runApp(Vriddhi());
 }
@@ -46,6 +46,7 @@ class Vriddhi extends StatelessWidget {
         ChangeNotifierProvider<WeatherDataAll>(create: (_) => WeatherDataAll()),
         ChangeNotifierProvider<LocationData>(create: (_) => LocationData()),
         ChangeNotifierProvider<UserData>(create: (_) => UserData()),
+        ChangeNotifierProvider<SelectedCrop>(create: (_) => SelectedCrop()),
       ],
       child: MaterialApp(
         theme: ThemeData(
@@ -60,7 +61,6 @@ class Vriddhi extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         initialRoute: '/',
         routes: {
-
           // '/':(context) => ProgressScreen(),
           '/': (context) => AuthenticationWrapper(),
           '/splash' :(context) => SplashScreen(),
@@ -83,7 +83,7 @@ class Vriddhi extends StatelessWidget {
           '/news': (context) => NewsScreen(),
           '/blog_info': (context) => BlogInfoScreen(),
           '/farming_technique':(context) => FarmingTechniquesScreen(),
-          // '/user-information':(context) => UserInformation(),
+          '/user_information' :(context) =>UserProfileScreen(),
           '/privacy-policy':(context) => PrivacyPolicyScreen(),
           '/about_us':(context) => AboutUsScreen(),
           '/terms_of_service': (context) => TermsOfServiceScreen(),
@@ -96,7 +96,6 @@ class Vriddhi extends StatelessWidget {
 
 
 class AuthenticationWrapper extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     final User? currentUser = FirebaseAuth.instance.currentUser;
@@ -132,4 +131,5 @@ class AuthenticationWrapper extends StatelessWidget {
 
   }
 }
+
 

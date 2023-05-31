@@ -8,8 +8,9 @@ import 'package:vriddhi_0/global_listeners/user_data.dart';
 
 //crop guide content of square card
 class CardContentCropGuide extends StatelessWidget {
-  CardContentCropGuide({required this.imagePath, required this.title,required this.id});
-  final int id ;
+  CardContentCropGuide(
+      {required this.imagePath, required this.title, required this.id});
+  final int id;
   final String imagePath;
   final String title;
   @override
@@ -57,7 +58,7 @@ class CardContentWeather extends StatelessWidget {
             ),
           ),
           //Weather text2
-          SizedBox(height:5.0),
+          SizedBox(height: 5.0),
           Text(
             formattedDate,
             style: TextStyle(
@@ -73,14 +74,17 @@ class CardContentWeather extends StatelessWidget {
                 Text(
                   '${temperatureData.temperature}°C',
                   style: TextStyle(
-                      decoration: TextDecoration.none,
-                      color: kNavyBlueColor,
-                      fontSize: 50,
+                    decoration: TextDecoration.none,
+                    color: kNavyBlueColor,
+                    fontSize: 50,
                   ),
                 ),
                 //Weather-Image
                 Spacer(),
-                Image.asset('assets/images/weather/Weather_SnowStorm.png', height: 400.0,),
+                Image.asset(
+                  'assets/images/weather/Weather_SnowStorm.png',
+                  height: 400.0,
+                ),
               ],
             ),
           ),
@@ -92,7 +96,8 @@ class CardContentWeather extends StatelessWidget {
 
 //Progress Content - box card
 class CardContentProgressBox extends StatelessWidget {
-  CardContentProgressBox({required this.levelImage, required this.currentLevel});
+  CardContentProgressBox(
+      {required this.levelImage, required this.currentLevel});
   final String levelImage;
   final int currentLevel;
   // late List<String> words = levelImage.toTitleCase().split(" ");
@@ -114,7 +119,7 @@ class CardContentProgressBox extends StatelessWidget {
           ),
           height: 35,
           width: MediaQuery.of(context).size.width,
-          padding: EdgeInsets.only(top: 8,left: 20),
+          padding: EdgeInsets.only(top: 8, left: 20),
           child: Text(
             'Progress',
             style: kProgressBoxTitleTS,
@@ -175,7 +180,9 @@ class CardContentProgressBox extends StatelessWidget {
               //Task name
               Spacer(),
               Text(
-                '${(levelImage.substring(6,))}',
+                '${(levelImage.substring(
+                  6,
+                ))}',
                 style: kProgressBoxbottomTS,
               ),
               SizedBox(
@@ -193,7 +200,12 @@ class CardContentProgressBox extends StatelessWidget {
 
 //Disease Cards content
 class DiseaseListTile extends StatelessWidget {
-  DiseaseListTile({required this.scientific_name, required this.imagePath, required this.title,required this.id,});
+  DiseaseListTile({
+    required this.scientific_name,
+    required this.imagePath,
+    required this.title,
+    required this.id,
+  });
 
   final String imagePath;
   final String title;
@@ -203,12 +215,21 @@ class DiseaseListTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      leading: ClipRRect(child: Image.asset(imagePath,height: 45,width: 45,), borderRadius: BorderRadius.circular(10.0),),
-      title: Text(title, style: kFormTextFieldLabelStyle.copyWith(fontSize: 16.0),),
-      subtitle: Text(scientific_name, style:kFormSecondaryHeadingStyle),
+      leading: ClipRRect(
+        child: Image.asset(
+          imagePath,
+          height: 45,
+          width: 45,
+        ),
+        borderRadius: BorderRadius.circular(10.0),
+      ),
+      title: Text(
+        title,
+        style: kFormTextFieldLabelStyle.copyWith(fontSize: 16.0),
+      ),
+      subtitle: Text(scientific_name, style: kFormSecondaryHeadingStyle),
       trailing: Icon(Icons.navigate_next),
       hoverColor: Colors.transparent,
     );
   }
 }
-
