@@ -158,4 +158,14 @@ class AllDataList{
     ),
 
   ];
+
+  static final List<String> cropsNameList=["Onion","Tomato","Carrot","Potato",
+    "Bell Pepper","Brinjal","Okra","Cabbage", "Cauliflower","Kale", "Broccoli",
+    "Lettuce","Peas","Spinach","Fenugreek","Beetroot", "Turnip","Bok Choy","Radish",
+    "Chilli", "Pomegranate","Banana","Mango","Grapes","Watermelon", "Muskmelon",
+    "Apple","Orange","Papaya", "Coconut","Coffee","Strawberry","Blueberry",
+    "Custard Apple","Cranberry","Dragon Fruit","Avocado","Guava","Pine Apple",
+    "Peach","Chickpea","Kidneybeans","Mothbeans","Mungbean","Blackgram",
+    "Lentil","Redgram","Rice","Maize", "Wheat","Cotton seeds"];
+
 }

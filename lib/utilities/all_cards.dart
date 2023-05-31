@@ -94,43 +94,20 @@ class RectangleCard extends StatelessWidget {
   }
 }
 
-class TaskRectangleCard extends StatelessWidget {
-  const TaskRectangleCard({
-    required this.titleText,
-    required this.descriptionText,
-  });
-
-  final String titleText;
-  final String descriptionText;
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      color: kCardColorSecond,
-      margin: EdgeInsets.only(left: 15, right: 15, bottom: 10),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.all(
-          Radius.circular(10),
-        ),
-      ),
-      child: Padding(
-        padding: EdgeInsets.all(8),
-        child: ListTile(
-          title: Text(
-            titleText,
-            style: TextStyle(fontSize: 18, color: kNavyBlueColor, height: 1),
-          ),
-          subtitle: Text(
-            descriptionText,
-            style: TextStyle(color: kDescriptionFontColor),
-          ),
-          trailing:
-              Icon(Icons.arrow_forward_ios, color: kNavyBlueColor, size: 18),
-        ),
-      ),
-    );
-  }
-}
+// class TaskRectangleCard extends StatelessWidget {
+//   const TaskRectangleCard({
+//     required this.titleText,
+//     required this.descriptionText,
+//   });
+//
+//   final String titleText;
+//   final String descriptionText;
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return ;
+//   }
+// }
 
 class SmallSquareCard extends StatelessWidget {
   final String title;
@@ -364,9 +341,8 @@ class DropdownToggleCard extends StatefulWidget {
   @override
   _DropdownToggleCardState createState() => _DropdownToggleCardState();
 }
-
 class _DropdownToggleCardState extends State<DropdownToggleCard> {
-  bool isExpanded = false;
+  bool isExpanded = true;
 
   @override
   Widget build(BuildContext context) {
@@ -406,7 +382,6 @@ class _DropdownToggleCardState extends State<DropdownToggleCard> {
     );
   }
 }
-
 
 class DynamicDropdownLevelCards extends StatelessWidget {
   const DynamicDropdownLevelCards(
@@ -454,7 +429,95 @@ class DynamicDropdownLevelCards extends StatelessWidget {
   }
 }
 
+class TaskCard extends StatelessWidget {
+  const TaskCard({
+    super.key,
+    required this.taskStatus,
+    required this.title,
+    required this.duration,
+    required this.cardIndex,
+  });
 
+  final List<bool> taskStatus;
+  final String title;
+  final String duration;
+  final int cardIndex;
+
+  @override
+  Widget build(BuildContext context) {
+    return IgnorePointer(
+      ignoring: taskStatus[cardIndex],
+      child: Opacity(
+        opacity: !taskStatus[cardIndex] ? 1 : 0.5,
+        child: Card(
+          color: kCardColorSecond,
+          margin: const EdgeInsets.only(
+              left: 15, right: 15, bottom: 10),
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(
+              Radius.circular(10),
+            ),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.all(8),
+            child: ListTile(
+              title: Text(
+                title,
+                style: const TextStyle(
+                    fontSize: 18,
+                    color: kNavyBlueColor,
+                    height: 1),
+              ),
+              subtitle: Text(
+                duration,
+                style: const TextStyle(
+                    color:
+                    kDescriptionFontColor),
+              ),
+              trailing: taskStatus[cardIndex]
+                  ? Icon(
+                Icons.check_circle,
+                color: kPrimaryAppColor,
+              )
+                  : Icon(
+                  Icons.arrow_forward_ios,
+                  color: kNavyBlueColor,
+                  size: 18),
+            ),
+          ),
+        ),
+      child: Column(
+        children: [
+          Card(
+            color: kLightTealCardColor,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: ListTile(
+              contentPadding:const EdgeInsets.all(10),
+              leading:const Icon(
+                FontAwesomeIcons.hourglassStart,
+                size: 30.0,
+                color: kButtonPositiveColor,
+              ),
+              title: Text(
+                title,
+                style: const TextStyle(
+                    fontSize: 20,
+                    height: 1.5,
+                    color: kNavyBlueColor,
+                    fontWeight: FontWeight.bold),
+              ),
+            ),
+          ),
+          Padding(
+              padding: const EdgeInsets.all(1.0),
+              child: dropdownChild),
+        ],
+      ),
+    );
+  }
+}
 
 class BlogCard extends StatelessWidget {
   final String title;

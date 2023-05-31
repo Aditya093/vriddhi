@@ -6,6 +6,7 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:provider/provider.dart';
 import 'package:vriddhi_0/constants.dart';
 import 'package:vriddhi_0/global_listeners/location_data.dart';
+// import 'package:vriddhi_0/global_listeners/selected_crop.dart';
 import 'package:vriddhi_0/global_listeners/temperature_data.dart';
 import 'package:vriddhi_0/global_listeners/user_data.dart';
 import 'package:vriddhi_0/screens/agripool_feature_screen.dart';
@@ -29,7 +30,6 @@ import 'package:vriddhi_0/screens/soil_testing_screen.dart';
 import 'package:vriddhi_0/screens/splash_screen.dart';
 import 'package:vriddhi_0/screens/user_profile_screen.dart';
 import 'package:vriddhi_0/screens/weather_screen.dart';
-
 
 void main() async {
 WidgetsFlutterBinding.ensureInitialized();
@@ -61,6 +61,7 @@ class Vriddhi extends StatelessWidget {
         initialRoute: '/',
         routes: {
 
+          // '/':(context) => ProgressScreen(),
           '/': (context) => AuthenticationWrapper(),
           '/splash' :(context) => SplashScreen(),
           '/get_started': (context) => GetStartedScreen(),
