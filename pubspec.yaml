@@ -64,6 +64,7 @@ flutter:
      - assets/task.json
      - assets/disease_guide.json
      - assets/images/categories/
+     - assets/farming_technique.json
 
   fonts:
      - family: Jaldi

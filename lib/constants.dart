@@ -1,5 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 const kPrimaryAppColor = Color(0xff00A896);
 const kGreyColor = Color(0xffD9D9D9);
@@ -44,6 +45,10 @@ const kUserProfileCardsTitleTS = TextStyle(
   fontSize: 18,
 );
 const kSubtitleTS = TextStyle(color: kDescriptionFontColor, fontSize: 12);
+const kLoader = SpinKitDoubleBounce(
+  color: kPrimaryAppColor,
+  size: 100,
+);
 
 //--------Zeels constants
 const kPrimaryAppbarColor = Color(0xFF00A896);

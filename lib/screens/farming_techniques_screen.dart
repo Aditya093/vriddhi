@@ -54,7 +54,7 @@ class _FarmingTechniquesScreenState extends State<FarmingTechniquesScreen> {
           List<dynamic> disadv = item["farming_technique"]["advantages"];
           String disadvantages= disadv.map((item) => '${disadv.indexOf(item) + 1}. $item').join('\n');
           Map<String, dynamic> learningVideo = item["learning_video"];
-          String videoURL = learningVideo["video_link"];
+          // String videoURL = learningVideo["video_link"];
           return Card(
             color: Color(0xFFCCDBDC),
             margin: EdgeInsets.all(8.0),

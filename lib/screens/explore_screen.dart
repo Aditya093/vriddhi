@@ -23,7 +23,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
       }
       break;
       case 2: {
-        Navigator.pushNamed(context, 'disease_detection');
+        Navigator.pushNamed(context, '/disease_detection');
       }
       break;
       case 3: {
