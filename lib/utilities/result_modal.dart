@@ -246,7 +246,6 @@ class _ResultModalState extends State<ResultModal> {
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) => ProgressScreen(
-                                            cropName: widget.cropName,
                                           )));
                             },
                             child: Text('Next'),

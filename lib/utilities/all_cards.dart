@@ -407,94 +407,55 @@ class _DropdownToggleCardState extends State<DropdownToggleCard> {
   }
 }
 
-class DynamicDropdownLevelCards extends StatefulWidget {
+
+class DynamicDropdownLevelCards extends StatelessWidget {
   const DynamicDropdownLevelCards(
       {
         required this.title,
-      required this.current_level,
-      required this.card_level,
-      required this.dropdownChild,
-        // required this.cardVisibility,
-        required isDone,
-
-      // required this.tasksLeft
+        required this.dropdownChild,
       });
   final String title;
-  final int current_level;
-  final bool isExpanded = false;
-  final int card_level;
-  final bool isDone = false;
-  // final bool cardVisibility;
-  // final int tasksLeft;
   final Widget dropdownChild;
-  @override
-  State<DynamicDropdownLevelCards> createState() =>
-      _DynamicDropdownLevelCardsState();
-}
-
-class _DynamicDropdownLevelCardsState extends State<DynamicDropdownLevelCards> {
-  bool isExpanded = false;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20.0),
-      child: IgnorePointer(
-        ignoring: widget.current_level != widget.card_level,
-        child: Opacity(
-          opacity: widget.current_level != widget.card_level ? 0.5 : 1,
-          child: Column(
-            children: [
-              GestureDetector(
-                onTap: () {
-                  setState(() {
-                    isExpanded = !isExpanded;
-                  });
-                },
-                child: Card(
-                  color: kLightTealCardColor,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: ListTile(
-                    contentPadding: EdgeInsets.all(10),
-                    leading: Icon(
-                      widget.isDone
-                          ? FontAwesomeIcons.hourglassEnd
-                          : FontAwesomeIcons.hourglassStart,
-                      size: 30.0,
-                      color: kButtonPositiveColor,
-                    ),
-                    title: Text(
-                      widget.title,
-                      style: const TextStyle(
-                          fontSize: 20,
-                          height: 1.5,
-                          color: kNavyBlueColor,
-                          fontWeight: FontWeight.bold),
-                    ),
-                    trailing: Icon(
-                      isExpanded
-                          ? Icons.keyboard_arrow_up_rounded
-                          : Icons.keyboard_arrow_down_rounded,
-                      size: widget.isDone ? 25.0 : 30.0,
-                      color: kButtonPositiveColor,
-                    ),
-                  ),
-                ),
+      child: Column(
+        children: [
+          Card(
+            color: kLightTealCardColor,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: ListTile(
+              contentPadding:const EdgeInsets.all(10),
+              leading:const Icon(
+                FontAwesomeIcons.hourglassStart,
+                size: 30.0,
+                color: kButtonPositiveColor,
               ),
-
-              if (isExpanded)
-                Padding(
-                    padding: const EdgeInsets.all(1.0),
-                    child: widget.dropdownChild),
-            ],
+              title: Text(
+                title,
+                style: const TextStyle(
+                    fontSize: 20,
+                    height: 1.5,
+                    color: kNavyBlueColor,
+                    fontWeight: FontWeight.bold),
+              ),
+            ),
           ),
-        ),
+          Padding(
+              padding: const EdgeInsets.all(1.0),
+              child: dropdownChild),
+        ],
       ),
     );
   }
 }
+
+
+
 class BlogCard extends StatelessWidget {
   final String title;
   final String author;

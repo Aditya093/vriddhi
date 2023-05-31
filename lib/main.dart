@@ -30,6 +30,7 @@ import 'package:vriddhi_0/screens/splash_screen.dart';
 import 'package:vriddhi_0/screens/user_profile_screen.dart';
 import 'package:vriddhi_0/screens/weather_screen.dart';
 
+
 void main() async {
 WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
@@ -67,7 +68,7 @@ class Vriddhi extends StatelessWidget {
           '/login': (context) => LoginScreen(),
           '/home': (context) => HomeScreen(),
           '/crop_classification': (context) => CropClassificationScreen(),
-          '/progress': (context) => ProgressScreen(cropName: "Maize",),
+          '/progress': (context) => ProgressScreen(),
           '/soil_details': (context) => SoilDetailsScreen(),
           '/basic_details': (context) => BasicDetailsScreen(),
           '/current_bottom_navbar': (context) => CurrentBottomNavBarScreen(),
@@ -81,10 +82,10 @@ class Vriddhi extends StatelessWidget {
           '/news': (context) => NewsScreen(),
           '/blog_info': (context) => BlogInfoScreen(),
           '/farming_technique':(context) => FarmingTechniquesScreen(),
-          'privacy-policy':(context) => PrivacyPolicyScreen(),
-          'about_us':(context) => AboutUsScreen(),
-          'terms_of_service': (context) => TermsOfServiceScreen(),
-
+          // '/user-information':(context) => UserInformation(),
+          '/privacy-policy':(context) => PrivacyPolicyScreen(),
+          '/about_us':(context) => AboutUsScreen(),
+          '/terms_of_service': (context) => TermsOfServiceScreen(),
         },
       ),
     );

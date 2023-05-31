@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:vriddhi_0/constants.dart';
 import 'package:vriddhi_0/global_listeners/temperature_data.dart';
 import 'dart:math';
-
+import 'package:intl/intl.dart';
 import 'package:vriddhi_0/global_listeners/user_data.dart';
 
 //crop guide content of square card
@@ -39,24 +39,27 @@ class CardContentCropGuide extends StatelessWidget {
 class CardContentWeather extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    DateTime now = DateTime.now();
+    String formattedDate = DateFormat('dd/MM/yyyy, EEEE').format(now);
     final userData = Provider.of<UserData>(context);
     final temperatureData = Provider.of<WeatherDataAll>(context);
-    return Padding(
+    return Container(
       padding: EdgeInsets.only(top: 25, left: 20, right: 20),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           //Weather Text1
           Text(
-            'Welcome, ${userData.username}',
+            'Hey, ${userData.username}',
             style: TextStyle(
               fontSize: 30,
               color: kNavyBlueColor,
             ),
           ),
           //Weather text2
+          SizedBox(height:5.0),
           Text(
-            '31-03-2023 Friday',
+            formattedDate,
             style: TextStyle(
               fontSize: 15,
               color: kNavyBlueColor,
@@ -72,11 +75,12 @@ class CardContentWeather extends StatelessWidget {
                   style: TextStyle(
                       decoration: TextDecoration.none,
                       color: kNavyBlueColor,
-                      fontSize: 50),
+                      fontSize: 50,
+                  ),
                 ),
                 //Weather-Image
                 Spacer(),
-                Image.asset('assets/images/weather/Weather_Sunny.png'),
+                Image.asset('assets/images/weather/Weather_SnowStorm.png', height: 400.0,),
               ],
             ),
           ),

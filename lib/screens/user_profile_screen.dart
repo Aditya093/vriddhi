@@ -7,6 +7,11 @@ import 'package:image_picker/image_picker.dart';
 import 'dart:io';
 import 'dart:async';
 import 'package:vriddhi_0/widgets/reusable_widgets.dart';
+import 'package:vriddhi_0/global_listeners/user_data.dart';
+import 'package:vriddhi_0/global_listeners/location_data.dart';
+import 'package:provider/provider.dart';
+
+
 
 class UserProfileScreen extends StatefulWidget {
   @override
@@ -28,6 +33,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final userData = Provider.of<UserData>(context);
     return Scaffold(
       backgroundColor: kBackgroundColor,
       body: Column(
@@ -40,12 +46,16 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
               alignment: AlignmentDirectional.bottomEnd,
               children: [
                 Container(
+                height:400.0,width:300,
                   decoration: BoxDecoration(
                       color: kPrimaryAppColor,
                       borderRadius:
                           BorderRadius.only(bottomLeft: Radius.circular(40))),
                   margin: EdgeInsets.only(left: 65, bottom: 50),
-                  // child: Text("Vriddhi", style: TextStyle(fontSize: 25),),
+                  child: Container(
+                    child: Center(
+                      child: Text(userData.username, style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold, color: Colors.white),),
+                    )),
                 ),
                 Container(
                   margin: EdgeInsets.only(bottom: 60, left: 5),
@@ -128,7 +138,9 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                 ),
                 GestureDetector(
                     onTap: () {
-                      Navigator.pushNamed(context, UserInformation.routeName);
+                      Navigator.push(context,  MaterialPageRoute(
+                        builder: (context) => UserInformation(name: userData.username, location:"India", email: userData.email, imageUrl: 'https://picsum.photos/200/300', currentCrop: 'Maize')
+                      ),);
                     },
                     child: UserProfileRectangleCards(
                       leadingIcon: FontAwesomeIcons.addressBook,
@@ -140,65 +152,67 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
           //2nd container... having other cards
           Expanded(
               flex: 5,
-              child: Container(
-                padding: EdgeInsets.only(top: 4),
-                child: Column(
-                  children: [
-                    UserProfileRectangleCards(
-                      leadingIcon: FontAwesomeIcons.pagelines,
-                      title: 'Previous Crops',
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.pushNamed(
-                            context, PrivacyPolicyScreen.routeName);
-                      },
-                      child: UserProfileRectangleCards(
-                        leadingIcon: FontAwesomeIcons.key,
-                        title: 'Privacy Policy',
+              child: SingleChildScrollView(
+                child: Container(
+                  padding: EdgeInsets.only(top: 4),
+                  child: Column(
+                    children: [
+                      UserProfileRectangleCards(
+                        leadingIcon: FontAwesomeIcons.pagelines,
+                        title: 'Previous Crops',
                       ),
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.pushNamed(
-                            context, '/terms_of_service');
-                      },
-                      child: UserProfileRectangleCards(
-                        leadingIcon: FontAwesomeIcons.clipboard,
-                        title: 'Terms of Service',
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.pushNamed(
+                              context, PrivacyPolicyScreen.routeName);
+                        },
+                        child: UserProfileRectangleCards(
+                          leadingIcon: FontAwesomeIcons.key,
+                          title: 'Privacy Policy',
+                        ),
                       ),
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.pushNamed(context, AboutUsScreen.routeName);
-                      },
-                      child: UserProfileRectangleCards(
-                        leadingIcon: FontAwesomeIcons.circleInfo,
-                        title: 'About Us',
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.pushNamed(
+                              context, '/terms_of_service');
+                        },
+                        child: UserProfileRectangleCards(
+                          leadingIcon: FontAwesomeIcons.clipboard,
+                          title: 'Terms of Service',
+                        ),
                       ),
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        Authentication.signOut(context: context);
-                      },
-                      child: UserProfileRectangleCards(
-                        leadingIcon: FontAwesomeIcons.arrowRightFromBracket,
-                        title: 'Logout',
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.pushNamed(context, AboutUsScreen.routeName);
+                        },
+                        child: UserProfileRectangleCards(
+                          leadingIcon: FontAwesomeIcons.circleInfo,
+                          title: 'About Us',
+                        ),
                       ),
-                    ),
-                    // Spacer(),
-                    Align(
-                        alignment: Alignment.bottomCenter,
-                        child: Text(
-                          'App Version 1.0.1',
-                          style: kAppVersionTextTS,
-                        )),
-                  ]
-                      .map((e) => Padding(
-                            child: e,
-                            padding: const EdgeInsets.symmetric(vertical: 4),
-                          ))
-                      .toList(),
+                      GestureDetector(
+                        onTap: () {
+                          Authentication.signOut(context: context);
+                        },
+                        child: UserProfileRectangleCards(
+                          leadingIcon: FontAwesomeIcons.arrowRightFromBracket,
+                          title: 'Logout',
+                        ),
+                      ),
+                      // Spacer(),
+                      Align(
+                          alignment: Alignment.bottomCenter,
+                          child: Text(
+                            'App Version 1.0.1',
+                            style: kAppVersionTextTS,
+                          )),
+                    ]
+                        .map((e) => Padding(
+                              child: e,
+                              padding: const EdgeInsets.symmetric(vertical: 4),
+                            ))
+                        .toList(),
+                  ),
                 ),
               )),
         ],
@@ -272,12 +286,20 @@ class UserInfoData {
 
 class UserInformation extends StatelessWidget {
   static const routeName = '/user-information';
-  final UserInfoData user = UserInfoData(
-      name: 'John Doe',
-      email: 'johndoe@example.com',
-      location: 'New York, USA',
-      imageUrl: 'https://picsum.photos/200/300', // Replace with your image URL
-      currentCrop: 'Maize');
+  const UserInformation({super.key, required this.name,required this.location,required this.email, required this.imageUrl,required this.currentCrop,});
+
+  final String name;
+  final String email;
+  final String location;
+  final String imageUrl;
+  final String currentCrop;
+
+  // final UserInfoData user = UserInfoData(
+  //     name: 'John Doe',
+  //     email: 'johndoe@example.com',
+  //     location: 'New York, USA',
+  //     imageUrl: 'https://picsum.photos/200/300', // Replace with your image URL
+  //     currentCrop: 'Maize');
 
   @override
   Widget build(BuildContext context) {
@@ -291,7 +313,7 @@ class UserInformation extends StatelessWidget {
               height: 200,
               width: double.infinity,
               child: CircleAvatar(
-                backgroundImage: NetworkImage(user.imageUrl),
+                backgroundImage: NetworkImage(imageUrl),
                 backgroundColor: kButtonPositiveColor,
               ),
             ),
@@ -307,7 +329,7 @@ class UserInformation extends StatelessWidget {
                   child: Stack(
                     children: [
                       Text(
-                        " " + user.name,
+                        " " + name,
                         style: TextStyle(
                           fontSize: 20.0,
                           fontWeight: FontWeight.bold,
@@ -339,7 +361,7 @@ class UserInformation extends StatelessWidget {
                   child: Stack(
                     children: [
                       Text(
-                        " " + user.email,
+                        " " + email,
                         style: TextStyle(
                           fontSize: 20.0,
                           fontWeight: FontWeight.bold,
@@ -373,7 +395,7 @@ class UserInformation extends StatelessWidget {
                   child: Stack(
                     children: [
                       Text(
-                        " " + user.location,
+                        " " + location,
                         style: TextStyle(
                           fontSize: 20.0,
                           fontWeight: FontWeight.bold,
@@ -409,7 +431,7 @@ class UserInformation extends StatelessWidget {
                   child: Stack(
                     children: [
                       Text(
-                        " " + user.currentCrop,
+                        " " + currentCrop,
                         style: TextStyle(
                           fontSize: 20.0,
                           fontWeight: FontWeight.bold,
