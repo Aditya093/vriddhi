@@ -61,7 +61,7 @@ class Vriddhi extends StatelessWidget {
 
         debugShowCheckedModeBanner: false,
         initialRoute: '/',
-        routes:
+        routes:{
           '/': (context) => AuthenticationWrapper(),
           '/splash' :(context) => SplashScreen(),
           '/get_started': (context) => GetStartedScreen(),
