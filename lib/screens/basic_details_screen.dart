@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
+import 'package:provider/provider.dart';
 import 'package:vriddhi_0/constants.dart';
+import 'package:vriddhi_0/global_listeners/farm_data.dart';
 import 'package:vriddhi_0/screens/soil_details_screen.dart';
+import 'package:vriddhi_0/utilities/show_dialog_box.dart';
 import 'package:vriddhi_0/widgets/reusable_widgets.dart';
 
 
@@ -26,13 +29,23 @@ class BasicDetailsForm extends StatefulWidget {
 
 class _BasicDetailsFormState extends State<BasicDetailsForm> {
 
+  //vars
+  late String _farmArea;
   final GlobalKey<FormBuilderState> _formKey = GlobalKey<FormBuilderState>(); //global key  to uniquely identify the form widget and helps in validating
 
-  void _submitForm(){
+  Future<void> _submitForm() async{
     if (_formKey.currentState!.validate() == true) {
       _formKey.currentState!.save();
 
-      Map<String, dynamic> formData = _formKey.currentState!.value;
+      // Map<String, dynamic> formData = _formKey.currentState!.value;
+      if (_farmArea == null) {
+        ShowDialogBox.showAlertDialog(context, 'Farm Area is not given!!');
+      } else {
+        final farmProvider = Provider.of<FarmData>(context, listen: false);
+        farmProvider.setFarmArea(_farmArea); // Use ! to assert non-nullability
+        Navigator.pop(context);
+      }
+    }
 
       Navigator.push(context,MaterialPageRoute(builder: (context) => SoilDetailsScreen(),),);
 
@@ -42,7 +55,7 @@ class _BasicDetailsFormState extends State<BasicDetailsForm> {
         ),
       );
     }
-  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -113,10 +126,21 @@ class _BasicDetailsFormState extends State<BasicDetailsForm> {
 
                               decoration: kFormTextFieldStyle.copyWith(
                                   hintText: "( in square meters )"),
-                              validator: FormBuilderValidators.compose([
-                                FormBuilderValidators.required(),
-                                FormBuilderValidators.numeric()
-                              ])),
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return 'Please enter the farm area';
+                              }
+                              return null;
+                            },
+                            onChanged: (value) {
+                              if(value != null){
+                                _farmArea = value;
+                              }
+                              else{
+                                _farmArea = '10';
+                              }
+                            },
+                          ),
                         ],
                       ),
                     ),
@@ -190,9 +214,9 @@ class _BasicDetailsFormState extends State<BasicDetailsForm> {
                               ),
                               backgroundColor: kButtonPositiveColor,
                             ),
-                            onPressed: () {
+                            onPressed: () async{
                               //will move forward to soil details screen
-                              _submitForm();
+                              await _submitForm();
                               Navigator.push(context,MaterialPageRoute(builder: (context) => SoilDetailsScreen(),),);
 
                             },

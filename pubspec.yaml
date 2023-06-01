@@ -38,6 +38,9 @@ dependencies:
   flutter_tts: ^3.6.3
   intl: ^0.17.0
   material_dialogs: ^1.1.4
+  shared_preferences: ^2.1.1
+#  google_ml_kit: ^0.14.0
+#  google_cloud_translation: ^0.0.3
 
 
 

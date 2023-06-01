@@ -2,9 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:vriddhi_0/constants.dart';
 import 'package:vriddhi_0/data_lists/allDataList.dart';
-import 'package:vriddhi_0/screens/current_screen.dart';
-import 'package:vriddhi_0/screens/splash_screen.dart';
-import 'package:vriddhi_0/screens/weather_loading_screen.dart';
 import 'package:vriddhi_0/services/weather.dart';
 import 'package:vriddhi_0/utilities/all_card_content.dart';
 import 'package:vriddhi_0/utilities/all_cards.dart';
@@ -48,8 +45,7 @@ class _HomeScreenState extends State<HomeScreen> {
         break;
       case 4:
         {
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => WeatherLoadingScreen()));
+          Navigator.pushNamed(context, '/weather');
         }
         break;
       case 5:
@@ -84,8 +80,9 @@ class _HomeScreenState extends State<HomeScreen> {
     });
   }
 
-  void updateTemp() async {
-    await weatherModel.setCurrentTemperature(context);
+  Future<void> updateTemp() async {
+    await weatherModel.setWeatherParameters(context);
+
   }
 
   @override

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:vriddhi_0/constants.dart';
+import 'package:vriddhi_0/screens/previous_crops_screen.dart';
 import 'package:vriddhi_0/services/Authentication.dart';
 import 'package:vriddhi_0/utilities/all_cards.dart';
 import 'package:image_picker/image_picker.dart';
@@ -157,9 +158,14 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                   padding: EdgeInsets.only(top: 4),
                   child: Column(
                     children: [
-                      UserProfileRectangleCards(
-                        leadingIcon: FontAwesomeIcons.pagelines,
-                        title: 'Previous Crops',
+                      GestureDetector(
+                        onTap: (){
+                          Navigator.push(context, MaterialPageRoute(builder: (context) =>PreviousCropsScreen()));
+                        },
+                        child: UserProfileRectangleCards(
+                          leadingIcon: FontAwesomeIcons.pagelines,
+                          title: 'Previous Crops',
+                        ),
                       ),
                       GestureDetector(
                         onTap: () {

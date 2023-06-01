@@ -1,6 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:vriddhi_0/constants.dart';
+import 'package:vriddhi_0/data_lists/allDataList.dart';
+import 'package:vriddhi_0/firebase_custom_variables/task_date_data.dart';
+import 'package:vriddhi_0/global_listeners/selected_crop.dart';
+import 'package:vriddhi_0/services/get_current_date.dart';
 import 'package:vriddhi_0/utilities/all_cards.dart';
 import 'package:change_case/change_case.dart';
 
@@ -8,7 +13,7 @@ class CropDetailsScreen extends StatefulWidget {
   static const String id = 'crop_details_screen';
   final dynamic cropId;
   final String imageURL;
-  CropDetailsScreen({required this.cropId,required this.imageURL});
+  CropDetailsScreen({required this.cropId, required this.imageURL});
   @override
   State<CropDetailsScreen> createState() => _CropDetailsScreenState();
 }
@@ -34,14 +39,20 @@ class _CropDetailsScreenState extends State<CropDetailsScreen> {
       soil,
       spacing,
       care,
-      weeding,yeild,diseaseAndTheirManagement,insectPestAndTheirManagement,specialProblems;
-
+      weeding,
+      yeild,
+      diseaseAndTheirManagement,
+      insectPestAndTheirManagement,
+      specialProblems;
 
   //all the methods
 
-
   Future<void> getData() async {
-    await db.collection(collection).where("ID", isEqualTo: widget.cropId).get().then(
+    await db
+        .collection(collection)
+        .where("ID", isEqualTo: widget.cropId)
+        .get()
+        .then(
       (querySnapshot) async {
         for (var docSnapshot in querySnapshot.docs) {
           // await docSnapshot.data();
@@ -90,7 +101,6 @@ class _CropDetailsScreenState extends State<CropDetailsScreen> {
           var insectPestMang = docSnapshot["Insect, Pest and Their Management"];
           this.insectPestAndTheirManagement = insectPestMang;
 
-
           setState(() {
             _isLoading = true;
           });
@@ -99,9 +109,7 @@ class _CropDetailsScreenState extends State<CropDetailsScreen> {
       },
       onError: (e) => print("Error completing: $e"),
     );
-
   }
-
 
   @override
   void initState() {
@@ -118,32 +126,32 @@ class _CropDetailsScreenState extends State<CropDetailsScreen> {
           child: Scaffold(
             backgroundColor: kBackgroundColor,
             body: Padding(
-              padding: const EdgeInsets.symmetric(horizontal:  20.0),
+              padding: const EdgeInsets.symmetric(horizontal: 20.0),
               child: ListView(
                 children: [
                   //Crop Title + menu icon
                   ListTile(
                     title: Center(
                       child: Text(
-                       crop.toCapitalCase(),
+                        crop.toCapitalCase(),
                         style: kWeekTitleTS,
                       ),
                     ),
                   ),
                   Center(
-                      child: Image.network(widget.imageURL,height: 200,width: 200,),),
-                  //Characteristics
-                  // Text(
-                  //   'Characteristics',
-                  //   style: const TextStyle(fontSize: 23, color: kNavyBlueColor),
-                  // ),
+                    child: Image.network(
+                      widget.imageURL,
+                      height: 200,
+                      width: 200,
+                    ),
+                  ),
                   SizedBox(
                     height: 8,
                   ),
                   // Characteristic cards
                   Column(
                     children: {
-                      'Introduction' : introduction,
+                      'Introduction': introduction,
                       'Climate': climate,
                       'Soil': soil,
                       'Varieties Recommended': varietiesRecommended,
@@ -157,17 +165,51 @@ class _CropDetailsScreenState extends State<CropDetailsScreen> {
                       'Inter-cultural operation': interCulturalOperation,
                       'Weeding': weeding,
                       'Replanting or Under Planting': rePlantingOrUnderPlanting,
-                      'Nutritional Deficiences and their Management': nutritionalDeficienciesAndTheirManagement,
-                      'Insect, Pest and Their Management': insectPestAndTheirManagement,
+                      'Nutritional Deficiences and their Management':
+                          nutritionalDeficienciesAndTheirManagement,
+                      'Insect, Pest and Their Management':
+                          insectPestAndTheirManagement,
                       'Yield': yeild,
                       'Disease Management': diseaseAndTheirManagement,
-                      'Special Problems':specialProblems,
+                      'Special Problems': specialProblems,
                     }.entries.map((entry) {
                       // doSomething(entry.key);
-                      return DropdownToggleCard(title: entry.key, content: entry.value);
+                      return DropdownToggleCard(
+                          title: entry.key, content: entry.value);
                     }).toList(),
                   ),
-                  SizedBox(height: 10,),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  if (AllDataList.cropsNameList.contains(crop))
+                    Column(
+                      children: [
+                        Center(
+                          child: ElevatedButton(
+                            onPressed: () {
+                              final currentCrop = Provider.of<SelectedCrop>(
+                                  context,
+                                  listen: false);
+                              currentCrop.setCurrentCrop(crop);
+                              String current_date = CurrentDate.getCurrentDate();
+                              FirebaseTaskDateData.setCropDates(crop,startDate: current_date,endDate: null);
+                              Navigator.pushReplacementNamed(
+                                  context, '/progress');
+                            },
+                            child: Text('Grow This Crop'),
+                            style: ElevatedButton.styleFrom(
+                              textStyle: TextStyle(
+                                fontFamily: "Catamaran",
+                              ),
+                              backgroundColor: kButtonPositiveColor,
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                      ],
+                    ),
                 ],
               ),
             ),
@@ -195,5 +237,3 @@ class _CropDetailsScreenState extends State<CropDetailsScreen> {
     }
   }
 }
-
-

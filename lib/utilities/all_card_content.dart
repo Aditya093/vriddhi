@@ -3,8 +3,8 @@ import 'package:provider/provider.dart';
 import 'package:vriddhi_0/constants.dart';
 import 'package:vriddhi_0/global_listeners/temperature_data.dart';
 import 'dart:math';
-import 'package:intl/intl.dart';
 import 'package:vriddhi_0/global_listeners/user_data.dart';
+import 'package:vriddhi_0/services/get_current_date.dart';
 
 //crop guide content of square card
 class CardContentCropGuide extends StatelessWidget {
@@ -39,8 +39,7 @@ class CardContentCropGuide extends StatelessWidget {
 class CardContentWeather extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    DateTime now = DateTime.now();
-    String formattedDate = DateFormat('dd/MM/yyyy, EEEE').format(now);
+    String formattedDate = CurrentDate.getCurrentDateWithDay();
     final userData = Provider.of<UserData>(context);
     final temperatureData = Provider.of<WeatherDataAll>(context);
     return Container(

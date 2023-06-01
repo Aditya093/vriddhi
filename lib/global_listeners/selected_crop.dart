@@ -4,8 +4,8 @@ class SelectedCrop extends ChangeNotifier {
 
   String get selectedCrop => _selectedCrop;
 
-  void setCurrentCrop(String location) {
-    _selectedCrop = location;
+  void setCurrentCrop(String crop) {
+    _selectedCrop = crop;
     notifyListeners();
   }
 }

@@ -1,13 +1,12 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:http/http.dart';
 import 'package:provider/provider.dart';
 import 'package:vriddhi_0/constants.dart';
 import 'package:vriddhi_0/data_lists/allDataList.dart';
+import 'package:vriddhi_0/firebase_custom_variables/task_date_data.dart';
 import 'package:vriddhi_0/global_listeners/selected_crop.dart';
+import 'package:vriddhi_0/services/get_current_date.dart';
 import 'package:vriddhi_0/services/read_json.dart';
 import 'package:vriddhi_0/utilities/all_card_content.dart';
 import 'package:vriddhi_0/utilities/all_cards.dart';
@@ -40,18 +39,12 @@ class _ProgressScreenState extends State<ProgressScreen> {
   //methods
   Future<void> getLevelsAndTask() async {
     allJsonData = await ReadJson.readJson('assets/task.json');
+    final levelData = allJsonData[selectedCrop.toCapitalCase()] as Map;
+    int totalLevels = levelData.length - 2;
     setState(() {
-      final levelData = allJsonData[selectedCrop.toCapitalCase()] as Map;
-      int totalLevels = levelData.length - 2;
-      setState(() {
-        this.numberOfTotalLevels = totalLevels;
-      });
-
-      getTasks();
-      setState(() {
-        isLoading = false;
-      });
+      this.numberOfTotalLevels = totalLevels;
     });
+    getTasks();
   }
 
   Future<void> getTasks() async {
@@ -63,6 +56,7 @@ class _ProgressScreenState extends State<ProgressScreen> {
     }
     setState(() {
       totalTasksLeft = _tasks.length - 1;
+      isLoading = false;
     });
   }
 
@@ -72,6 +66,12 @@ class _ProgressScreenState extends State<ProgressScreen> {
     });
   }
 
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getLevelsAndTask();
+  }
   void updateSelectedCrop(String crop) {
     final currentCrop = Provider.of<SelectedCrop>(context, listen: false);
     currentCrop.setCurrentCrop(crop ?? '');
@@ -82,7 +82,7 @@ class _ProgressScreenState extends State<ProgressScreen> {
     });
   }
 
-  @override
+
   @override
   Widget build(BuildContext context) {
     //Provider Accessing
@@ -206,11 +206,12 @@ class _ProgressScreenState extends State<ProgressScreen> {
                                                     if(totalLevelsDone == numberOfTotalLevels){
                                                       //All Levels Are Completed
                                                       //do something
+                                                      String current_date = CurrentDate.getCurrentDate();
+                                                      FirebaseTaskDateData.setCropDates(selectedCrop,endDate: current_date);
                                                       setState(()  {
                                                         updateSelectedCrop('');
                                                       });
                                                     }
-                                                    else{
                                                       isDoneAllTasks = true;
                                                       current_level += 1;
                                                       levelCompletion = 1 -
@@ -219,7 +220,7 @@ class _ProgressScreenState extends State<ProgressScreen> {
                                                               numberOfTotalLevels;
                                                       taskStatus.clear();
                                                       getTasks();
-                                                    }
+
 
                                                   }
                                                   Navigator.pop(context);

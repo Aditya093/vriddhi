@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:vriddhi_0/constants.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:vriddhi_0/global_listeners/farm_data.dart';
+import 'package:vriddhi_0/global_listeners/temperature_data.dart';
 import 'package:vriddhi_0/services/weather.dart';
 import 'dart:io';
 import 'dart:async';
@@ -37,12 +40,14 @@ class _SoilDetailsFormState extends State<SoilDetailsForm> {
   File? image;
   String cropName = '';
   String probabilty = '';
-  String price = '';
-  String prod = '';
+  double price = 0.0;
+  double prod = 0.0;
   bool buttonShow = false;
   bool gotResponse = false;
   late int temperature;
   late int humidity;
+  late  int rain;
+  late String farmArea;
   bool showProcessing = true;
 
   //Methods
@@ -58,19 +63,19 @@ class _SoilDetailsFormState extends State<SoilDetailsForm> {
   //we can upload from gallery
   Future getImage(ImageSource media) async {
     var img = await picker.pickImage(source: media);
-
     setState(() {
       image = File(img!.path);
     });
   }
-
+  @override
   Future<void> getLocationData() async{
-    var weatherData = await weather.getLocationWeather();
-    //Switching to Next Screen Location Screen
-    dynamic temp = weatherData['main']['temp'];
-    temperature = temp.toInt();
-    dynamic humidity = weatherData['main']['humidity'];
-    this.humidity = humidity.toInt();
+    // await weatherModel.setWeatherParameters(this.context);
+    final temperatureData = Provider.of<WeatherDataAll>(this.context,listen: false);
+    temperature = temperatureData.temperature;
+    humidity = temperatureData.humidity;
+    rain = temperatureData.rain;
+    final farmData = Provider.of<FarmData>(this.context,listen: false);
+    farmArea = farmData.farmArea;
   }
 
   Future upload(File imageFile) async {
@@ -92,13 +97,14 @@ class _SoilDetailsFormState extends State<SoilDetailsForm> {
     print("Done image uploaded");
 
     await getLocationData();
+
     // add file to multipart
     request.files.add(multipartFile);
     // send
     request.fields["humidity"] = "${humidity}";
     request.fields["temperature"] = "${temperature}";
-    request.fields["rainfall"] = "0";
-    request.fields["area"] = "200";
+    request.fields["rainfall"] = "${rain}";
+    request.fields["area"] = farmArea;
 
 
     var response = await request.send();
@@ -124,6 +130,7 @@ class _SoilDetailsFormState extends State<SoilDetailsForm> {
 
   @override
   Widget build(BuildContext context) {
+
     return SingleChildScrollView(
       child: Container(
         child: Padding(

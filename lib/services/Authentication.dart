@@ -34,7 +34,7 @@ class Authentication {
       // await userCredential.user?.updateDisplayName(username);
       await FirebaseFirestore.instance.collection('users').doc(userCredential.user!.uid).set({
         'username': username,
-        'email': email,
+        // 'email': email,
       });
 
       userData.setUsername(username);

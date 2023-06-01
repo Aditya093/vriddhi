@@ -18,23 +18,7 @@ class _CropGuideScreenState extends State<CropGuideScreen> {
   //variables
   List<Map<String, dynamic>> cropList = [];
   late List<Map<String, dynamic>>  displayList = List.from(cropList);
-  //copy of original list (cropList)
-  // List displayList =
-  // List.from(cropList);
 
-  void onTapped(int index) {
-    switch (index) {
-      case 0:
-        {
-          Navigator.pushNamed(context, 'crop_details');
-        }
-        break;
-    }
-  }
-
-
-
-  
   // Fetch data from Firebase and extract title names and image URLs
   Future<List<Map<String, dynamic>>> fetchData() async {
     QuerySnapshot snapshot =

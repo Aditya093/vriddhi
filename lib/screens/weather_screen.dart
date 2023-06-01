@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:provider/provider.dart';
 import 'package:vriddhi_0/constants.dart';
+import 'package:vriddhi_0/global_listeners/location_data.dart';
+import 'package:vriddhi_0/global_listeners/temperature_data.dart';
+import 'package:vriddhi_0/services/weather.dart';
 import 'package:vriddhi_0/utilities/all_cards.dart';
 import 'package:vriddhi_0/widgets/reusable_widgets.dart';
+
+WeatherModel weatherModel = WeatherModel();
 
 class WeatherScreen extends StatefulWidget {
   static const String id = 'weather_screen';
@@ -17,46 +23,49 @@ class _WeatherScreenState extends State<WeatherScreen> {
   late int temperature;
   late int wind;
   late int humidity;
-  late String cityName;
-
+  late int rain;
+   late String cityName;
+  bool isLoading = true;
   // late int rain;
-  late String condition;
-
+   late String condition;
+  @override
   void initState() {
     super.initState();
-    updateUI(widget.locationWeather);
+    initializeWeather();
   }
 
+  Future<void> initializeWeather() async{
+    await updateUI();
+  }
   //Updating text fields by fetching api data
-  void updateUI(dynamic weatherData) {
-    setState(() {
-      //if weatherData is nul by any chance ,ex: location disabled etc.
-      if (weatherData == null) {
-        temperature = 0;
-        this.humidity = 0;
-        this.wind = 0;
-        // rain = 0;
-        cityName = '...';
-        return;
-      }
-      dynamic temp = weatherData['main']['temp'];
-      temperature = temp.toInt();
-      var condition = weatherData['weather'][0]['main'];
-      this.condition = condition;
-      cityName = weatherData['name'];
-      dynamic humidity = weatherData['main']['humidity'];
-      this.humidity = humidity.toInt();
-      dynamic wind = weatherData['wind']['speed'];
-      this.wind = wind.toInt();
-    });
+  Future<void> updateUI() async{
+    try{
+      // await weatherModel.setWeatherParameters(context);
+      final temperatureData =  Provider.of<WeatherDataAll>(context,listen: false);
+
+      final locationData =  Provider.of<LocationData>(context,listen: false);
+      temperature = temperatureData.temperature;
+      humidity = temperatureData.humidity;
+      rain = temperatureData.rain;
+      wind = temperatureData.wind;
+      cityName = locationData.location;
+      condition = temperatureData.condition;
+      setState(() {
+        isLoading = false;
+      });
+    }catch(e){
+      print(e);
+    }
+
   }
   @override
   Widget build(BuildContext context) {
+
     return SafeArea(
       child: Scaffold(
         backgroundColor: kBackgroundColor,
         appBar: ReusableWidgets.smallAppBar('Weather'),
-        body: Padding(
+        body: isLoading == false ? Padding(
           padding: const EdgeInsets.only(top: 8, left: 8, right: 8),
           child: Column(
             // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -104,34 +113,34 @@ class _WeatherScreenState extends State<WeatherScreen> {
                       Expanded(
                         flex: 5,
                         child: Image.asset(
-                            'assets/images/weather/Weather_Cloudy.png',
+                          'assets/images/weather/Weather_Cloudy.png',
                         ),
                       ),
                       SizedBox(height: 10,),
                       Expanded(
-                          flex: 2,
-                          child: Container(
-                            // color: Colors.red,
-                            child: Column(
-                              children: [
-                                Text(
-                                  'Today, 31st March 2023',
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                    fontSize: 20,
-                                  ),
+                        flex: 2,
+                        child: Container(
+                          // color: Colors.red,
+                          child: Column(
+                            children: [
+                              Text(
+                                'Today, 31st March 2023',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  fontSize: 20,
                                 ),
-                                Text(
-                                   '$temperature°',
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                    fontSize: 50,
-                                  ),
+                              ),
+                              Text(
+                                '$temperature°',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  fontSize: 50,
                                 ),
-                                Text('$condition' , style: kTitleOfInfoCardsTS,),
-                              ],
-                            ),
-                          ),),
+                              ),
+                              Text('$condition' , style: kTitleOfInfoCardsTS,),
+                            ],
+                          ),
+                        ),),
                     ],
                   ),
                 ),
@@ -148,7 +157,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
                     crossAxisCount: 3,
                     children: [
                       SmallWeatherSpecsCard(title: '$humidity', icon: FontAwesomeIcons.droplet, subtitle: 'Humidity'),
-                      SmallWeatherSpecsCard(title: '0', icon: FontAwesomeIcons.cloudShowersHeavy, subtitle: 'Rain'),
+                      SmallWeatherSpecsCard(title: '$rain', icon: FontAwesomeIcons.cloudShowersHeavy, subtitle: 'Rain'),
                       SmallWeatherSpecsCard(title: '$wind', icon: FontAwesomeIcons.wind, subtitle: 'Wind'),
 
                     ],
@@ -157,7 +166,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
               ),
             ],
           ),
-        ),
+        ) : kLoader,
       ),
     );
   }

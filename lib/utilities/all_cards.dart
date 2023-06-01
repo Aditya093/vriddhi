@@ -335,14 +335,14 @@ class DropdownToggleCard extends StatefulWidget {
   final String title;
   final String content;
 
-
   DropdownToggleCard({required this.title, required this.content});
 
   @override
   _DropdownToggleCardState createState() => _DropdownToggleCardState();
 }
+
 class _DropdownToggleCardState extends State<DropdownToggleCard> {
-  bool isExpanded = true;
+  bool isExpanded = false;
 
   @override
   Widget build(BuildContext context) {
@@ -384,11 +384,10 @@ class _DropdownToggleCardState extends State<DropdownToggleCard> {
 }
 
 class DynamicDropdownLevelCards extends StatelessWidget {
-  const DynamicDropdownLevelCards(
-      {
-        required this.title,
-        required this.dropdownChild,
-      });
+  const DynamicDropdownLevelCards({
+    required this.title,
+    required this.dropdownChild,
+  });
   final String title;
   final Widget dropdownChild;
 
@@ -404,8 +403,8 @@ class DynamicDropdownLevelCards extends StatelessWidget {
               borderRadius: BorderRadius.circular(10),
             ),
             child: ListTile(
-              contentPadding:const EdgeInsets.all(10),
-              leading:const Icon(
+              contentPadding: const EdgeInsets.all(10),
+              leading: const Icon(
                 FontAwesomeIcons.hourglassStart,
                 size: 30.0,
                 color: kButtonPositiveColor,
@@ -420,9 +419,7 @@ class DynamicDropdownLevelCards extends StatelessWidget {
               ),
             ),
           ),
-          Padding(
-              padding: const EdgeInsets.all(1.0),
-              child: dropdownChild),
+          Padding(padding: const EdgeInsets.all(1.0), child: dropdownChild),
         ],
       ),
     );
@@ -451,8 +448,7 @@ class TaskCard extends StatelessWidget {
         opacity: !taskStatus[cardIndex] ? 1 : 0.5,
         child: Card(
           color: kCardColorSecond,
-          margin: const EdgeInsets.only(
-              left: 15, right: 15, bottom: 10),
+          margin: const EdgeInsets.only(left: 15, right: 15, bottom: 10),
           shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.all(
               Radius.circular(10),
@@ -464,56 +460,22 @@ class TaskCard extends StatelessWidget {
               title: Text(
                 title,
                 style: const TextStyle(
-                    fontSize: 18,
-                    color: kNavyBlueColor,
-                    height: 1),
+                    fontSize: 18, color: kNavyBlueColor, height: 1),
               ),
               subtitle: Text(
                 duration,
-                style: const TextStyle(
-                    color:
-                    kDescriptionFontColor),
+                style: const TextStyle(color: kDescriptionFontColor),
               ),
               trailing: taskStatus[cardIndex]
                   ? Icon(
-                Icons.check_circle,
-                color: kPrimaryAppColor,
-              )
-                  : Icon(
-                  Icons.arrow_forward_ios,
-                  color: kNavyBlueColor,
-                  size: 18),
+                      Icons.check_circle,
+                      color: kPrimaryAppColor,
+                    )
+                  : Icon(Icons.arrow_forward_ios,
+                      color: kNavyBlueColor, size: 18),
             ),
           ),
         ),
-      child: Column(
-        children: [
-          Card(
-            color: kLightTealCardColor,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(10),
-            ),
-            child: ListTile(
-              contentPadding:const EdgeInsets.all(10),
-              leading:const Icon(
-                FontAwesomeIcons.hourglassStart,
-                size: 30.0,
-                color: kButtonPositiveColor,
-              ),
-              title: Text(
-                title,
-                style: const TextStyle(
-                    fontSize: 20,
-                    height: 1.5,
-                    color: kNavyBlueColor,
-                    fontWeight: FontWeight.bold),
-              ),
-            ),
-          ),
-          Padding(
-              padding: const EdgeInsets.all(1.0),
-              child: dropdownChild),
-        ],
       ),
     );
   }
@@ -552,7 +514,6 @@ class BlogCard extends StatelessWidget {
                 return Image.asset('assets/images/temp/Get_started.png');
               },
             ),
-
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
