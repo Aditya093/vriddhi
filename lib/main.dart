@@ -31,6 +31,7 @@ import 'package:vriddhi_0/screens/splash_screen.dart';
 import 'package:vriddhi_0/screens/user_profile_screen.dart';
 import 'package:vriddhi_0/screens/weather_screen.dart';
 
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
@@ -60,8 +61,7 @@ class Vriddhi extends StatelessWidget {
 
         debugShowCheckedModeBanner: false,
         initialRoute: '/',
-        routes: {
-          // '/':(context) => ProgressScreen(),
+        routes:
           '/': (context) => AuthenticationWrapper(),
           '/splash' :(context) => SplashScreen(),
           '/get_started': (context) => GetStartedScreen(),

@@ -3,6 +3,8 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:vriddhi_0/constants.dart';
 import 'package:vriddhi_0/data_lists/allDataList.dart';
 import 'package:vriddhi_0/screens/current_screen.dart';
+import 'package:vriddhi_0/screens/news_screen.dart';
+import 'package:vriddhi_0/screens/soil_testing_screen.dart';
 import 'package:vriddhi_0/screens/splash_screen.dart';
 import 'package:vriddhi_0/screens/weather_loading_screen.dart';
 import 'package:vriddhi_0/services/weather.dart';
@@ -10,6 +12,8 @@ import 'package:vriddhi_0/utilities/all_card_content.dart';
 import 'package:vriddhi_0/utilities/all_cards.dart';
 import 'package:vriddhi_0/widgets/heading_row_of_card.dart';
 import 'package:vriddhi_0/widgets/stacked_app_and_box.dart';
+import 'package:lottie/lottie.dart';
+
 
 //class objects
 WeatherModel weatherModel = WeatherModel();
@@ -93,71 +97,44 @@ class _HomeScreenState extends State<HomeScreen> {
     return showSpinner == false
         ? SafeArea(
             child: Scaffold(
-              body: ListView(
-                children: [
-                  //Overlapped App bar and Weather container
-                  StackedAppAndBox(
-                    boxCardContent: CardContentWeather(),
-                  ),
-                  //Explore + View All
-                  Padding(
-                    padding: const EdgeInsets.only(left: 20.0, right: 20.0),
-                    child: HeadingRowOfRectCards(
-                      heading: 'Explore',
-                      onTapViewAll: () {
-                        Navigator.pushNamed(context, '/explore');
-                      },
+              body: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    //Overlapped App bar and Weather container
+                    StackedAppAndBox(
+                      boxCardContent: CardContentWeather(),
                     ),
-                  ),
-
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Padding(
-                    padding:
-                        const EdgeInsets.only(left: 20, right: 20, bottom: 0),
-                    child: GridView.builder(
-                      shrinkWrap: true,
-                      physics: NeverScrollableScrollPhysics(),
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 3,
-                        mainAxisSpacing: 8,
-                        crossAxisSpacing: 8,
+                    //Explore + View All
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 20.0, right: 20.0),
+                      child: HeadingRowOfRectCards(
+                        heading: 'Explore',
+                        onTapViewAll: () {
+                          Navigator.pushNamed(context, '/explore');
+                        },
                       ),
-                      itemBuilder: (BuildContext context, int index) {
-                        final current_feature = featureList[index];
-                        return SmallSquareCard(
-                            title: current_feature.title,
-                            imagePath: current_feature.imagePath,
-                            onTapCard: () => onTapped(index));
-                      },
-                      itemCount: 3,
                     ),
-                  ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Padding(
+                      padding:
+                          const EdgeInsets.only(left: 10, right: 10, bottom: 0),
+                      child: ListView.builder(
+                        shrinkWrap: true,
+                        physics: NeverScrollableScrollPhysics(),
 
-                  // Crops + View All
-                  Padding(
-                    padding: const EdgeInsets.only(left: 20.0, right: 20.0),
-                    child: HeadingRowOfRectCards(
-                      heading: 'Crops',
-                      onTapViewAll: () {
-                        Navigator.pushNamed(context, '/crop_guide');
-                      },
+                        itemBuilder: (BuildContext context, int index) {
+                          final current_feature = featureList[index+1];
+                          return RectangleCard(relatedImagePath: current_feature.imagePath, titleText: current_feature.title, onTapped: () => {},);},
+                        itemCount: 3,
+                      ),
                     ),
-                  ),
-                  //Crop Cards
-                  //todo listview builder
-                  const RectangleCard(
-                    relatedImagePath: 'assets/images/crops/Crop_Maize.png',
-                    titleText: 'Maize',
-                    descriptionText: 'Zea mays',
-                  ),
-                  RectangleCard(
-                    relatedImagePath: 'assets/images/crops/Crop_Rice.png',
-                    titleText: 'Rice',
-                    descriptionText: 'Oryza sativa',
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           )
@@ -167,3 +144,5 @@ class _HomeScreenState extends State<HomeScreen> {
           );
   }
 }
+
+

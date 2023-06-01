@@ -38,6 +38,9 @@ dependencies:
   flutter_tts: ^3.6.3
   intl: ^0.17.0
   material_dialogs: ^1.1.4
+  google_maps_flutter: ^2.2.8
+  geocoding: ^2.1.0
+  google_mlkit_translation: ^0.6.0
 
 
 
@@ -70,6 +73,9 @@ flutter:
      - assets/farming_technique.json
      - assets/images/categories/
      - assets/lottie_animations.json
+     - assets/homeScreenAnimation.json
+     - assets/tractor.json
+
 
   fonts:
      - family: Jaldi

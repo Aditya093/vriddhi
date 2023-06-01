@@ -318,30 +318,35 @@ class _ProgressScreenState extends State<ProgressScreen>{
             //DropDownButton
             Container(
               height: 70,
+              // width: 80,
               decoration: BoxDecoration(
                 color: kLightTealCardColor,
-                borderRadius: BorderRadius.circular(15),
+                borderRadius: BorderRadius.circular(10),
               ),
-              child: DropdownButton<String>(
-                hint: Text('Please select a crop'),
-                value:  'Apple',
-                itemHeight: 70,
-                focusColor: kPrimaryAppColor,
-                dropdownColor: kLightTealCardColor,
-                menuMaxHeight: 500,
-                borderRadius: BorderRadius.circular(15),
-                style: kProgressBoxTitleTS,
-                onChanged: (String? newValue)  {
-                  setState(()  {
-                    updateSelectedCrop(newValue ?? '');
-                  });
-                },
-                items: cropsNameList.map<DropdownMenuItem<String>>((String crop) {
-                  return DropdownMenuItem<String>(
-                    value: crop,
-                    child: Text(crop),
-                  );
-                }).toList(),
+              child: Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: DropdownButton<String>(
+                  hint: Text('Please select a crop'),
+                  value:  'Apple',
+                  itemHeight: 50,
+                  focusColor: kPrimaryAppColor,
+                  dropdownColor: kLightTealCardColor,
+
+                  menuMaxHeight: 300,
+                  borderRadius: BorderRadius.circular(10),
+                  style: kProgressBoxTitleTS,
+                  onChanged: (String? newValue)  {
+                    setState(()  {
+                      updateSelectedCrop(newValue ?? '');
+                    });
+                  },
+                  items: cropsNameList.map<DropdownMenuItem<String>>((String crop) {
+                    return DropdownMenuItem<String>(
+                      value: crop,
+                      child: Text(crop),
+                    );
+                  }).toList(),
+                ),
               ),
             ),
           ],

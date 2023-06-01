@@ -5,6 +5,8 @@ import 'package:vriddhi_0/global_listeners/temperature_data.dart';
 import 'dart:math';
 import 'package:intl/intl.dart';
 import 'package:vriddhi_0/global_listeners/user_data.dart';
+import 'package:lottie/lottie.dart';
+
 
 //crop guide content of square card
 class CardContentCropGuide extends StatelessWidget {
@@ -38,6 +40,9 @@ class CardContentCropGuide extends StatelessWidget {
 
 //weather content of box card
 class CardContentWeather extends StatelessWidget {
+
+
+
   @override
   Widget build(BuildContext context) {
     DateTime now = DateTime.now();
@@ -67,26 +72,35 @@ class CardContentWeather extends StatelessWidget {
             ),
           ),
           //Row - Temp-Text + image
-          Expanded(
-            child: Row(
-              children: [
-                //Temp- text
-                Text(
-                  '${temperatureData.temperature}°C',
-                  style: TextStyle(
-                    decoration: TextDecoration.none,
-                    color: kNavyBlueColor,
-                    fontSize: 50,
-                  ),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Expanded(
+                flex: 1,
+                child: Lottie.asset(
+                  'assets/images/weather/Weather_Night.json',
+                  height: 120.0,
                 ),
-                //Weather-Image
-                Spacer(),
-                Image.asset(
-                  'assets/images/weather/Weather_SnowStorm.png',
-                  height: 400.0,
+              ),
+              Expanded(
+                flex: 1,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      '${temperatureData.temperature}°C',
+                      style: TextStyle(fontSize: 30,color: kNavyBlueColor,
+                      ),
+                    ),
+                    Text(
+                      'Gandhinagar',
+                      style: TextStyle(fontSize: 25,color: kNavyBlueColor,
+                      ),
+                    ),
+                  ],
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ],
       ),
