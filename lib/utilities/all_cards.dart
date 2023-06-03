@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:vriddhi_0/constants.dart';
@@ -558,5 +560,85 @@ class BlogCard extends StatelessWidget {
     );
   }
 }
+
+
+class HistoryCard extends StatelessWidget {
+  final String cropName;
+  final String dateStarted;
+  final String dateEnded;
+  final double price;
+  final double production;
+  final double area;
+
+  const HistoryCard({
+    required this.cropName,
+    required this.dateStarted,
+    required this.dateEnded,
+    required this.price,
+    required this.production,
+    required this.area,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      color:kLightTealCardColor,
+      elevation: 4,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(15.0),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              cropName,
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 25,
+              ),
+            ),
+            SizedBox(height: 10),
+            _buildInfoRow('Started', dateStarted),
+            _buildInfoRow('Ended', dateEnded),
+            _buildInfoRow('Production', '$production'),
+            _buildInfoRow('Price', '$price'),
+            _buildInfoRow('Area', '$area'),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildInfoRow(String label, String value) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 8.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(
+            label,
+            style: TextStyle(
+              fontStyle: FontStyle.normal,
+              fontSize: 16,
+              color: kNavyBlueColor,
+            ),
+          ),
+          Text(
+            value,
+            style: const TextStyle(
+              fontStyle: FontStyle.normal,
+              fontSize: 16,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+
+
 
 //

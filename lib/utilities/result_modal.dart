@@ -4,6 +4,7 @@ import 'package:vriddhi_0/constants.dart';
 import 'package:change_case/change_case.dart';
 // import 'package:vriddhi_0/screens/crop_details_screen.dart';
 import 'package:vriddhi_0/screens/crop_guide_screen.dart';
+import 'package:vriddhi_0/screens/crops_classfication_screen.dart';
 import 'package:vriddhi_0/screens/progress_screen.dart';
 
 class ResultModal extends StatefulWidget {
@@ -217,7 +218,7 @@ class _ResultModalState extends State<ResultModal> {
                               Navigator.pushReplacement(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => CropGuideScreen()));
+                                      builder: (context) => CropClassificationScreen()));
                             },
                             child: Text(
                               'Know More',
