@@ -2,17 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:vriddhi_0/constants.dart';
 import 'package:vriddhi_0/screens/previous_crops_screen.dart';
+import 'package:vriddhi_0/screens/user_information_screen.dart';
 import 'package:vriddhi_0/services/Authentication.dart';
+import 'package:vriddhi_0/services/update_profile_photo.dart';
 import 'package:vriddhi_0/utilities/all_cards.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
+import 'dart:convert';
 import 'dart:async';
 import 'package:vriddhi_0/widgets/reusable_widgets.dart';
 import 'package:vriddhi_0/global_listeners/user_data.dart';
-import 'package:vriddhi_0/global_listeners/location_data.dart';
 import 'package:provider/provider.dart';
-
-
 
 class UserProfileScreen extends StatefulWidget {
   @override
@@ -20,15 +20,17 @@ class UserProfileScreen extends StatefulWidget {
 }
 
 class _UserProfileScreenState extends State<UserProfileScreen> {
-  File? profileimage;
+  // File? profileimage;
   final ImagePicker picker = ImagePicker();
+  // String imageUrl = '';
 
   //we can upload from gallery and camera
   Future getImage(ImageSource media) async {
     var img = await picker.pickImage(source: media);
-
+    File? profileimage = File(img!.path);
+    await UpdateProfilePhoto.setProfilePhoto(profileimage!, context);
     setState(() {
-      profileimage = File(img!.path);
+      // this.imageUrl =
     });
   }
 
@@ -47,16 +49,18 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
               alignment: AlignmentDirectional.bottomEnd,
               children: [
                 Container(
-                height:400.0,width:300,
+                  height: 400.0,
+                  width: 300,
                   decoration: BoxDecoration(
                       color: kPrimaryAppColor,
                       borderRadius:
                           BorderRadius.only(bottomLeft: Radius.circular(40))),
                   margin: EdgeInsets.only(left: 65, bottom: 50),
                   child: Container(
-                    child: Center(
-                      child: Text(userData.username, style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold, color: Colors.white),),
-                    )),
+                      child: Center(
+                    child:
+                        Text(userData.username, style: kUsernameTextStyleInUP),
+                  )),
                 ),
                 Container(
                   margin: EdgeInsets.only(bottom: 60, left: 5),
@@ -117,15 +121,15 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                       },
                       child: CircleAvatar(
                         child: ClipOval(
-                          child: (profileimage != null)
-                              ? Image.file(
-                                  File(profileimage!.path),
+                          child: userData.photoUrl.isNotEmpty
+                              ? Image.memory(
+                                  base64Decode(userData.photoUrl),
+                                  width: 100,
+                                  height: 100,
                                   fit: BoxFit.cover,
-                                  height: 150,
-                                  width: 150,
                                 )
                               : Image.asset(
-                                  "assets/images/temp/User_Icon.png",
+                                  "assets/images/temp/User_Icon.jpg",
                                   fit: BoxFit.cover,
                                   height: 150,
                                   width: 150,
@@ -139,9 +143,11 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                 ),
                 GestureDetector(
                     onTap: () {
-                      Navigator.push(context,  MaterialPageRoute(
-                        builder: (context) => UserInformation(name: userData.username, location:"India", email: userData.email, imageUrl: 'https://picsum.photos/200/300', currentCrop: 'Maize')
-                      ),);
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => UserInformation()),
+                      );
                     },
                     child: UserProfileRectangleCards(
                       leadingIcon: FontAwesomeIcons.addressBook,
@@ -159,8 +165,11 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                   child: Column(
                     children: [
                       GestureDetector(
-                        onTap: (){
-                          Navigator.push(context, MaterialPageRoute(builder: (context) =>PreviousCropsScreen()));
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => PreviousCropsScreen()));
                         },
                         child: UserProfileRectangleCards(
                           leadingIcon: FontAwesomeIcons.pagelines,
@@ -179,8 +188,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                       ),
                       GestureDetector(
                         onTap: () {
-                          Navigator.pushNamed(
-                              context, '/terms_of_service');
+                          Navigator.pushNamed(context, '/terms_of_service');
                         },
                         child: UserProfileRectangleCards(
                           leadingIcon: FontAwesomeIcons.clipboard,
@@ -228,7 +236,6 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
 }
 
 class TermsOfServiceScreen extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -288,178 +295,4 @@ class UserInfoData {
     required this.imageUrl,
     required this.currentCrop,
   });
-}
-
-class UserInformation extends StatelessWidget {
-  static const routeName = '/user-information';
-  const UserInformation({super.key, required this.name,required this.location,required this.email, required this.imageUrl,required this.currentCrop,});
-
-  final String name;
-  final String email;
-  final String location;
-  final String imageUrl;
-  final String currentCrop;
-
-  // final UserInfoData user = UserInfoData(
-  //     name: 'John Doe',
-  //     email: 'johndoe@example.com',
-  //     location: 'New York, USA',
-  //     imageUrl: 'https://picsum.photos/200/300', // Replace with your image URL
-  //     currentCrop: 'Maize');
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: ReusableWidgets.smallAppBar('User Information'),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            SizedBox(height: 60.0),
-            Container(
-              height: 200,
-              width: double.infinity,
-              child: CircleAvatar(
-                backgroundImage: NetworkImage(imageUrl),
-                backgroundColor: kButtonPositiveColor,
-              ),
-            ),
-            SizedBox(height: 60.0),
-            Row(
-              children: [
-                Padding(
-                    padding: const EdgeInsets.only(left: 20.0),
-                    child: Icon(Icons.person,
-                        size: 30.0, color: kButtonPositiveColor)),
-                SizedBox(width: 8.0),
-                Expanded(
-                  child: Stack(
-                    children: [
-                      Text(
-                        " " + name,
-                        style: TextStyle(
-                          fontSize: 20.0,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      Positioned(
-                        bottom: 0,
-                        left: 0,
-                        right: 20.0,
-                        child: Container(
-                          height: 1.0,
-                          color: Colors.black,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-            SizedBox(height: 18.0),
-            Row(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.only(left: 20.0),
-                  child: Icon(Icons.email_rounded, color: kButtonPositiveColor),
-                ),
-                SizedBox(width: 8.0),
-                Expanded(
-                  child: Stack(
-                    children: [
-                      Text(
-                        " " + email,
-                        style: TextStyle(
-                          fontSize: 20.0,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      Positioned(
-                        bottom: 0,
-                        left: 0,
-                        right: 20.0,
-                        child: Container(
-                          height: 1.0,
-                          color: Colors.black,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-            SizedBox(height: 18.0),
-            Row(
-              children: [
-                Padding(
-                    padding: const EdgeInsets.only(left: 20.0),
-                    child: Icon(
-                      Icons.location_city,
-                      color: kButtonPositiveColor,
-                    )),
-                SizedBox(width: 8.0),
-                Expanded(
-                  child: Stack(
-                    children: [
-                      Text(
-                        " " + location,
-                        style: TextStyle(
-                          fontSize: 20.0,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      Positioned(
-                        bottom: 0,
-                        left: 0,
-                        right: 20.0,
-                        child: Container(
-                          height: 1.0,
-                          color: Colors.black,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-            SizedBox(
-              height: 18.0,
-            ),
-            Row(
-              children: [
-                Padding(
-                    padding: const EdgeInsets.only(left: 20.0),
-                    child: Icon(
-                      FontAwesomeIcons.seedling,
-                      color: kButtonPositiveColor,
-                    )),
-                SizedBox(width: 8.0),
-                Expanded(
-                  child: Stack(
-                    children: [
-                      Text(
-                        " " + currentCrop,
-                        style: TextStyle(
-                          fontSize: 20.0,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      Positioned(
-                        bottom: 0,
-                        left: 0,
-                        right: 20.0,
-                        child: Container(
-                          height: 1.0,
-                          color: Colors.black,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          ],
-        ),
-      ),
-    );
-  }
 }

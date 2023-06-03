@@ -43,8 +43,8 @@ class _WeatherScreenState extends State<WeatherScreen> {
     try{
       // await weatherModel.setWeatherParameters(context);
       final temperatureData =  Provider.of<WeatherDataAll>(context,listen: false);
-
       final locationData =  Provider.of<LocationData>(context,listen: false);
+
       temperature = temperatureData.temperature;
       humidity = temperatureData.humidity;
       rain = temperatureData.rain;
@@ -160,7 +160,6 @@ class _WeatherScreenState extends State<WeatherScreen> {
                       SmallWeatherSpecsCard(title: '$humidity', icon: FontAwesomeIcons.droplet, subtitle: 'Humidity'),
                       SmallWeatherSpecsCard(title: '$rain', icon: FontAwesomeIcons.cloudShowersHeavy, subtitle: 'Rain'),
                       SmallWeatherSpecsCard(title: '$wind', icon: FontAwesomeIcons.wind, subtitle: 'Wind'),
-
                     ],
                   ),
                 ),

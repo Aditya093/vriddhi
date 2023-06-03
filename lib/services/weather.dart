@@ -39,6 +39,7 @@ class WeatherModel {
     String cityName = weatherData['name'];
     var condition = weatherData['weather'][0]['main'];
     String cond = condition;
+
     //setting the temperature in provider
     final weatherDataTemp = Provider.of<WeatherDataAll>(context, listen: false);
     final locationData = Provider.of<LocationData>(context, listen: false);
@@ -50,10 +51,6 @@ class WeatherModel {
     weatherDataTemp.setTemperature(temperature);
   }
 
-
-
-
-
   //Getting Location data through location.dart and networking.dart
   Future<dynamic> getLocationWeather() async {
     //getting current location
@@ -64,6 +61,7 @@ class WeatherModel {
     var weatherData = await networkHelper.getData();
     return weatherData;
   }
+
 
   Future<dynamic> getLocationWeatherForRain() async {
     //getting current location

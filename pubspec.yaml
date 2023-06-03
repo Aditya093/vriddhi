@@ -47,6 +47,7 @@ dependencies:
 
 
 
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -66,7 +67,7 @@ flutter:
      - assets/images/logo/
      - assets/images/weather/
      - assets/images/feature_icons/
-     - assets/images/crops/
+#     - assets/images/crops
      - assets/images/scenes_farming/
      - assets/images/temp/
      - assets/images/pool_features/
