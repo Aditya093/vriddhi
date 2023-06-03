@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:vriddhi_0/constants.dart';
+import 'package:vriddhi_0/global_listeners/location_data.dart';
 import 'package:vriddhi_0/utilities/all_card_content.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -15,13 +17,8 @@ class NewsScreen extends StatefulWidget {
 
 class NewsService {
 
-  // final String newsApiKey = 'b58787888cbf40c8a97dc2aad6fe1023';
-
-  // final String newsCatcherApiKey = '-xVB4_cY5MHzHBg0LuR8894MKhbZkq-RHYHI2AxObTM';
-  // final String newsCatcherApiKey = '2LXqpD_wnG-veRZoSB-cBqe2Jabbqp7GMQmJca83kKo';
-  // final String newsCatcherApiKey = 'mbocKUZbqqQp-yHeFBUlJnTLlkZoWAk55XoXYW39xZA';
   final String newsCatcherApiKey =
-      'M0_8C0h-PZ5G3ESoKa68FAs_vdM34jZ_-cbI1Y0pT2Y';
+      '2LXqpD_wnG-veRZoSB-cBqe2Jabbqp7GMQmJca83kKo';
 
   Future<List<dynamic>> getAgricultureNews(String location) async {
     // final String newsUrl = 'https://newsapi.org/v2/everything?q=agriculture farming farmer crop -game&apiKey=$newsApiKey';
@@ -57,7 +54,8 @@ class _NewsScreenState extends State<NewsScreen> {
 
   Future<void> _fetchNews() async {
     try {
-      final news = await _newsService.getAgricultureNews('Mumbai');
+      final locationData = Provider.of<LocationData>(context);
+      final news = await _newsService.getAgricultureNews('Sarkhej');
       setState(() {
         _newsData = news;
       });
@@ -71,7 +69,7 @@ class _NewsScreenState extends State<NewsScreen> {
     return Scaffold(
       appBar: ReusableWidgets.smallAppBar("News"),
       body: FutureBuilder<List<dynamic>>(
-        future: _newsService.getAgricultureNews('YOUR_LOCATION'),
+        future: _newsService.getAgricultureNews('Sarkhej'),
         builder: (BuildContext context, AsyncSnapshot<List<dynamic>> snapshot) {
           if (snapshot.hasData) {
             final articles = snapshot.data!;

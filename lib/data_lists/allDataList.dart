@@ -108,10 +108,10 @@ class AllDataList{
       title: 'Disease\nDetection',
       imagePath: 'assets/images/feature_icons/Feature_Disease_Prediction.png',
     ),
-    SmallSquareCard(
-      title: 'Soil\nTesting',
-      imagePath: 'assets/images/feature_icons/Feature_SoilTesting.png',
-    ),
+    // SmallSquareCard(
+    //   title: 'Soil\nTesting',
+    //   imagePath: 'assets/images/feature_icons/Feature_SoilTesting.png',
+    // ),
     SmallSquareCard(
       title: 'Weather\nForecast',
       imagePath: 'assets/images/feature_icons/Feature_Weather.png',

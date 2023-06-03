@@ -75,14 +75,14 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     super.initState();
     updateTemp();
-    setState(() {
-      showSpinner = false;
-    });
+
   }
 
   Future<void> updateTemp() async {
     await weatherModel.setWeatherParameters(context);
-
+    setState(() {
+      showSpinner = false;
+    });
   }
 
   @override
@@ -90,71 +90,44 @@ class _HomeScreenState extends State<HomeScreen> {
     return showSpinner == false
         ? SafeArea(
             child: Scaffold(
-              body: ListView(
-                children: [
-                  //Overlapped App bar and Weather container
-                  StackedAppAndBox(
-                    boxCardContent: CardContentWeather(),
-                  ),
-                  //Explore + View All
-                  Padding(
-                    padding: const EdgeInsets.only(left: 20.0, right: 20.0),
-                    child: HeadingRowOfRectCards(
-                      heading: 'Explore',
-                      onTapViewAll: () {
-                        Navigator.pushNamed(context, '/explore');
-                      },
+              body: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    //Overlapped App bar and Weather container
+                    StackedAppAndBox(
+                      boxCardContent: CardContentWeather(),
                     ),
-                  ),
-
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Padding(
-                    padding:
-                        const EdgeInsets.only(left: 20, right: 20, bottom: 0),
-                    child: GridView.builder(
-                      shrinkWrap: true,
-                      physics: NeverScrollableScrollPhysics(),
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 3,
-                        mainAxisSpacing: 8,
-                        crossAxisSpacing: 8,
+                    //Explore + View All
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 20.0, right: 20.0),
+                      child: HeadingRowOfRectCards(
+                        heading: 'Explore',
+                        onTapViewAll: () {
+                          Navigator.pushNamed(context, '/explore');
+                        },
                       ),
-                      itemBuilder: (BuildContext context, int index) {
-                        final current_feature = featureList[index];
-                        return SmallSquareCard(
-                            title: current_feature.title,
-                            imagePath: current_feature.imagePath,
-                            onTapCard: () => onTapped(index));
-                      },
-                      itemCount: 3,
                     ),
-                  ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Padding(
+                      padding:
+                          const EdgeInsets.only(left: 10, right: 10, bottom: 0),
+                      child: ListView.builder(
+                        shrinkWrap: true,
+                        physics: NeverScrollableScrollPhysics(),
 
-                  // Crops + View All
-                  Padding(
-                    padding: const EdgeInsets.only(left: 20.0, right: 20.0),
-                    child: HeadingRowOfRectCards(
-                      heading: 'Crops',
-                      onTapViewAll: () {
-                        Navigator.pushNamed(context, '/crop_guide');
-                      },
+                        itemBuilder: (BuildContext context, int index) {
+                          final current_feature = featureList[index+1];
+                          return RectangleCard(relatedImagePath: current_feature.imagePath, titleText: current_feature.title, onTapped: () => {},);},
+                        itemCount: 3,
+                      ),
                     ),
-                  ),
-                  //Crop Cards
-                  //todo listview builder
-                  const RectangleCard(
-                    relatedImagePath: 'assets/images/crops/Crop_Maize.png',
-                    titleText: 'Maize',
-                    descriptionText: 'Zea mays',
-                  ),
-                  RectangleCard(
-                    relatedImagePath: 'assets/images/crops/Crop_Rice.png',
-                    titleText: 'Rice',
-                    descriptionText: 'Oryza sativa',
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           )
@@ -164,3 +137,5 @@ class _HomeScreenState extends State<HomeScreen> {
           );
   }
 }
+
+

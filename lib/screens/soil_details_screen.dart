@@ -103,7 +103,7 @@ class _SoilDetailsFormState extends State<SoilDetailsForm> {
     // send
     request.fields["humidity"] = "${humidity}";
     request.fields["temperature"] = "${temperature}";
-    request.fields["rainfall"] = "${rain}";
+    request.fields["rainfall"] = "572";
     request.fields["area"] = farmArea;
 
 

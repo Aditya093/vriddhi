@@ -50,13 +50,12 @@ class RectangleCard extends StatelessWidget {
   final VoidCallback? onTapped;
   final String relatedImagePath;
   final String titleText;
-  final String descriptionText;
+  // final String descriptionText;
 
   const RectangleCard(
       {required this.relatedImagePath,
       required this.titleText,
-      @required this.onTapped,
-      required this.descriptionText});
+      @required this.onTapped,});
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -83,10 +82,10 @@ class RectangleCard extends StatelessWidget {
             //Title Text
             title: Text(
               titleText,
-              style: TextStyle(fontSize: 23, color: kNavyBlueColor, height: 1),
+              style: TextStyle(fontSize: 20, color: kNavyBlueColor, height: 1),
             ),
-
-            subtitle: Text(descriptionText, style: kSubtitleTS),
+            trailing: Icon(Icons.arrow_forward_ios_rounded, color: kButtonPositiveColor,),
+            // subtitle: Text(descriptionText, style: kSubtitleTS),
           ),
         ),
       ),
@@ -335,6 +334,7 @@ class DropdownToggleCard extends StatefulWidget {
   final String title;
   final String content;
 
+
   DropdownToggleCard({required this.title, required this.content});
 
   @override
@@ -419,7 +419,9 @@ class DynamicDropdownLevelCards extends StatelessWidget {
               ),
             ),
           ),
-          Padding(padding: const EdgeInsets.all(1.0), child: dropdownChild),
+          Padding(
+              padding: const EdgeInsets.all(1.0),
+              child: dropdownChild),
         ],
       ),
     );
@@ -514,6 +516,7 @@ class BlogCard extends StatelessWidget {
                 return Image.asset('assets/images/temp/Get_started.png');
               },
             ),
+
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),

@@ -8,7 +8,6 @@ import 'package:provider/provider.dart';
 import 'package:vriddhi_0/constants.dart';
 import 'package:vriddhi_0/global_listeners/user_data.dart';
 import 'package:vriddhi_0/screens/current_screen.dart';
-import 'package:vriddhi_0/screens/login_screen.dart';
 import 'package:vriddhi_0/services/Authentication.dart';
 
 
@@ -41,7 +40,6 @@ class RegistrationForm extends StatefulWidget {
 
 class _RegistrationFormState extends State<RegistrationForm> {
   //Firebase-Authentication variables
-
   late String email;
   late String password;
   late String username;
@@ -56,8 +54,8 @@ class _RegistrationFormState extends State<RegistrationForm> {
   Widget build(BuildContext context) {
 
     //Authentication + username params
-    final userData = Provider.of<UserData>(context);
-    final auth = Authentication(userData);
+    // final userData = Provider.of<UserData>(context);
+
 
     return Container(
       padding: EdgeInsets.all(20.0),
@@ -172,7 +170,9 @@ class _RegistrationFormState extends State<RegistrationForm> {
                       //Process of Firebase Registered User
                       try {
                         if (isTermsCicked == true) {
-                          await  auth.registerUser(email, password, username);
+                          final userData = Provider.of<UserData>(context,listen: false);
+                          userData.setUsername(username);
+                          await  Authentication.registerUser(email, password, username);
                           Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> CurrentBottomNavBarScreen()));
                         }
                         else if(isTermsCicked == false){

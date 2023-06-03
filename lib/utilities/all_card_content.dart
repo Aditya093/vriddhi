@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:vriddhi_0/constants.dart';
+import 'package:vriddhi_0/global_listeners/location_data.dart';
 import 'package:vriddhi_0/global_listeners/temperature_data.dart';
 import 'dart:math';
 import 'package:vriddhi_0/global_listeners/user_data.dart';
+import 'package:lottie/lottie.dart';
 import 'package:vriddhi_0/services/get_current_date.dart';
 
 //crop guide content of square card
@@ -42,6 +44,7 @@ class CardContentWeather extends StatelessWidget {
     String formattedDate = CurrentDate.getCurrentDateWithDay();
     final userData = Provider.of<UserData>(context);
     final temperatureData = Provider.of<WeatherDataAll>(context);
+    final locData = Provider.of<LocationData>(context);
     return Container(
       padding: EdgeInsets.only(top: 25, left: 20, right: 20),
       child: Column(
@@ -65,23 +68,39 @@ class CardContentWeather extends StatelessWidget {
             ),
           ),
           //Row - Temp-Text + image
-          Expanded(
-            child: Row(
-              children: [
-                //Temp- text
-                Text(
-                  '${temperatureData.temperature}°C',
-                  style: TextStyle(
-                      decoration: TextDecoration.none,
-                      color: kNavyBlueColor,
-                      fontSize: 50,
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Expanded(
+                flex: 1,
+                child: Container(
+                  height: 100,
+                  width: 50,
+                  child: Lottie.asset(
+                      'assets/images/weather/Weather_Sunny.json',
+                    fit: BoxFit.cover
                   ),
                 ),
-                //Weather-Image
-                Spacer(),
-                Image.asset('assets/images/weather/Weather_SnowStorm.png', height: 400.0,),
-              ],
-            ),
+              ),
+              Expanded(
+                flex: 1,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      '${temperatureData.temperature}°C',
+                      style: TextStyle(fontSize: 30,color: kNavyBlueColor,
+                      ),
+                    ),
+                    Text(
+                      '${locData.location}',
+                      style: TextStyle(fontSize: 25,color: kNavyBlueColor,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
           ),
         ],
       ),

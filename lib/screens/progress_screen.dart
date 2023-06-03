@@ -13,6 +13,10 @@ import 'package:vriddhi_0/utilities/all_cards.dart';
 import 'package:vriddhi_0/utilities/task_modal.dart';
 import 'package:vriddhi_0/widgets/stacked_app_and_box.dart';
 import 'package:change_case/change_case.dart';
+import 'package:material_dialogs/material_dialogs.dart';
+import 'package:material_dialogs/widgets/buttons/icon_button.dart';
+import 'package:lottie/lottie.dart';
+// import 'package:material_dialogs/widgets/buttons/rounded_button.dart';
 
 class ProgressScreen extends StatefulWidget {
   static const String id = 'progress_screen';
@@ -72,6 +76,7 @@ class _ProgressScreenState extends State<ProgressScreen> {
     super.initState();
     getLevelsAndTask();
   }
+
   void updateSelectedCrop(String crop) {
     final currentCrop = Provider.of<SelectedCrop>(context, listen: false);
     currentCrop.setCurrentCrop(crop ?? '');
@@ -82,6 +87,51 @@ class _ProgressScreenState extends State<ProgressScreen> {
     });
   }
 
+  void _openDialog() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return Dialog(
+          child: Container(
+            padding: EdgeInsets.all(16),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Lottie.asset(
+                  'assets/lottie_animations.json',
+                  height: 200,
+                  width: 200,
+                ),
+                SizedBox(height: 16),
+                Text(
+                  'Level ${current_level - 1} Completed',
+                  style: kFormTextFieldLabelStyle,
+                ),
+                SizedBox(height: 16),
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Text(
+                      'OK',
+                    ),
+                  ),
+                  style: ElevatedButton.styleFrom(
+                    textStyle: TextStyle(
+                      fontFamily: "Catamaran",
+                    ),
+                    backgroundColor: kButtonPositiveColor,
+                  ),
+                )
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -120,7 +170,10 @@ class _ProgressScreenState extends State<ProgressScreen> {
                       child: Column(
                         children: [
                           Align(
-                              alignment:Alignment.lerp(Alignment.topLeft, Alignment.topRight, levelCompletion) as AlignmentGeometry,
+                              alignment: Alignment.lerp(
+                                  Alignment.topLeft,
+                                  Alignment.topRight,
+                                  levelCompletion) as AlignmentGeometry,
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
@@ -203,35 +256,54 @@ class _ProgressScreenState extends State<ProgressScreen> {
                                                   markTaskCompleted(index);
                                                   if (totalTasksLeft == 0) {
                                                     totalLevelsDone++;
-                                                    if(totalLevelsDone == numberOfTotalLevels){
+                                                    if (totalLevelsDone ==
+                                                        numberOfTotalLevels) {
                                                       //All Levels Are Completed
                                                       //do something
+                                                      ScaffoldMessenger.of(
+                                                              context)
+                                                          .showSnackBar(
+                                                        SnackBar(
+                                                          content: Text(
+                                                              '${selectedCrop} grown successfully'),
+                                                        ),
+                                                      );
                                                       String current_date = CurrentDate.getCurrentDate();
-                                                      FirebaseTaskDateData.setCropDates(selectedCrop,endDate: current_date);
-                                                      setState(()  {
+                                                      FirebaseTaskDateData.setCropDates(
+                                                              selectedCrop,
+                                                              endDate:
+                                                                  current_date);
+                                                      setState(() {
                                                         updateSelectedCrop('');
                                                       });
                                                     }
-                                                      isDoneAllTasks = true;
-                                                      current_level += 1;
-                                                      levelCompletion = 1 -
-                                                          (numberOfTotalLevels -
-                                                              totalLevelsDone) /
-                                                              numberOfTotalLevels;
-                                                      taskStatus.clear();
-                                                      getTasks();
 
-
+                                                    isDoneAllTasks = true;
+                                                    current_level += 1;
+                                                    levelCompletion = 1 -
+                                                        (numberOfTotalLevels -
+                                                                totalLevelsDone) /
+                                                            numberOfTotalLevels;
+                                                    taskStatus.clear();
+                                                    getTasks();
                                                   }
                                                   Navigator.pop(context);
                                                 });
+                                                if (totalTasksLeft == 0) {
+                                                  _openDialog();
+                                                }
                                               },
                                             ),
                                           ),
                                         ),
                                       );
                                     },
-                                    child: TaskCard(taskStatus: taskStatus, title: title, duration: duration,cardIndex: index,));
+                                    child: TaskCard(
+                                      taskStatus: taskStatus,
+                                      title: title,
+                                      duration: duration,
+                                      cardIndex: index,
+                                    ));
                               },
                             )
                           : Container(
@@ -241,59 +313,63 @@ class _ProgressScreenState extends State<ProgressScreen> {
                   ],
                 ),
               )
-            : (selectedCrop == '' ? Column(
-          children: [
-            //Stackedd App Bar with progress box
-            StackedAppAndBox(
-              boxCardContent: CardContentProgressBox(
-                  levelImage: 'Scene_Start',
-                  currentLevel: 0),
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            //Select Crop
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Text(
-                'Select Crop:',
-                style: kFormPrimaryHeadingStyle,
-              ),
-            ),
-            //DropDownButton
-            Container(
-              height: 70,
-              decoration: BoxDecoration(
-                color: kLightTealCardColor,
-                borderRadius: BorderRadius.circular(15),
-              ),
-              child: DropdownButton<String>(
-                hint: Text('Please select a crop'),
-                value:  'Apple',
-                itemHeight: 70,
-                focusColor: kPrimaryAppColor,
-                dropdownColor: kLightTealCardColor,
-                menuMaxHeight: 500,
-                borderRadius: BorderRadius.circular(15),
-                style: kProgressBoxTitleTS,
-                onChanged: (String? newValue)  {
-                  setState(()  {
-                    updateSelectedCrop(newValue ?? '');
-                  });
-                },
-                items: cropsNameList.map<DropdownMenuItem<String>>((String crop) {
-                  return DropdownMenuItem<String>(
-                    value: crop,
-                    child: Text(crop),
-                  );
-                }).toList(),
-              ),
-            ),
-          ],
-        ) : kLoader),
+            : (selectedCrop == ''
+                ? Column(
+                    children: [
+                      //Stackedd App Bar with progress box
+                      StackedAppAndBox(
+                        boxCardContent: CardContentProgressBox(
+                            levelImage: 'Scene_Start', currentLevel: 0),
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      //Select Crop
+                      Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: Text(
+                          'Select Crop:',
+                          style: kFormPrimaryHeadingStyle,
+                        ),
+                      ),
+                      //DropDownButton
+                      Container(
+                        height: 70,
+                        // width: 80,
+                        decoration: BoxDecoration(
+                          color: kLightTealCardColor,
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.all(12.0),
+                          child: DropdownButton<String>(
+                            hint: Text('Please select a crop'),
+                            value: 'Apple',
+                            itemHeight: 50,
+                            focusColor: kPrimaryAppColor,
+                            dropdownColor: kLightTealCardColor,
+                            menuMaxHeight: 300,
+                            borderRadius: BorderRadius.circular(10),
+                            style: kProgressBoxTitleTS,
+                            onChanged: (String? newValue) {
+                              setState(() {
+                                updateSelectedCrop(newValue ?? '');
+                              });
+                            },
+                            items: cropsNameList
+                                .map<DropdownMenuItem<String>>((String crop) {
+                              return DropdownMenuItem<String>(
+                                value: crop,
+                                child: Text(crop),
+                              );
+                            }).toList(),
+                          ),
+                        ),
+                      ),
+                    ],
+                  )
+                : kLoader),
       ),
     );
   }
 }
-
-

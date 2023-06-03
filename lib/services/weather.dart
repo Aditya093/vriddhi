@@ -48,8 +48,6 @@ class WeatherModel {
     weatherDataTemp.setCondition(cond);
     locationData.setLocation(cityName);
     weatherDataTemp.setTemperature(temperature);
-
-
   }
 
 

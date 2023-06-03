@@ -7,6 +7,8 @@ import 'package:vriddhi_0/global_listeners/farm_data.dart';
 import 'package:vriddhi_0/screens/soil_details_screen.dart';
 import 'package:vriddhi_0/utilities/show_dialog_box.dart';
 import 'package:vriddhi_0/widgets/reusable_widgets.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:geocoding/geocoding.dart' as geocoding;
 
 
 class BasicDetailsScreen extends StatelessWidget {
@@ -29,9 +31,77 @@ class BasicDetailsForm extends StatefulWidget {
 
 class _BasicDetailsFormState extends State<BasicDetailsForm> {
 
+  final GlobalKey<FormBuilderState> _formKey = GlobalKey<FormBuilderState>();//global key  to uniquely identify the form widget and helps in validating
+  final TextEditingController _locationController = TextEditingController();
+  GoogleMapController? _mapController;
+  Set<Marker> _markers = {};
+
+  void _onMapCreated(GoogleMapController controller) {
+    _mapController = controller;
+  }
+
+  Future<void> _selectLocation() async {
+    final LatLng? selectedLocation = await showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        LatLng? selectedLatLng;
+        return AlertDialog(
+          title: Text('Select Location', style: kFormTextFieldLabelStyle,),
+          content: Container(
+            height: MediaQuery.of(context).size.height * 0.75,
+            child: GoogleMap(
+              onMapCreated: _onMapCreated,
+              initialCameraPosition: CameraPosition(
+                target: LatLng(20.59, 78.96),
+                zoom:4.0,
+              ),
+              markers: _markers,
+              onTap: (LatLng latLng) {
+                setState(() {
+                  _markers = {
+                    Marker(
+                      markerId: MarkerId('selected_location'),
+                      position: latLng,
+                    ),
+                  };
+                });
+              },
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: Text('Done', style: kFormTextFieldLabelStyle.copyWith(fontSize: 16.0),),
+              onPressed: () {
+                if (_markers.isNotEmpty) {
+                  final selectedMarker = _markers.first;
+                  selectedLatLng = selectedMarker.position;
+                  Navigator.of(context).pop(selectedLatLng);
+                }else{
+                  selectedLatLng = LatLng(20.59, 78.96);
+                  Navigator.of(context).pop(selectedLatLng);
+                }
+              },
+            ),
+          ],
+        );
+      },
+    );
+
+    if (selectedLocation != null) {
+      final addresses = await geocoding.placemarkFromCoordinates(
+        selectedLocation.latitude,
+        selectedLocation.longitude,
+      );
+
+      final city = addresses.first.locality;
+
+      setState(() {
+        _locationController.text = city ?? '';
+      });
+    }
+  }
   //vars
   late String _farmArea;
-  final GlobalKey<FormBuilderState> _formKey = GlobalKey<FormBuilderState>(); //global key  to uniquely identify the form widget and helps in validating
 
   Future<void> _submitForm() async{
     if (_formKey.currentState!.validate() == true) {
@@ -95,17 +165,28 @@ class _BasicDetailsFormState extends State<BasicDetailsForm> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
-                            '1.Location',
-                            style: kFormTextFieldLabelStyle,
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                '1.Farm Location',
+                                style: kFormTextFieldLabelStyle,
+                              ),
+                              TextButton(
+                                // onPressed: (){},
+                                onPressed: _selectLocation,
+                                child: Text('Select Location', style:kFormTextFieldLabelStyle.copyWith(fontSize: 16, fontWeight: FontWeight.bold)),
+                              ),
+                            ],
                           ),
                             Opacity(
                               opacity: 0.5,
                               child: FormBuilderTextField(
                                 name: "location",
+                                controller: _locationController,
                                 enabled: false,
                                 decoration: kFormTextFieldStyle.copyWith(
-                                    hintText: "Sarkhej"),
+                                    hintText: "Select Your location"),
                                 validator: FormBuilderValidators.required(),
                               ),
                             ),

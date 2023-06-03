@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:vriddhi_0/constants.dart';
 import 'package:vriddhi_0/global_listeners/location_data.dart';
 import 'package:vriddhi_0/global_listeners/temperature_data.dart';
+import 'package:vriddhi_0/services/get_current_date.dart';
 import 'package:vriddhi_0/services/weather.dart';
 import 'package:vriddhi_0/utilities/all_cards.dart';
 import 'package:vriddhi_0/widgets/reusable_widgets.dart';
@@ -124,7 +125,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
                           child: Column(
                             children: [
                               Text(
-                                'Today, 31st March 2023',
+                                '${CurrentDate.getCurrentDateWithDay()}',
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                   fontSize: 20,

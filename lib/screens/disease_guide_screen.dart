@@ -14,8 +14,6 @@ class DiseaseGuideScreen extends StatefulWidget {
 class _DiseaseGuideScreenState extends State<DiseaseGuideScreen> {
 
   List<DiseaseListTile> displayList = List.from(AllDataList.diseaseGuideList);
-
-
   void updateList(String value) {
     setState(() {
       displayList = AllDataList.diseaseGuideList
@@ -70,12 +68,13 @@ class _DiseaseGuideScreenState extends State<DiseaseGuideScreen> {
                       final current_disease = displayList[index];
                       return GestureDetector(
                         onTap: (){
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => DiseaseDetailsScreen(diseaseName: displayList[index].title),
-                            ),
-                          );
+                          // Navigator.pushReplacement('')
+                          // Navigator.push(
+                          //   context,
+                          //   MaterialPageRoute(
+                          //     builder: (context) => DiseaseDetailsScreen(diseaseName: displayList[index].title),
+                          //   ),
+                          // );
                         },
                         child:Card(
                           color: Color(0xFFCCDBDC),

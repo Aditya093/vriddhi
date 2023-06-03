@@ -9,8 +9,8 @@ import 'package:vriddhi_0/screens/current_screen.dart';
 import 'package:vriddhi_0/screens/home_screen.dart';
 
 class Authentication {
-  final UserData userData;
-  Authentication(this.userData);
+  // final UserData userData;
+  // Authentication(this.userData);
   //snackbar for error
   static SnackBar customSnackBar({required String content}) {
     return SnackBar(
@@ -23,7 +23,7 @@ class Authentication {
   }
 
   //registeration or sign in with email and password
-   Future<void> registerUser(String email, String password, String username) async {
+   static Future<void> registerUser(String email, String password, String username) async {
     try {
       UserCredential userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: email,
@@ -37,8 +37,8 @@ class Authentication {
         // 'email': email,
       });
 
-      userData.setUsername(username);
-      userData.setUseremail(email);
+
+      // userData.setUseremail(email);
       // await userCredential.user?.updatePhotoURL(photoURL);
 
       // Other registration logic or navigation

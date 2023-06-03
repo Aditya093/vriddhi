@@ -126,7 +126,7 @@ class _CropGuideScreenState extends State<CropGuideScreen> {
                                   imageUrl: imageURL,
                                   fit: BoxFit.cover,
                                   placeholder: (context, url) =>
-                                      CircularProgressIndicator(),
+                                      kLoader,
                                   errorWidget: (context, url, error) =>
                                       Icon(Icons.error),
                                 ),
