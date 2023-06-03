@@ -4,7 +4,8 @@ import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:vriddhi_0/constants.dart';
 import 'package:vriddhi_0/widgets/reusable_widgets.dart';
-// import 'package:youtube_player_flutter/youtube_player_flutter.dart';
+import 'package:youtube_player_flutter/youtube_player_flutter.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 
 class FarmingTechniquesScreen extends StatefulWidget {
@@ -34,10 +35,6 @@ class _FarmingTechniquesScreenState extends State<FarmingTechniquesScreen> {
     );
   }
 
-  void playVideo(String videoUrl) {
-    // Add code to play the video
-    print('Playing video: $videoUrl');
-  }
 
   Widget build(BuildContext context) {
     return Scaffold(
@@ -63,65 +60,75 @@ class _FarmingTechniquesScreenState extends State<FarmingTechniquesScreen> {
                 ListTile(
                   title: Text(name, style: kFormTextFieldLabelStyle,),
                 ),
-                Image.asset("assets/images/scenes_farming/Scene_Start.png", width:240.0, height: 220.0,),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    TextButton(
-                      onPressed: () {
-
-                      },
-                      child: Text('Play'),
+                Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(8),
+                    child: YoutubePlayer(
+                      controller: YoutubePlayerController(
+                        initialVideoId: videoURL,
+                        flags: YoutubePlayerFlags(autoPlay: false),
+                      ),
+                      showVideoProgressIndicator: true,
                     ),
-                    TextButton(
-                      onPressed: () {
-                        showModalBottomSheet(
-                          isScrollControlled: true,
-                          context: context,
-                          builder: (context) => SingleChildScrollView(
-                            child: Container(
-                              color: Color(0xff757575),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(right:10.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      TextButton(
+                        onPressed: () {
+                          showModalBottomSheet(
+                            isScrollControlled: true,
+                            context: context,
+                            builder: (context) => SingleChildScrollView(
                               child: Container(
-                                padding: EdgeInsets.only(left: 20.0, right: 20.0, bottom: 20.0),
-                                decoration: BoxDecoration(
-                                  color: Color(0xFFF8F8F6),
-                                  borderRadius: BorderRadius.only(
-                                    topRight: Radius.circular(20.0),
-                                    topLeft: Radius.circular(20.0),
+                                color: Color(0xff757575),
+                                child: Container(
+                                  padding: EdgeInsets.only(left: 20.0, right: 20.0, bottom: 20.0),
+                                  decoration: BoxDecoration(
+                                    color: Color(0xFFF8F8F6),
+                                    borderRadius: BorderRadius.only(
+                                      topRight: Radius.circular(20.0),
+                                      topLeft: Radius.circular(20.0),
+                                    ),
                                   ),
-                                ),
-                                child: Column(
-                                  children: [
-                                    Icon(
-                                      FontAwesomeIcons.minus,
-                                      size: 30.0,
-                                    ),
-                                    Text("Description: ", style: kFormTextFieldLabelStyle,),
-                                    Padding(
-                                      padding: const EdgeInsets.all(12.0),
-                                      child: Text(description),
-                                    ),
-                                    Text("Advantages: ", style: kFormTextFieldLabelStyle,),
-                                    Padding(
-                                      padding: const EdgeInsets.all(12.0),
-                                      child: Text(advantages),
-                                    ),
-                                    Text("Disadvantages: ", style: kFormTextFieldLabelStyle,),
-                                    Padding(
-                                      padding: const EdgeInsets.all(12.0),
-                                      child: Text(disadvantages),
-                                    ),
-                                  ],
+                                  child: Column(
+                                    children: [
+                                      Icon(
+                                        FontAwesomeIcons.minus,
+                                        size: 30.0,
+                                      ),
+                                      Text("Description: ", style: kFormTextFieldLabelStyle,),
+                                      Padding(
+                                        padding: const EdgeInsets.all(12.0),
+                                        child: Text(description),
+                                      ),
+                                      Text("Advantages: ", style: kFormTextFieldLabelStyle,),
+                                      Padding(
+                                        padding: const EdgeInsets.all(12.0),
+                                        child: Text(advantages),
+                                      ),
+                                      Text("Disadvantages: ", style: kFormTextFieldLabelStyle,),
+                                      Padding(
+                                        padding: const EdgeInsets.all(12.0),
+                                        child: Text(disadvantages),
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
-                        );
-                      },
-                      child: Text('Know More'),
-                    ),
-                  ],
-                ),
+                          );
+                        },
+                        child: Text('Know More', style: TextStyle(fontSize: 16.0),),
+                      ),
+                      Icon(FontAwesomeIcons.angleRight, size: 16.0, color: Colors.blue,),
+                    ],
+                  ),
+                )
               ],
             ),
           );
@@ -130,5 +137,4 @@ class _FarmingTechniquesScreenState extends State<FarmingTechniquesScreen> {
     );
   }
 }
-
 

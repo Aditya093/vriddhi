@@ -165,8 +165,7 @@
       "Apply fungicides preventatively before symptoms appear, according to label directions"
     ]
   },
-  
-    
+
   "Grape_Leaf_Blight":{
     "disease": "Grape Leaf Blight",
     "scientific_name": "Phomopsis viticola",
@@ -504,7 +503,7 @@
       },
       "Tomato_Early_Blight":{
         "disease": "Tomato Early Blight",
-        "scientific_name": "Alternaria solani",
+        "scientific_name": "Alternaria linariae",
         "symptoms": [
           "Circular, brown or black spots with concentric rings on lower leaves",
           "Spots may have a yellow halo",
@@ -512,7 +511,7 @@
           "Fruit may develop sunken lesions with concentric rings"
         ],
         "causes": [
-          "Fungal infection by Alternaria solani",
+          "Fungal infection by Alternaria linariae",
           "Favored by warm, humid conditions and extended periods of leaf wetness",
           "Spread by wind, rain, and contaminated tools or equipment"
         ],

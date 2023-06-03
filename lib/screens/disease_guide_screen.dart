@@ -1,7 +1,7 @@
+import 'package:change_case/change_case.dart';
 import 'package:flutter/material.dart';
 import 'package:vriddhi_0/constants.dart';
-import 'package:vriddhi_0/data_lists/crop_guide_list.dart';
-import 'package:vriddhi_0/data_lists/disease_guide_list.dart';
+import 'package:vriddhi_0/data_lists/allDataList.dart';
 import 'package:vriddhi_0/screens/disease_details_screen.dart';
 import 'package:vriddhi_0/utilities/all_card_content.dart';
 import 'package:vriddhi_0/widgets/reusable_rounded_card.dart';
@@ -13,12 +13,10 @@ class DiseaseGuideScreen extends StatefulWidget {
 
 class _DiseaseGuideScreenState extends State<DiseaseGuideScreen> {
 
-  List<DiseaseListTile> displayList = List.from(DiseaseGuideList.diseaseGuideList);
-
-
+  List<DiseaseListTile> displayList = List.from(AllDataList.diseaseGuideList);
   void updateList(String value) {
     setState(() {
-      displayList = DiseaseGuideList.diseaseGuideList
+      displayList = AllDataList.diseaseGuideList
           .where((element) =>
           element.title.toLowerCase().contains(value.toLowerCase()))
           .toList();
@@ -62,22 +60,82 @@ class _DiseaseGuideScreenState extends State<DiseaseGuideScreen> {
                   ),
                 ),
                 // GridView.builder(gridDelegate: gridDelegate)
+                SizedBox(height:20.0),
                 Expanded(
                   child: ListView.builder(
                     itemBuilder: (BuildContext context, int index) {
-                      DiseaseGuideList().sortingList();
+                      AllDataList().diseaseListSorting();
                       final current_disease = displayList[index];
                       return GestureDetector(
                         onTap: (){
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => DiseaseDetailsScreen(diseaseName: displayList[index].title),
-                            ),
-                          );
+                          // Navigator.pushReplacement('')
+                          // Navigator.push(
+                          //   context,
+                          //   MaterialPageRoute(
+                          //     builder: (context) => DiseaseDetailsScreen(diseaseName: displayList[index].title),
+                          //   ),
+                          // );
                         },
-                        child: ReusableCard(
-                          cardChild: current_disease,
+                        child:Card(
+                          color: Color(0xFFCCDBDC),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(4),
+                          ),
+                          clipBehavior: Clip.antiAliasWithSaveLayer,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              Padding(
+                                padding: const EdgeInsets.all(15),
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: <Widget>[
+                                    // Add an image widget to display an image
+                                    ClipRRect(
+                                      borderRadius: BorderRadius.circular(8), // Image border
+                                      child: SizedBox.fromSize(
+                                        size: Size.fromRadius(35), // Image radius
+                                        child:Image.asset(
+                                          displayList[index].imagePath,
+                                          width:25,
+                                          height:25,
+                                          fit: BoxFit.cover,
+                                        ),
+                                      ),
+                                    ),
+                                    // Add some spacing between the image and the text
+                                    Container(width: 20),
+                                    // Add an expanded widget to take up the remaining horizontal space
+                                    Expanded(
+                                      child: Column(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: <Widget>[
+                                          SizedBox(height:10.0),
+                                          Text(
+                                            displayList[index].title,
+                                            style: TextStyle(fontSize: 20.0, color: kButtonPositiveColor),
+                                          ),
+                                          SizedBox(height:10.0),
+                                          Row(
+                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Expanded(
+                                                child: Text(
+                                                  displayList[index].scientific_name,
+                                                  style: TextStyle(fontSize: 16.0, color: Colors.blueGrey),
+                                                ),
+                                              ),
+                                              Icon(Icons.keyboard_arrow_right_rounded, color: kButtonPositiveColor,),
+                                            ],
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       );
                     },
@@ -92,3 +150,7 @@ class _DiseaseGuideScreenState extends State<DiseaseGuideScreen> {
     );
   }
 }
+
+// ReusableCard(
+// cardChild: current_disease,
+// ),

@@ -32,11 +32,21 @@ dependencies:
   geolocator: ^9.0.2
   provider: ^6.0.5
   google_sign_in: ^5.0.0
-  youtube_player_flutter: ^8.1.0
+  youtube_player_flutter: ^8.1.2
   cached_network_image: ^3.0.0
-  url_launcher: ^6.0.10
-  newsapi: ^2.0.0
-  translator: ^0.1.0
+  url_launcher: ^6.1.11
+  flutter_tts: ^3.6.3
+  intl: ^0.17.0
+  material_dialogs: ^1.1.4
+  shared_preferences: ^2.1.1
+#  google_ml_kit: ^0.14.0
+#  google_cloud_translation: ^0.0.3
+  google_maps_flutter: ^2.2.8
+  geocoding: ^2.1.0
+  google_mlkit_translation: ^0.6.0
+
+
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -61,8 +71,14 @@ flutter:
      - assets/images/temp/
      - assets/images/pool_features/
      - assets/images/plant_diseases/
+     - assets/images/categories/
      - assets/task.json
      - assets/disease_guide.json
+     - assets/farming_technique.json
+     - assets/lottie_animations.json
+     - assets/homeScreenAnimation.json
+     - assets/tractor.json
+
 
   fonts:
      - family: Jaldi

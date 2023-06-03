@@ -1,10 +1,17 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:provider/provider.dart';
+import 'package:vriddhi_0/global_listeners/user_data.dart';
+import 'package:vriddhi_0/screens/current_screen.dart';
 import 'package:vriddhi_0/screens/home_screen.dart';
 
 class Authentication {
+  // final UserData userData;
+  // Authentication(this.userData);
+  //snackbar for error
   static SnackBar customSnackBar({required String content}) {
     return SnackBar(
       backgroundColor: Colors.black,
@@ -15,27 +22,53 @@ class Authentication {
     );
   }
 
+  //registeration or sign in with email and password
+   static Future<void> registerUser(String email, String password, String username) async {
+    try {
+      UserCredential userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+
+      // Save the username to the user profile
+      // await userCredential.user?.updateDisplayName(username);
+      await FirebaseFirestore.instance.collection('users').doc(userCredential.user!.uid).set({
+        'username': username,
+        // 'email': email,
+      });
+
+
+      // userData.setUseremail(email);
+      // await userCredential.user?.updatePhotoURL(photoURL);
+
+      // Other registration logic or navigation
+    } catch (e) {
+      // Handle registration errors
+      print('Registration error: $e');
+    }
+  }
+
+  //getting current user
   static Future<FirebaseApp> initializeFirebase({
     required BuildContext context,
   }) async {
     FirebaseApp firebaseApp = await Firebase.initializeApp();
-
     User? user = FirebaseAuth.instance.currentUser;
 
     if (user != null) {
       // Add home page link
       Navigator.of(context).pushReplacement(
         MaterialPageRoute(
-          builder: (context) => HomeScreen(
+          builder: (context) => CurrentBottomNavBarScreen(
               // user: user,
               //no same state
               ),
         ),
       );
     }
-
     return firebaseApp;
   }
+
   //sign-in with google
   static Future<User?> signInWithGoogle({required BuildContext context}) async {
     FirebaseAuth auth = FirebaseAuth.instance;
@@ -91,7 +124,6 @@ class Authentication {
 
     try {
       await googleSignIn.signOut();
-
       await FirebaseAuth.instance.signOut();
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(

@@ -52,13 +52,12 @@ class RectangleCard extends StatelessWidget {
   final VoidCallback? onTapped;
   final String relatedImagePath;
   final String titleText;
-  final String descriptionText;
+  // final String descriptionText;
 
   const RectangleCard(
       {required this.relatedImagePath,
       required this.titleText,
-      @required this.onTapped,
-      required this.descriptionText});
+      @required this.onTapped,});
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -85,10 +84,10 @@ class RectangleCard extends StatelessWidget {
             //Title Text
             title: Text(
               titleText,
-              style: TextStyle(fontSize: 23, color: kNavyBlueColor, height: 1),
+              style: TextStyle(fontSize: 20, color: kNavyBlueColor, height: 1),
             ),
-
-            subtitle: Text(descriptionText, style: kSubtitleTS),
+            trailing: Icon(Icons.arrow_forward_ios_rounded, color: kButtonPositiveColor,),
+            // subtitle: Text(descriptionText, style: kSubtitleTS),
           ),
         ),
       ),
@@ -96,43 +95,20 @@ class RectangleCard extends StatelessWidget {
   }
 }
 
-class TaskRectangleCard extends StatelessWidget {
-  const TaskRectangleCard({
-    required this.titleText,
-    required this.descriptionText,
-  });
-
-  final String titleText;
-  final String descriptionText;
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      color: kCardColorSecond,
-      margin: EdgeInsets.only(left: 15, right: 15, bottom: 10),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.all(
-          Radius.circular(10),
-        ),
-      ),
-      child: Padding(
-        padding: EdgeInsets.all(8),
-        child: ListTile(
-          title: Text(
-            titleText,
-            style: TextStyle(fontSize: 18, color: kNavyBlueColor, height: 1),
-          ),
-          subtitle: Text(
-            descriptionText,
-            style: TextStyle(color: kDescriptionFontColor),
-          ),
-          trailing:
-              Icon(Icons.arrow_forward_ios, color: kNavyBlueColor, size: 18),
-        ),
-      ),
-    );
-  }
-}
+// class TaskRectangleCard extends StatelessWidget {
+//   const TaskRectangleCard({
+//     required this.titleText,
+//     required this.descriptionText,
+//   });
+//
+//   final String titleText;
+//   final String descriptionText;
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     return ;
+//   }
+// }
 
 class SmallSquareCard extends StatelessWidget {
   final String title;
@@ -409,94 +385,106 @@ class _DropdownToggleCardState extends State<DropdownToggleCard> {
   }
 }
 
-class DynamicDropdownLevelCards extends StatefulWidget {
-  const DynamicDropdownLevelCards(
-      {
-        required this.title,
-      required this.current_level,
-      required this.card_level,
-      required this.dropdownChild,
-        // required this.cardVisibility,
-        required isDone,
-
-      // required this.tasksLeft
-      });
+class DynamicDropdownLevelCards extends StatelessWidget {
+  const DynamicDropdownLevelCards({
+    required this.title,
+    required this.dropdownChild,
+  });
   final String title;
-  final int current_level;
-  final bool isExpanded = false;
-  final int card_level;
-  final bool isDone = false;
-  // final bool cardVisibility;
-  // final int tasksLeft;
   final Widget dropdownChild;
-  @override
-  State<DynamicDropdownLevelCards> createState() =>
-      _DynamicDropdownLevelCardsState();
-}
-
-class _DynamicDropdownLevelCardsState extends State<DynamicDropdownLevelCards> {
-  bool isExpanded = false;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20.0),
-      child: IgnorePointer(
-        ignoring: widget.current_level != widget.card_level,
-        child: Opacity(
-          opacity: widget.current_level != widget.card_level ? 0.5 : 1,
-          child: Column(
-            children: [
-              GestureDetector(
-                onTap: () {
-                  setState(() {
-                    isExpanded = !isExpanded;
-                  });
-                },
-                child: Card(
-                  color: kLightTealCardColor,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: ListTile(
-                    contentPadding: EdgeInsets.all(10),
-                    leading: Icon(
-                      widget.isDone
-                          ? FontAwesomeIcons.hourglassEnd
-                          : FontAwesomeIcons.hourglassStart,
-                      size: 30.0,
-                      color: kButtonPositiveColor,
-                    ),
-                    title: Text(
-                      widget.title,
-                      style: const TextStyle(
-                          fontSize: 20,
-                          height: 1.5,
-                          color: kNavyBlueColor,
-                          fontWeight: FontWeight.bold),
-                    ),
-                    trailing: Icon(
-                      isExpanded
-                          ? Icons.keyboard_arrow_up_rounded
-                          : Icons.keyboard_arrow_down_rounded,
-                      size: widget.isDone ? 25.0 : 30.0,
-                      color: kButtonPositiveColor,
-                    ),
-                  ),
-                ),
+      child: Column(
+        children: [
+          Card(
+            color: kLightTealCardColor,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: ListTile(
+              contentPadding: const EdgeInsets.all(10),
+              leading: const Icon(
+                FontAwesomeIcons.hourglassStart,
+                size: 30.0,
+                color: kButtonPositiveColor,
               ),
+              title: Text(
+                title,
+                style: const TextStyle(
+                    fontSize: 20,
+                    height: 1.5,
+                    color: kNavyBlueColor,
+                    fontWeight: FontWeight.bold),
+              ),
+            ),
+          ),
+          Padding(
+              padding: const EdgeInsets.all(1.0),
+              child: dropdownChild),
+        ],
+      ),
+    );
+  }
+}
 
-              if (isExpanded)
-                Padding(
-                    padding: const EdgeInsets.all(1.0),
-                    child: widget.dropdownChild),
-            ],
+class TaskCard extends StatelessWidget {
+  const TaskCard({
+    super.key,
+    required this.taskStatus,
+    required this.title,
+    required this.duration,
+    required this.cardIndex,
+  });
+
+  final List<bool> taskStatus;
+  final String title;
+  final String duration;
+  final int cardIndex;
+
+  @override
+  Widget build(BuildContext context) {
+    return IgnorePointer(
+      ignoring: taskStatus[cardIndex],
+      child: Opacity(
+        opacity: !taskStatus[cardIndex] ? 1 : 0.5,
+        child: Card(
+          color: kCardColorSecond,
+          margin: const EdgeInsets.only(left: 15, right: 15, bottom: 10),
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(
+              Radius.circular(10),
+            ),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.all(8),
+            child: ListTile(
+              title: Text(
+                title,
+                style: const TextStyle(
+                    fontSize: 18, color: kNavyBlueColor, height: 1),
+              ),
+              subtitle: Text(
+                duration,
+                style: const TextStyle(color: kDescriptionFontColor),
+              ),
+              trailing: taskStatus[cardIndex]
+                  ? Icon(
+                      Icons.check_circle,
+                      color: kPrimaryAppColor,
+                    )
+                  : Icon(Icons.arrow_forward_ios,
+                      color: kNavyBlueColor, size: 18),
+            ),
           ),
         ),
       ),
     );
   }
 }
+
 class BlogCard extends StatelessWidget {
   final String title;
   final String author;

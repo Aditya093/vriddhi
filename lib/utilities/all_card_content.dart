@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:vriddhi_0/constants.dart';
+import 'package:vriddhi_0/global_listeners/location_data.dart';
+import 'package:vriddhi_0/global_listeners/temperature_data.dart';
 import 'dart:math';
+import 'package:vriddhi_0/global_listeners/user_data.dart';
+import 'package:lottie/lottie.dart';
+import 'package:vriddhi_0/services/get_current_date.dart';
 
 //crop guide content of square card
 class CardContentCropGuide extends StatelessWidget {
@@ -35,44 +41,66 @@ class CardContentCropGuide extends StatelessWidget {
 class CardContentWeather extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Padding(
+    String formattedDate = CurrentDate.getCurrentDateWithDay();
+    final userData = Provider.of<UserData>(context);
+    final temperatureData = Provider.of<WeatherDataAll>(context);
+    final locData = Provider.of<LocationData>(context);
+    return Container(
       padding: EdgeInsets.only(top: 25, left: 20, right: 20),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           //Weather Text1
           Text(
-            'Welcome, Vriddhi!',
+            'Hey, ${userData.username}',
             style: TextStyle(
               fontSize: 30,
               color: kNavyBlueColor,
             ),
           ),
           //Weather text2
+          SizedBox(height:5.0),
           Text(
-            '31-03-2023 Friday',
+            formattedDate,
             style: TextStyle(
               fontSize: 15,
               color: kNavyBlueColor,
             ),
           ),
           //Row - Temp-Text + image
-          Expanded(
-            child: Row(
-              children: [
-                //Temp- text
-                Text(
-                  '31°C',
-                  style: TextStyle(
-                      decoration: TextDecoration.none,
-                      color: kNavyBlueColor,
-                      fontSize: 50),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Expanded(
+                flex: 1,
+                child: Container(
+                  height: 100,
+                  width: 50,
+                  child: Lottie.asset(
+                      'assets/images/weather/Weather_Sunny.json',
+                    fit: BoxFit.cover
+                  ),
                 ),
-                //Weather-Image
-                Spacer(),
-                Image.asset('assets/images/weather/Weather_Sunny.png'),
-              ],
-            ),
+              ),
+              Expanded(
+                flex: 1,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      '${temperatureData.temperature}°C',
+                      style: TextStyle(fontSize: 30,color: kNavyBlueColor,
+                      ),
+                    ),
+                    Text(
+                      '${locData.location}',
+                      style: TextStyle(fontSize: 25,color: kNavyBlueColor,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
           ),
         ],
       ),
@@ -183,17 +211,19 @@ class CardContentProgressBox extends StatelessWidget {
 
 //Disease Cards content
 class DiseaseListTile extends StatelessWidget {
-  DiseaseListTile({required this.imagePath, required this.title,required this.id});
+  DiseaseListTile({required this.scientific_name, required this.imagePath, required this.title,required this.id,});
 
   final String imagePath;
   final String title;
   final int id;
+  final String scientific_name;
 
   @override
   Widget build(BuildContext context) {
     return ListTile(
       leading: ClipRRect(child: Image.asset(imagePath,height: 45,width: 45,), borderRadius: BorderRadius.circular(10.0),),
       title: Text(title, style: kFormTextFieldLabelStyle.copyWith(fontSize: 16.0),),
+      subtitle: Text(scientific_name, style:kFormSecondaryHeadingStyle),
       trailing: Icon(Icons.navigate_next),
       hoverColor: Colors.transparent,
     );

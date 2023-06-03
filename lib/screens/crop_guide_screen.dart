@@ -1,5 +1,3 @@
-
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -20,23 +18,7 @@ class _CropGuideScreenState extends State<CropGuideScreen> {
   //variables
   List<Map<String, dynamic>> cropList = [];
   late List<Map<String, dynamic>>  displayList = List.from(cropList);
-  //copy of original list (cropList)
-  // List displayList =
-  // List.from(cropList);
 
-  void onTapped(int index) {
-    switch (index) {
-      case 0:
-        {
-          Navigator.pushNamed(context, 'crop_details');
-        }
-        break;
-    }
-  }
-
-
-
-  
   // Fetch data from Firebase and extract title names and image URLs
   Future<List<Map<String, dynamic>>> fetchData() async {
     QuerySnapshot snapshot =
@@ -144,7 +126,7 @@ class _CropGuideScreenState extends State<CropGuideScreen> {
                                   imageUrl: imageURL,
                                   fit: BoxFit.cover,
                                   placeholder: (context, url) =>
-                                      CircularProgressIndicator(),
+                                      kLoader,
                                   errorWidget: (context, url, error) =>
                                       Icon(Icons.error),
                                 ),

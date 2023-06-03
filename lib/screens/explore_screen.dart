@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:vriddhi_0/constants.dart';
-import 'package:vriddhi_0/data_lists/all_features_list.dart';
-import 'package:vriddhi_0/screens/weather_loading_screen.dart';
+import 'package:vriddhi_0/data_lists/allDataList.dart';
 import 'package:vriddhi_0/utilities/all_cards.dart';
 import 'package:vriddhi_0/widgets/reusable_widgets.dart';
 
@@ -15,7 +14,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
   void onTapped(int index){
     switch(index){
       case 0: {
-        Navigator.pushNamed(context, '/crop_guide');
+        Navigator.pushNamed(context, '/crop_classification');
       }
       break;
       case 1: {
@@ -23,34 +22,30 @@ class _ExploreScreenState extends State<ExploreScreen> {
       }
       break;
       case 2: {
-        Navigator.pushNamed(context, 'disease_detection');
+        Navigator.pushNamed(context, '/disease_detection');
       }
       break;
       case 3: {
-        Navigator.pushNamed(context, '/soil_testing');
+        Navigator.pushNamed(context, '/weather');
       }
       break;
       case 4: {
-        Navigator.push(context, MaterialPageRoute(builder: (context)=>WeatherLoadingScreen()));
-      }
-      break;
-      case 5: {
         Navigator.pushNamed(context, '/blog_info');
       }
       break;
-      case 6: {
+      case 5: {
         Navigator.pushNamed(context,'/agri_pool');
       }
       break;
-      case 7: {
+      case 6: {
         Navigator.pushNamed(context, '/disease_guide');
       }
       break;
-      case 8: {
+      case 7: {
         Navigator.pushNamed(context, '/news');
       }
       break;
-      case 9: {
+      case 8: {
         Navigator.pushNamed(context, '/farming_technique');
       }
       break;
@@ -58,7 +53,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
 
   }
 
-  List<SmallSquareCard> featureList = AllFeaturesList.allFeaturesList;
+  List<SmallSquareCard> featureList = AllDataList.allFeaturesList;
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -70,7 +65,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
           child: GridView.builder(
             physics: NeverScrollableScrollPhysics(),
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 3,
+              crossAxisCount:3,
               mainAxisSpacing: 8,
               crossAxisSpacing: 8
             ),
