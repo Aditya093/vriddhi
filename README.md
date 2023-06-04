@@ -69,13 +69,13 @@ Water scarcity: Water scarcity is a significant problem in many parts of the wor
 &nbsp; &nbsp;&nbsp; &nbsp;
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original-wordmark.svg?raw=true" width="128" style="margin:125px"/>
 &nbsp; &nbsp;&nbsp; &nbsp;
- <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original-wordmark.svg?raw=true" width="128" style="margin:125px" />
+ <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg?raw=true" width="128" style="margin:125px" />
  &nbsp; &nbsp;&nbsp; &nbsp;
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain-wordmark.svg?raw=true" width="128" style="margin:125px" />
  &nbsp; &nbsp;&nbsp; &nbsp;
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flask/flask-original-wordmark.svg?raw=true" width="128" style="margin:125px" />
     &nbsp; &nbsp;&nbsp; &nbsp;
-<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original-wordmark.svg?raw=true" width="128" style="margin:125px" />
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original.svg?raw=true" width="128" style="margin:125px" />
 </p>
           
           
@@ -102,14 +102,16 @@ Climate Action: 'Vriddhi' can contribute to achieving the goal of climate action
 
 
 ## How to run our application?
+There are two ways to run our application 1) Download the apk from here https://drive.google.com/drive/folders/1cJM4ro-4vGkzYbf7kfHXNlvbp1H8pCXE?usp=sharing or 2) Follow below mentioned steps
+
 
 ### Requirements
  - Android Studio or smartphone.
  - Flutter Installed.
  - Our backend server is built in flask, so python is required.
- - Apart from python, tensorflow, flask are required.
- - Tesseract OCR from google is also required.
- - Configure path of tesseract OCR in app.py file
+ - Download our backend from here https://drive.google.com/drive/folders/1cJM4ro-4vGkzYbf7kfHXNlvbp1H8pCXE?usp=sharing
+ - Apart from python, tensorflow, flask are required. Run 'pip install -r requirements.txt' to get all the requirements
+ - Set Keys.json as environment/global variable like this export GOOGLE_APPLICATION_CREDENTIALS=Keys.json
  - run app.py flask file and serve API using ngrok or some other software.
 
 ## Steps to Run
@@ -129,15 +131,18 @@ Climate Action: 'Vriddhi' can contribute to achieving the goal of climate action
 
 ### Step-4: Get Dependencies and open url.dart
 
-### Step-5: Open this drive link and download all the .h5 files which are mandatory to run the project. Link: https://drive.google.com/drive/folders/115QAgxu86BPbekAen2oEP1n1Rr28ivH8
+### Step-5: Open this drive link and download our backend server. Link: https://drive.google.com/drive/folders/1cJM4ro-4vGkzYbf7kfHXNlvbp1H8pCXE?usp=sharing
 
 
-### Step-6: Paste these downloaded files into BACKEND-SERVER folder and in app.py Edit Their path.
-
-
-### Step-7: Open the command prompt and navigate to BACKEND-SERVER folder.
+### Step-6: Open the command prompt and navigate to BACKEND-SERVER folder. Edit paths in app.py files if needed.
 
 ![](https://github.com/AyushSolanki-17/StaticServer/blob/main/SolutionChallenge/Steps/4.jpeg?raw=true)
+
+### Step-7: Add Keys.json to environment variable named 'GOOGLE_APPLICATION_CREDENTIALS'
+
+```
+export GOOGLE_APPLICATION_CREDENTIALS=Keys.json
+```
 
 ### Step-8: Run following commands to start flask server. Note: you need to configure the requirements shown above.
 
@@ -193,17 +198,16 @@ flask run
 
 ## Demo Video Link
 
-https://youtu.be/Bm0T17vbvGM
+https://youtu.be/HicF8QaKlUk
 
 ## Further Enhancements
 
 - More advanced Deep learning models for advanced tasks.
 - More automation in the application.
-- Making Progress Screen More interactive
 
 ## Upcoming Features
 
-- Google Maps to select location.
+- Integrating Google Analytics for increasing the efficiency
+- Increasing the Scalability by the help of Govt Support
 - Trees Planatation Program Guide.
 - Crop History 
-- Focusing on AgriPool feature and building a unique one stop database of Plant related Images.
