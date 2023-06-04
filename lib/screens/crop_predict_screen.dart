@@ -265,12 +265,11 @@ class _CropPredictScreenState extends State<CropPredictScreen> {
                     ),
                   ),
                 ),
-                SizedBox(height: 10.0),
+                // SizedBox(height: 10.0),
                 Row(
-          
                   mainAxisAlignment: MainAxisAlignment.spaceBetween ,
                   children: [
-                    
+
                     GestureDetector(
                        onTap:(){
                          isSelectedCrop=widget.crop2;
@@ -339,7 +338,6 @@ class _CropPredictScreenState extends State<CropPredictScreen> {
                     ),
                   ],
                 ),
-
               ],
             ),
           )

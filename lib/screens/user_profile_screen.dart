@@ -7,6 +7,7 @@ import 'package:vriddhi_0/services/Authentication.dart';
 import 'package:vriddhi_0/services/update_profile_photo.dart';
 import 'package:vriddhi_0/utilities/all_cards.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:vriddhi_0/utilities/show_dialog_box.dart';
 import 'dart:io';
 import 'dart:convert';
 import 'dart:async';
@@ -30,7 +31,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
     File? profileimage = File(img!.path);
     await UpdateProfilePhoto.setProfilePhoto(profileimage!, context);
     setState(() {
-      // this.imageUrl =
+      // re run build func
     });
   }
 
@@ -164,6 +165,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                   padding: EdgeInsets.only(top: 4),
                   child: Column(
                     children: [
+                      //Previous Crops Screen
                       GestureDetector(
                         onTap: () {
                           Navigator.push(
@@ -176,6 +178,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                           title: 'Previous Crops',
                         ),
                       ),
+                      //Privacy Policy
                       GestureDetector(
                         onTap: () {
                           Navigator.pushNamed(
@@ -186,6 +189,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                           title: 'Privacy Policy',
                         ),
                       ),
+                      //Terms of Service
                       GestureDetector(
                         onTap: () {
                           Navigator.pushNamed(context, '/terms_of_service');
@@ -195,6 +199,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                           title: 'Terms of Service',
                         ),
                       ),
+                      //About Us
                       GestureDetector(
                         onTap: () {
                           Navigator.pushNamed(context, AboutUsScreen.routeName);
@@ -204,9 +209,12 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                           title: 'About Us',
                         ),
                       ),
+                      //Logout
                       GestureDetector(
                         onTap: () {
+                          ShowDialogBox.showAlertDialog(context, "Do You Want To Logout?");
                           Authentication.signOut(context: context);
+                          Navigator.pushReplacementNamed(context, "/registration");
                         },
                         child: UserProfileRectangleCards(
                           leadingIcon: FontAwesomeIcons.arrowRightFromBracket,

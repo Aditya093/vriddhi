@@ -24,6 +24,7 @@ import 'package:vriddhi_0/screens/get_started.dart';
 import 'package:vriddhi_0/screens/home_screen.dart';
 import 'package:vriddhi_0/screens/login_screen.dart';
 import 'package:vriddhi_0/screens/news_screen.dart';
+import 'package:vriddhi_0/screens/previous_crops_screen.dart';
 import 'package:vriddhi_0/screens/progress_screen.dart';
 import 'package:vriddhi_0/screens/registration_screen.dart';
 import 'package:vriddhi_0/screens/soil_details_screen.dart';
@@ -98,12 +99,11 @@ class Vriddhi extends StatelessWidget {
 
 
 class AuthenticationWrapper extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     final User? currentUser = FirebaseAuth.instance.currentUser;
     if(currentUser == null){
-      return RegistrationScreen();
+      return GetStartedScreen();
     }
     else{
       return StreamBuilder<DocumentSnapshot>(
@@ -117,16 +117,21 @@ class AuthenticationWrapper extends StatelessWidget {
           }
           else if (snapshot.hasData && snapshot.data != null) {
             // User is logged in, retrieve the username from the snapshot
-            try{
-              String username = snapshot.data!.get('username');
-              String userProfileImage = snapshot.data!.get('profileImage');
-              final userDataUsername = Provider.of<UserData>(context, listen: false);
-              userDataUsername.setUsername(username);
-              userDataUsername.setPhotoUrl(userProfileImage);
-            }
-            catch(e){
-              print("");
-            }
+            // try{
+            //   String username = snapshot.data!.get('username');
+            //   String userProfileImage = snapshot.data!.get('profileImage');
+            //   final userDataUsername = Provider.of<UserData>(context, listen: false);
+            //   userDataUsername.setUsername(username);
+            //   userDataUsername.setPhotoUrl(userProfileImage);
+            // }
+            // catch(e){
+            //   print("$e");
+            // }
+            String username = snapshot.data!.get('username');
+            String userProfileImage = snapshot.data!.get('profileImage');
+            final userDataUsername = Provider.of<UserData>(context, listen: false);
+            userDataUsername.setUsername(username);
+            userDataUsername.setPhotoUrl(userProfileImage);
             //navigate to home screen then
             WidgetsBinding.instance.addPostFrameCallback((_) {
               Navigator.of(context).pushReplacementNamed('/splash');

@@ -68,9 +68,9 @@ class _DiseaseGuideScreenState extends State<DiseaseGuideScreen> {
                     itemBuilder: (BuildContext context, int index) {
                       AllDataList().diseaseListSorting();
                       final current_disease = displayList[index].title;
-                      print("Here: $current_disease");
                       return GestureDetector(
                         onTap: (){
+
 
                            Navigator.push(
                              context,
@@ -78,6 +78,15 @@ class _DiseaseGuideScreenState extends State<DiseaseGuideScreen> {
                                builder: (context) => DiseaseDetailsScreen(diseaseName: displayList[index].title),
                              ),
                            );
+
+                          // Navigator.pushReplacement('')
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => DiseaseDetailsScreen(diseaseName: displayList[index].title),
+                            ),
+                          );
+
                         },
                         child:Card(
                           color: Color(0xFFCCDBDC),

@@ -51,14 +51,12 @@ Water scarcity: Water scarcity is a significant problem in many parts of the wor
 ## Features
 
 <p style="display:flex; flex-direction:row; align-items:center"><img src="https://upload.wikimedia.org/wikipedia/commons/3/39/Greentick.png?raw=true" width="24">Crop Recommendation based on soil and demographic data with estimated production and selling price.</p>
-<br/>
-
 <p style="display:flex; flex-direction:row; align-items:center"><img src="https://upload.wikimedia.org/wikipedia/commons/3/39/Greentick.png?raw=true" width="24">Crop disease identification from Image processing.</p>
-<br/>
 <p style="display:flex; flex-direction:row; align-items:center"><img src="https://upload.wikimedia.org/wikipedia/commons/3/39/Greentick.png?raw=true" width="24">Crop guide to chose best crop to grow.</p>
-<br/>
 <p style="display:flex; flex-direction:row; align-items:center"><img src="https://upload.wikimedia.org/wikipedia/commons/3/39/Greentick.png?raw=true" width="24">Farming assistant to schedule weekly task for growth of crop.</p>
-
+<p style="display:flex; flex-direction:row; align-items:center"><img src="https://upload.wikimedia.org/wikipedia/commons/3/39/Greentick.png?raw=true" width="24">News updates based on demographic location.</p>
+<p style="display:flex; flex-direction:row; align-items:center"><img src="https://upload.wikimedia.org/wikipedia/commons/3/39/Greentick.png?raw=true" width="24">Information on Innovative Farming techniques.</p>
+<p style="display:flex; flex-direction:row; align-items:center"><img src="https://upload.wikimedia.org/wikipedia/commons/3/39/Greentick.png?raw=true" width="24">Others: Google SSO Login, Blog Feed, Agri pool for crowdsourcing data for future, Disease Guide</p>
 
 ## Technology
 
@@ -69,13 +67,13 @@ Water scarcity: Water scarcity is a significant problem in many parts of the wor
 &nbsp; &nbsp;&nbsp; &nbsp;
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original-wordmark.svg?raw=true" width="128" style="margin:125px"/>
 &nbsp; &nbsp;&nbsp; &nbsp;
- <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original-wordmark.svg?raw=true" width="128" style="margin:125px" />
+ <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg?raw=true" width="128" style="margin:125px" />
  &nbsp; &nbsp;&nbsp; &nbsp;
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain-wordmark.svg?raw=true" width="128" style="margin:125px" />
  &nbsp; &nbsp;&nbsp; &nbsp;
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flask/flask-original-wordmark.svg?raw=true" width="128" style="margin:125px" />
     &nbsp; &nbsp;&nbsp; &nbsp;
-<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original-wordmark.svg?raw=true" width="128" style="margin:125px" />
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original.svg?raw=true" width="128" style="margin:125px" />
 </p>
           
           
@@ -102,14 +100,16 @@ Climate Action: 'Vriddhi' can contribute to achieving the goal of climate action
 
 
 ## How to run our application?
+There are two ways to run our application 1) Download the apk from here https://drive.google.com/drive/folders/1cJM4ro-4vGkzYbf7kfHXNlvbp1H8pCXE?usp=sharing or 2) Follow below mentioned steps
+
 
 ### Requirements
  - Android Studio or smartphone.
  - Flutter Installed.
  - Our backend server is built in flask, so python is required.
- - Apart from python, tensorflow, flask are required.
- - Tesseract OCR from google is also required.
- - Configure path of tesseract OCR in app.py file
+ - Download our backend from here https://drive.google.com/drive/folders/1cJM4ro-4vGkzYbf7kfHXNlvbp1H8pCXE?usp=sharing
+ - Apart from python, tensorflow, flask are required. Run 'pip install -r requirements.txt' to get all the requirements
+ - Set Keys.json as environment/global variable like this export GOOGLE_APPLICATION_CREDENTIALS=Keys.json
  - run app.py flask file and serve API using ngrok or some other software.
 
 ## Steps to Run
@@ -129,15 +129,18 @@ Climate Action: 'Vriddhi' can contribute to achieving the goal of climate action
 
 ### Step-4: Get Dependencies and open url.dart
 
-### Step-5: Open this drive link and download all the .h5 files which are mandatory to run the project. Link: https://drive.google.com/drive/folders/115QAgxu86BPbekAen2oEP1n1Rr28ivH8
+### Step-5: Open this drive link and download our backend server. Link: https://drive.google.com/drive/folders/1cJM4ro-4vGkzYbf7kfHXNlvbp1H8pCXE?usp=sharing
 
 
-### Step-6: Paste these downloaded files into BACKEND-SERVER folder and in app.py Edit Their path.
-
-
-### Step-7: Open the command prompt and navigate to BACKEND-SERVER folder.
+### Step-6: Open the command prompt and navigate to BACKEND-SERVER folder. Edit paths in app.py files if needed.
 
 ![](https://github.com/AyushSolanki-17/StaticServer/blob/main/SolutionChallenge/Steps/4.jpeg?raw=true)
+
+### Step-7: Add Keys.json to environment variable named 'GOOGLE_APPLICATION_CREDENTIALS'
+
+```
+export GOOGLE_APPLICATION_CREDENTIALS=Keys.json
+```
 
 ### Step-8: Run following commands to start flask server. Note: you need to configure the requirements shown above.
 
@@ -162,48 +165,67 @@ flask run
 ## Screenshots
 
 <div align="center">
-    <img src="https://github.com/AyushSolanki-17/StaticServer/blob/main/SolutionChallenge/Screenshots/3.jpeg?raw=true" alt="Image 1" width="200" height="412" />
-    <img src="https://github.com/AyushSolanki-17/StaticServer/blob/main/SolutionChallenge/Screenshots/6.jpeg?raw=true" alt="Image 1" width="200" height="412" />
-    <img src="https://github.com/AyushSolanki-17/StaticServer/blob/main/SolutionChallenge/Screenshots/4.jpeg?raw=true" alt="Image 2" width="200" height="412" />
-    <img src="https://github.com/AyushSolanki-17/StaticServer/blob/main/SolutionChallenge/Screenshots/5.jpeg?raw=true" alt="Image 3" width="200" height="412" />
+    <img src="https://github.com/AyushSolanki-17/StaticServer/blob/main/SolutionChallenge/Screenshots/1.jpeg?raw=true" alt="Image 1" width="200" height="412" />
+    <img src="https://github.com/AyushSolanki-17/StaticServer/blob/main/SolutionChallenge/Screenshots/2.jpeg?raw=true" alt="Image 1" width="200" height="412" />
+    <img src="https://github.com/AyushSolanki-17/StaticServer/blob/main/SolutionChallenge/Screenshots/3.jpeg?raw=true" alt="Image 2" width="200" height="412" />
+    <img src="https://github.com/AyushSolanki-17/StaticServer/blob/main/SolutionChallenge/Screenshots/4.jpeg?raw=true" alt="Image 3" width="200" height="412" />
 </div>
 
 
 <div align="center">
-    <img src="https://github.com/AyushSolanki-17/StaticServer/blob/main/SolutionChallenge/Screenshots/7.jpeg?raw=true" alt="Image 2" width="200" height="412" />
-    <img src="https://github.com/AyushSolanki-17/StaticServer/blob/main/SolutionChallenge/Screenshots/1.jpeg?raw=true" alt="Image 2" width="200" height="412" />
-    <img src="https://github.com/AyushSolanki-17/StaticServer/blob/main/SolutionChallenge/Screenshots/8.jpeg?raw=true" alt="Image 3" width="200" height="412" />
-    <img src="https://github.com/AyushSolanki-17/StaticServer/blob/main/SolutionChallenge/Screenshots/9.jpeg?raw=true" alt="Image 2" width="200" height="412" />
+    <img src="https://github.com/AyushSolanki-17/StaticServer/blob/main/SolutionChallenge/Screenshots/5.jpeg?raw=true" alt="Image 2" width="200" height="412" />
+    <img src="https://github.com/AyushSolanki-17/StaticServer/blob/main/SolutionChallenge/Screenshots/6.jpeg?raw=true" alt="Image 2" width="200" height="412" />
+    <img src="https://github.com/AyushSolanki-17/StaticServer/blob/main/SolutionChallenge/Screenshots/7.jpeg?raw=true" alt="Image 3" width="200" height="412" />
+    <img src="https://github.com/AyushSolanki-17/StaticServer/blob/main/SolutionChallenge/Screenshots/8.jpeg?raw=true" alt="Image 2" width="200" height="412" />
 </div>
 
 <div align="center">
-    <img src="https://github.com/AyushSolanki-17/StaticServer/blob/main/SolutionChallenge/Screenshots/11.jpeg?raw=true" alt="Image 1" width="200" height="412" />
-    <img src="https://github.com/AyushSolanki-17/StaticServer/blob/main/SolutionChallenge/Screenshots/newblog.jpeg?raw=true" alt="Image 2" width="200" height="412" />
+    <img src="https://github.com/AyushSolanki-17/StaticServer/blob/main/SolutionChallenge/Screenshots/9.jpeg?raw=true" alt="Image 1" width="200" height="412" />
+    <img src="https://github.com/AyushSolanki-17/StaticServer/blob/main/SolutionChallenge/Screenshots/10.jpeg?raw=true" alt="Image 2" width="200" height="412" />
+    <img src="https://github.com/AyushSolanki-17/StaticServer/blob/main/SolutionChallenge/Screenshots/11.jpeg?raw=true" alt="Image 3" width="200" height="412" />
+    <img src="https://github.com/AyushSolanki-17/StaticServer/blob/main/SolutionChallenge/Screenshots/12.jpeg?raw=true" alt="Image 2" width="200" height="412" />
+</div>
+
+
+<div align="center">
     <img src="https://github.com/AyushSolanki-17/StaticServer/blob/main/SolutionChallenge/Screenshots/13.jpeg?raw=true" alt="Image 3" width="200" height="412" />
-    <img src="https://github.com/AyushSolanki-17/StaticServer/blob/main/SolutionChallenge/Screenshots/14.jpeg?raw=true" alt="Image 2" width="200" height="412" />
-</div>
-
-
-<div align="center">
-    <img src="https://github.com/AyushSolanki-17/StaticServer/blob/main/SolutionChallenge/Screenshots/2.jpeg?raw=true" alt="Image 3" width="200" height="412" />
-    <img src="https://github.com/AyushSolanki-17/StaticServer/blob/main/SolutionChallenge/Screenshots/10.jpeg?raw=true" alt="Image 3" width="200" height="412" />
+    <img src="https://github.com/AyushSolanki-17/StaticServer/blob/main/SolutionChallenge/Screenshots/14.jpeg?raw=true" alt="Image 3" width="200" height="412" />
     <img src="https://github.com/AyushSolanki-17/StaticServer/blob/main/SolutionChallenge/Screenshots/15.jpeg?raw=true" alt="Image 3" width="200" height="412" />
     <img src="https://github.com/AyushSolanki-17/StaticServer/blob/main/SolutionChallenge/Screenshots/16.jpeg?raw=true" alt="Image 3" width="200" height="412" />
 </div>
 
+<div align="center">
+    <img src="https://github.com/AyushSolanki-17/StaticServer/blob/main/SolutionChallenge/Screenshots/17.jpeg?raw=true" alt="Image 3" width="200" height="412" />
+    <img src="https://github.com/AyushSolanki-17/StaticServer/blob/main/SolutionChallenge/Screenshots/18.jpeg?raw=true" alt="Image 3" width="200" height="412" />
+    <img src="https://github.com/AyushSolanki-17/StaticServer/blob/main/SolutionChallenge/Screenshots/19.jpeg?raw=true" alt="Image 3" width="200" height="412" />
+    <img src="https://github.com/AyushSolanki-17/StaticServer/blob/main/SolutionChallenge/Screenshots/20.jpeg?raw=true" alt="Image 3" width="200" height="412" />
+</div>
+
+<div align="center">
+    <img src="https://github.com/AyushSolanki-17/StaticServer/blob/main/SolutionChallenge/Screenshots/21.jpeg?raw=true" alt="Image 3" width="200" height="412" />
+    <img src="https://github.com/AyushSolanki-17/StaticServer/blob/main/SolutionChallenge/Screenshots/22.jpeg?raw=true" alt="Image 3" width="200" height="412" />
+    <img src="https://github.com/AyushSolanki-17/StaticServer/blob/main/SolutionChallenge/Screenshots/23.jpeg?raw=true" alt="Image 3" width="200" height="412" />
+    <img src="https://github.com/AyushSolanki-17/StaticServer/blob/main/SolutionChallenge/Screenshots/24.jpeg?raw=true" alt="Image 3" width="200" height="412" />
+</div>
+<div align="center">
+    <img src="https://github.com/AyushSolanki-17/StaticServer/blob/main/SolutionChallenge/Screenshots/25.jpeg?raw=true" alt="Image 3" width="200" height="412" />
+    <img src="https://github.com/AyushSolanki-17/StaticServer/blob/main/SolutionChallenge/Screenshots/26.jpeg?raw=true" alt="Image 3" width="200" height="412" />
+    <img src="https://github.com/AyushSolanki-17/StaticServer/blob/main/SolutionChallenge/Screenshots/27.jpeg?raw=true" alt="Image 3" width="200" height="412" />
+    <img src="https://github.com/AyushSolanki-17/StaticServer/blob/main/SolutionChallenge/Screenshots/28.jpeg?raw=true" alt="Image 3" width="200" height="412" />
+</div>
+
 ## Demo Video Link
 
-https://youtu.be/Bm0T17vbvGM
+https://youtu.be/HicF8QaKlUk
 
 ## Further Enhancements
 
 - More advanced Deep learning models for advanced tasks.
 - More automation in the application.
-- Making Progress Screen More interactive
 
 ## Upcoming Features
 
-- Google Maps to select location.
+- Integrating Google Analytics for increasing the efficiency
+- Increasing the Scalability by the help of Govt Support
 - Trees Planatation Program Guide.
 - Crop History 
-- Focusing on AgriPool feature and building a unique one stop database of Plant related Images.

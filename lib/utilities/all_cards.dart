@@ -20,7 +20,7 @@ class SquareCard extends StatelessWidget {
       child: cardChild,
       margin: EdgeInsets.all(5.0),
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(25.0),
+        borderRadius: BorderRadius.circular(15.0),
       ),
     );
   }
@@ -181,10 +181,8 @@ class OtherCropCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return  Container(
-      width: 200,
-
+      width: 150,
       child: Card(
-
         elevation: 2,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -610,17 +608,17 @@ class HistoryCard extends StatelessWidget {
   final String cropName;
   final String dateStarted;
   final String dateEnded;
-  final double price;
-  final double production;
-  final double area;
+  // final double price;
+  // final double production;
+  // final double area;
 
   const HistoryCard({
     required this.cropName,
     required this.dateStarted,
     required this.dateEnded,
-    required this.price,
-    required this.production,
-    required this.area,
+    // required this.price,
+    // required this.production,
+    // required this.area,
   });
 
   @override
@@ -646,9 +644,9 @@ class HistoryCard extends StatelessWidget {
             SizedBox(height: 10),
             _buildInfoRow('Started', dateStarted),
             _buildInfoRow('Ended', dateEnded),
-            _buildInfoRow('Production', '$production'),
-            _buildInfoRow('Price', '$price'),
-            _buildInfoRow('Area', '$area'),
+            // _buildInfoRow('Production', '$production'),
+            // _buildInfoRow('Price', '$price'),
+            // _buildInfoRow('Area', '$area'),
           ],
         ),
       ),
@@ -681,8 +679,5 @@ class HistoryCard extends StatelessWidget {
     );
   }
 }
-
-
-
 
 //
