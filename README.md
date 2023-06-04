@@ -69,7 +69,7 @@ Water scarcity: Water scarcity is a significant problem in many parts of the wor
 &nbsp; &nbsp;&nbsp; &nbsp;
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original-wordmark.svg?raw=true" width="128" style="margin:125px"/>
 &nbsp; &nbsp;&nbsp; &nbsp;
- <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original-wordmark.svg?raw=true" width="256" style="margin:125px" />
+ <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original-wordmark.svg?raw=true" width="128" style="margin:125px" />
  &nbsp; &nbsp;&nbsp; &nbsp;
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain-wordmark.svg?raw=true" width="128" style="margin:125px" />
  &nbsp; &nbsp;&nbsp; &nbsp;
