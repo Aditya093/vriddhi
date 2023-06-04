@@ -129,15 +129,18 @@ Climate Action: 'Vriddhi' can contribute to achieving the goal of climate action
 
 ### Step-4: Get Dependencies and open url.dart
 
-### Step-5: Open this drive link and download all the .h5 files which are mandatory to run the project. Link: https://drive.google.com/drive/folders/115QAgxu86BPbekAen2oEP1n1Rr28ivH8
+### Step-5: Open this drive link and download our backend server. Link: https://drive.google.com/drive/folders/1cJM4ro-4vGkzYbf7kfHXNlvbp1H8pCXE?usp=sharing
 
 
-### Step-6: Paste these downloaded files into BACKEND-SERVER folder and in app.py Edit Their path.
-
-
-### Step-7: Open the command prompt and navigate to BACKEND-SERVER folder.
+### Step-6: Open the command prompt and navigate to BACKEND-SERVER folder. Edit paths in app.py files if needed.
 
 ![](https://github.com/AyushSolanki-17/StaticServer/blob/main/SolutionChallenge/Steps/4.jpeg?raw=true)
+
+### Step-7: Add Keys.json to environment variable named 'GOOGLE_APPLICATION_CREDENTIALS'
+
+```
+ex[port GOOGLE_APPLICATION_CREDENTIALS=Keys.json
+```
 
 ### Step-8: Run following commands to start flask server. Note: you need to configure the requirements shown above.
 
