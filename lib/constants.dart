@@ -50,6 +50,12 @@ const kLoader = SpinKitDoubleBounce(
   size: 100,
 );
 
+const kLoaderForGuide = SpinKitDoubleBounce(
+  color: Color(0xff88D197),
+  size: 100,
+);
+
+const kUsernameTextStyleInUP = TextStyle(fontSize: 25, fontWeight: FontWeight.bold, color: Colors.white);
 //--------Zeels constants
 const kPrimaryAppbarColor = Color(0xFF00A896);
 const kPrimaryGreenColor = Color(0xFF06D6A0);

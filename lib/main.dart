@@ -87,7 +87,7 @@ class Vriddhi extends StatelessWidget {
           '/farming_technique':(context) => FarmingTechniquesScreen(),
           '/user_information' :(context) =>UserProfileScreen(),
           '/privacy-policy':(context) => PrivacyPolicyScreen(),
-          '/about_us':(context) => AboutUsScreen(),
+          '/about-us':(context) => AboutUsScreen(),
           '/terms_of_service': (context) => TermsOfServiceScreen(),
         },
       ),
@@ -117,9 +117,16 @@ class AuthenticationWrapper extends StatelessWidget {
           }
           else if (snapshot.hasData && snapshot.data != null) {
             // User is logged in, retrieve the username from the snapshot
-            String username = snapshot.data!.get('username');
-            final userDataUsername = Provider.of<UserData>(context, listen: false);
-            userDataUsername.setUsername(username);
+            try{
+              String username = snapshot.data!.get('username');
+              String userProfileImage = snapshot.data!.get('profileImage');
+              final userDataUsername = Provider.of<UserData>(context, listen: false);
+              userDataUsername.setUsername(username);
+              userDataUsername.setPhotoUrl(userProfileImage);
+            }
+            catch(e){
+              print("");
+            }
             //navigate to home screen then
             WidgetsBinding.instance.addPostFrameCallback((_) {
               Navigator.of(context).pushReplacementNamed('/splash');

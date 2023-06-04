@@ -191,7 +191,7 @@ class _ResultModalState extends State<ResultModal> {
                                 children: [
                                   Center(
                                     child: Text(
-                                      "Expected Produce and Profit",
+                                      "Expected Produce",
                                       style: kFormTextFieldLabelStyle.copyWith(
                                           fontWeight: FontWeight.w700),
                                     ),
@@ -234,7 +234,7 @@ class _ResultModalState extends State<ResultModal> {
                                                 size: 20.0),
                                             SizedBox(width: 6.0),
                                             Text(
-                                              "${widget.price} rs",
+                                              "${widget.price}",
                                               style: kFormTextFieldLabelStyle,
                                             ),
                                           ],
