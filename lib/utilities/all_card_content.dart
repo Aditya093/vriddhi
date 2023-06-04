@@ -7,6 +7,7 @@ import 'dart:math';
 import 'package:vriddhi_0/global_listeners/user_data.dart';
 import 'package:lottie/lottie.dart';
 import 'package:vriddhi_0/services/get_current_date.dart';
+import 'package:vriddhi_0/utilities/weather_condition_fetcher.dart';
 
 //crop guide content of square card
 class CardContentCropGuide extends StatelessWidget {
@@ -44,6 +45,7 @@ class CardContentWeather extends StatelessWidget {
     String formattedDate = CurrentDate.getCurrentDateWithDay();
     final userData = Provider.of<UserData>(context);
     final temperatureData = Provider.of<WeatherDataAll>(context);
+    int condition_id=temperatureData.condition_id;
     final locData = Provider.of<LocationData>(context);
     return Container(
       padding: EdgeInsets.only(top: 25, left: 20, right: 20),
@@ -77,7 +79,7 @@ class CardContentWeather extends StatelessWidget {
                   height: 100,
                   width: 50,
                   child: Lottie.asset(
-                      'assets/images/weather/Weather_Sunny.json',
+                      getWeatherIcon(condition_id),
                     fit: BoxFit.cover
                   ),
                 ),

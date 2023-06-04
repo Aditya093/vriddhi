@@ -263,7 +263,7 @@ class _ResultModalState extends State<ResultModal> {
                         ),
                       ),
                       SizedBox(height: 5.0),
-                      if (isSelected)
+                      // if (isSelected)
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [

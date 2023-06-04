@@ -22,7 +22,9 @@ class BlogInfoScreen extends StatelessWidget {
           // Text("Blogs",
           //   style: kFormPrimaryHeadingStyle,
           // ),
+
           SizedBox(width:16),
+
           BlogCard(
             title: 'Barnhardt Cotton’s Circle of Life',
             author: 'Dixit Mehta',

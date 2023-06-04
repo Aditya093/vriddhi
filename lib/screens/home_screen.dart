@@ -26,47 +26,17 @@ class _HomeScreenState extends State<HomeScreen> {
     switch (index) {
       case 0:
         {
-          Navigator.pushNamed(context, '/crop_classification');
+          Navigator.pushNamed(context, '/basic_details');
         }
         break;
       case 1:
         {
-          Navigator.pushNamed(context, '/basic_details');
+          Navigator.pushNamed(context, '/disease_detection');
         }
         break;
       case 2:
         {
-          Navigator.pushNamed(context, 'disease_detection');
-        }
-        break;
-      case 3:
-        {
-          Navigator.pushNamed(context, '/soil_testing');
-        }
-        break;
-      case 4:
-        {
           Navigator.pushNamed(context, '/weather');
-        }
-        break;
-      case 5:
-        {
-          Navigator.pushNamed(context, '/blog_info');
-        }
-        break;
-      case 6:
-        {
-          Navigator.pushNamed(context, '/agri_pool');
-        }
-        break;
-      case 7:
-        {
-          Navigator.pushNamed(context, '/disease_guide');
-        }
-        break;
-      case 8:
-        {
-          Navigator.pushNamed(context, '/news');
         }
         break;
     }
@@ -124,7 +94,16 @@ class _HomeScreenState extends State<HomeScreen> {
 
                         itemBuilder: (BuildContext context, int index) {
                           final current_feature = featureList[index+1];
-                          return RectangleCard(relatedImagePath: current_feature.imagePath, titleText: current_feature.title, onTapped: () => {},);},
+
+                          return GestureDetector(
+                            onTap: ()=> onTapped(index),
+                            child: RectangleCard
+                              (
+                                   relatedImagePath: current_feature.imagePath, titleText: current_feature.title,
+
+                            ),
+                          );
+                          },
                         itemCount: 3,
                       ),
                     ),

@@ -7,8 +7,9 @@ import 'package:vriddhi_0/global_listeners/temperature_data.dart';
 import 'package:vriddhi_0/services/get_current_date.dart';
 import 'package:vriddhi_0/services/weather.dart';
 import 'package:vriddhi_0/utilities/all_cards.dart';
+import 'package:vriddhi_0/utilities/weather_condition_fetcher.dart';
 import 'package:vriddhi_0/widgets/reusable_widgets.dart';
-
+import 'package:lottie/lottie.dart';
 WeatherModel weatherModel = WeatherModel();
 
 class WeatherScreen extends StatefulWidget {
@@ -29,6 +30,8 @@ class _WeatherScreenState extends State<WeatherScreen> {
   bool isLoading = true;
   // late int rain;
    late String condition;
+   late int condidition_id;
+   late String weatherImgPath;
   @override
   void initState() {
     super.initState();
@@ -51,6 +54,8 @@ class _WeatherScreenState extends State<WeatherScreen> {
       wind = temperatureData.wind;
       cityName = locationData.location;
       condition = temperatureData.condition;
+      condidition_id=temperatureData.condition_id;
+      weatherImgPath=getWeatherIcon(condidition_id);
       setState(() {
         isLoading = false;
       });
@@ -113,8 +118,8 @@ class _WeatherScreenState extends State<WeatherScreen> {
                     children: [
                       Expanded(
                         flex: 5,
-                        child: Image.asset(
-                          'assets/images/weather/Weather_Cloudy.png',
+                        child: Lottie.asset(
+                            weatherImgPath
                         ),
                       ),
                       SizedBox(height: 10,),

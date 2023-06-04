@@ -67,6 +67,7 @@ class _DiseaseDetailsScreenState extends State<DiseaseDetailsScreen> {
 
   @override
   Widget build(BuildContext context) {
+
     return SafeArea(
       child: Scaffold(
         backgroundColor: kBackgroundColor,
