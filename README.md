@@ -74,6 +74,8 @@ Water scarcity: Water scarcity is a significant problem in many parts of the wor
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain-wordmark.svg?raw=true" width="128" style="margin:125px" />
  &nbsp; &nbsp;&nbsp; &nbsp;
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flask/flask-original-wordmark.svg?raw=true" width="128" style="margin:125px" />
+    &nbsp; &nbsp;&nbsp; &nbsp;
+<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original-wordmark.svg?raw=true" width="128" style="margin:125px" />
 </p>
           
           
