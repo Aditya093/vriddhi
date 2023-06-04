@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:vriddhi_0/constants.dart';
 import 'package:vriddhi_0/data_lists/allDataList.dart';
+import 'package:vriddhi_0/main.dart';
 import 'package:vriddhi_0/services/weather.dart';
 import 'package:vriddhi_0/utilities/all_card_content.dart';
 import 'package:vriddhi_0/utilities/all_cards.dart';
@@ -80,6 +81,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Future<void> updateTemp() async {
     await weatherModel.setWeatherParameters(context);
+    await userData.username;
     setState(() {
       showSpinner = false;
     });

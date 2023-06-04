@@ -33,8 +33,8 @@ class FirebaseTaskDateData {
 
       if (cropSnapshot.exists) {
         final cropData = cropSnapshot.data() as Map<String, dynamic>;
-        cropDates['start_date'] = cropData['start_date'].toString() ?? '';
-        cropDates['end_date'] = cropData['end_date'].toString() ?? '';
+        cropDates['start_date'] = cropData['start_date'].toString();
+        cropDates['end_date'] = cropData['end_date'].toString();
       }
     }
 

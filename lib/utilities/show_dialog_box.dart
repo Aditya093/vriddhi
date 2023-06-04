@@ -5,7 +5,7 @@ class ShowDialogBox{
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('Error'),
+          title: Text(''),
           content: Text(msgText),
           actions: [
             TextButton(

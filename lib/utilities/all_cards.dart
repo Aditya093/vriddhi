@@ -547,4 +547,3 @@ class BlogCard extends StatelessWidget {
   }
 }
 
-//
