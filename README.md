@@ -107,9 +107,9 @@ Climate Action: 'Vriddhi' can contribute to achieving the goal of climate action
  - Android Studio or smartphone.
  - Flutter Installed.
  - Our backend server is built in flask, so python is required.
- - Apart from python, tensorflow, flask are required.
- - Tesseract OCR from google is also required.
- - Configure path of tesseract OCR in app.py file
+ - Download our backend from here https://drive.google.com/drive/folders/1cJM4ro-4vGkzYbf7kfHXNlvbp1H8pCXE?usp=sharing
+ - Apart from python, tensorflow, flask are required. Run 'pip install -r requirements.txt' to get all the requirements
+ - Set Keys.json as environment/global variable like this export GOOGLE_APPLICATION_CREDENTIALS=Keys.json
  - run app.py flask file and serve API using ngrok or some other software.
 
 ## Steps to Run
