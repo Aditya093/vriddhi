@@ -51,16 +51,13 @@ Water scarcity: Water scarcity is a significant problem in many parts of the wor
 ## Features
 
 <p style="display:flex; flex-direction:row; align-items:center"><img src="https://upload.wikimedia.org/wikipedia/commons/3/39/Greentick.png?raw=true" width="24">Crop Recommendation based on soil and demographic data with estimated production and selling price.</p>
-<br/>
-
 <p style="display:flex; flex-direction:row; align-items:center"><img src="https://upload.wikimedia.org/wikipedia/commons/3/39/Greentick.png?raw=true" width="24">Crop disease identification from Image processing.</p>
-<br/>
 <p style="display:flex; flex-direction:row; align-items:center"><img src="https://upload.wikimedia.org/wikipedia/commons/3/39/Greentick.png?raw=true" width="24">Crop guide to chose best crop to grow.</p>
-<br/>
 <p style="display:flex; flex-direction:row; align-items:center"><img src="https://upload.wikimedia.org/wikipedia/commons/3/39/Greentick.png?raw=true" width="24">Farming assistant to schedule weekly task for growth of crop.</p>
 <p style="display:flex; flex-direction:row; align-items:center"><img src="https://upload.wikimedia.org/wikipedia/commons/3/39/Greentick.png?raw=true" width="24">News updates based on demographic location.</p>
 <p style="display:flex; flex-direction:row; align-items:center"><img src="https://upload.wikimedia.org/wikipedia/commons/3/39/Greentick.png?raw=true" width="24">Information on Innovative Farming techniques.</p>
 <p style="display:flex; flex-direction:row; align-items:center"><img src="https://upload.wikimedia.org/wikipedia/commons/3/39/Greentick.png?raw=true" width="24">Others: Google SSO Login, Blog Feed, Agri pool for crowdsourcing data for future, Disease Guide</p>
+
 ## Technology
 
 <p float="left">
