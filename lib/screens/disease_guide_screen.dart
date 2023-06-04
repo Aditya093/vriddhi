@@ -69,12 +69,12 @@ class _DiseaseGuideScreenState extends State<DiseaseGuideScreen> {
                       return GestureDetector(
                         onTap: (){
                           // Navigator.pushReplacement('')
-                          // Navigator.push(
-                          //   context,
-                          //   MaterialPageRoute(
-                          //     builder: (context) => DiseaseDetailsScreen(diseaseName: displayList[index].title),
-                          //   ),
-                          // );
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => DiseaseDetailsScreen(diseaseName: displayList[index].title),
+                            ),
+                          );
                         },
                         child:Card(
                           color: Color(0xFFCCDBDC),

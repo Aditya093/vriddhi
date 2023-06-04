@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:vriddhi_0/constants.dart';
 import 'package:vriddhi_0/firebase_custom_variables/task_date_data.dart';
+import 'package:vriddhi_0/utilities/all_cards.dart';
 import 'package:vriddhi_0/widgets/reusable_widgets.dart';
 class PreviousCropsScreen extends StatefulWidget {
   @override
@@ -59,17 +60,12 @@ class _PreviousCropsScreenState extends State<PreviousCropsScreen> {
             itemCount: crops.length,
             itemBuilder: (context, index) {
               final cropData = crops[index].data();
+              final cropName = cropData['crop_name'] as String;
               final startDate = cropData['start_date'] as String ;
               final endDate = cropData['end_date'] as String;
               // Convert startDate and endDate to desired format if needed
 
-              return Card(
-                child: ListTile(
-                  title: Text('Crop ${index + 1}'),
-                  subtitle: Text('Start Date: $startDate\nEnd Date: $endDate'),
-                  // Add other card content as needed
-                ),
-              );
+              return HistoryCard(cropName: '$cropName', dateStarted: '$startDate', dateEnded: '$endDate',);
             },
           );
         },

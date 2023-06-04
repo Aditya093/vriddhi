@@ -66,7 +66,6 @@ class Vriddhi extends StatelessWidget {
         initialRoute: '/',
         routes:{
           '/': (context) => AuthenticationWrapper(),
-          // '/':(context) => PreviousCropsScreen(),
           '/splash' :(context) => SplashScreen(),
           '/get_started': (context) => GetStartedScreen(),
           '/registration': (context) => RegistrationScreen(),
@@ -100,12 +99,11 @@ class Vriddhi extends StatelessWidget {
 
 
 class AuthenticationWrapper extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     final User? currentUser = FirebaseAuth.instance.currentUser;
     if(currentUser == null){
-      return RegistrationScreen();
+      return GetStartedScreen();
     }
     else{
       return StreamBuilder<DocumentSnapshot>(
