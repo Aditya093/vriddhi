@@ -53,7 +53,7 @@
       "Apply fungicides preventively in areas with a history of apple blackrot"
     ]
   },
-  "Apple_Cedar_Apple_Rust":{
+  "Apple_Cedar_Rust":{
     "disease": "Cedar Apple Rust",
     "scientific_name": "Gymnosporangium juniperi-virginianae",
     "symptoms": [
@@ -246,7 +246,7 @@
           "Maintain good plant nutrition and irrigation practices"
         ]
       },
-      "Maize_Cercospora_Leaf_Spot":{
+      "Maize_Cercospora":{
         "disease": "Maize Cercospora Leaf Spot (Gray Leaf Spot)",
         "scientific_name": "Cercospora zeae-maydis",
         "symptoms": [
@@ -272,7 +272,7 @@
           "Use cultural practices such as wide row spacing and appropriate plant density to improve air circulation"
         ]
       },
-     "Orange_Haunglongbing":{
+     "Orange_Citrus_Greening":{
         "disease": "Orange Huanglongbing (Citrus greening)",
         "scientific_name": "Candidatus Liberibacter asiaticus",
         "symptoms": [
@@ -329,7 +329,7 @@
         ]
       },
 
-      "Bell_Pepper_Bacterial_Spot":{
+      "BellPepper_Bacterial_Spot":{
         "disease": "Bell Pepper Bacterial Spot",
         "scientific_name": "Xanthomonas campestris pv. vesicatoria",
         "symptoms": [

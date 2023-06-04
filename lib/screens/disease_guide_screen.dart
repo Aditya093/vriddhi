@@ -23,8 +23,10 @@ class _DiseaseGuideScreenState extends State<DiseaseGuideScreen> {
     });
   }
 
+
   @override
   Widget build(BuildContext context) {
+
     return SafeArea(
       child: Material(
         child: Scaffold(
@@ -65,16 +67,17 @@ class _DiseaseGuideScreenState extends State<DiseaseGuideScreen> {
                   child: ListView.builder(
                     itemBuilder: (BuildContext context, int index) {
                       AllDataList().diseaseListSorting();
-                      final current_disease = displayList[index];
+                      final current_disease = displayList[index].title;
+                      print("Here: $current_disease");
                       return GestureDetector(
                         onTap: (){
-                          // Navigator.pushReplacement('')
-                          // Navigator.push(
-                          //   context,
-                          //   MaterialPageRoute(
-                          //     builder: (context) => DiseaseDetailsScreen(diseaseName: displayList[index].title),
-                          //   ),
-                          // );
+
+                           Navigator.push(
+                             context,
+                             MaterialPageRoute(
+                               builder: (context) => DiseaseDetailsScreen(diseaseName: displayList[index].title),
+                             ),
+                           );
                         },
                         child:Card(
                           color: Color(0xFFCCDBDC),

@@ -39,6 +39,7 @@ class WeatherModel {
     String cityName = weatherData['name'];
     var condition = weatherData['weather'][0]['main'];
     String cond = condition;
+    var condition_id=weatherData['weather'][0]['id'];
     //setting the temperature in provider
     final weatherDataTemp = Provider.of<WeatherDataAll>(context, listen: false);
     final locationData = Provider.of<LocationData>(context, listen: false);
@@ -48,6 +49,7 @@ class WeatherModel {
     weatherDataTemp.setCondition(cond);
     locationData.setLocation(cityName);
     weatherDataTemp.setTemperature(temperature);
+    weatherDataTemp.setCondition_Id(condition_id);
   }
 
 

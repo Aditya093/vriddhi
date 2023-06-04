@@ -1,7 +1,8 @@
 String getWeatherIcon(int condition)
 {
-  String rootPath="assets/images/weather/";
 
+  String rootPath="assets/images/weather/";
+  print('Here: $condition');
   String extension=".json";
 
   if (condition < 300)
