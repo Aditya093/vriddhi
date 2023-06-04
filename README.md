@@ -167,35 +167,54 @@ flask run
 ## Screenshots
 
 <div align="center">
-    <img src="https://github.com/AyushSolanki-17/StaticServer/blob/main/SolutionChallenge/Screenshots/3.jpeg?raw=true" alt="Image 1" width="200" height="412" />
-    <img src="https://github.com/AyushSolanki-17/StaticServer/blob/main/SolutionChallenge/Screenshots/6.jpeg?raw=true" alt="Image 1" width="200" height="412" />
-    <img src="https://github.com/AyushSolanki-17/StaticServer/blob/main/SolutionChallenge/Screenshots/4.jpeg?raw=true" alt="Image 2" width="200" height="412" />
-    <img src="https://github.com/AyushSolanki-17/StaticServer/blob/main/SolutionChallenge/Screenshots/5.jpeg?raw=true" alt="Image 3" width="200" height="412" />
+    <img src="https://github.com/AyushSolanki-17/StaticServer/blob/main/SolutionChallenge/Screenshots/1.jpeg?raw=true" alt="Image 1" width="200" height="412" />
+    <img src="https://github.com/AyushSolanki-17/StaticServer/blob/main/SolutionChallenge/Screenshots/2.jpeg?raw=true" alt="Image 1" width="200" height="412" />
+    <img src="https://github.com/AyushSolanki-17/StaticServer/blob/main/SolutionChallenge/Screenshots/3.jpeg?raw=true" alt="Image 2" width="200" height="412" />
+    <img src="https://github.com/AyushSolanki-17/StaticServer/blob/main/SolutionChallenge/Screenshots/4.jpeg?raw=true" alt="Image 3" width="200" height="412" />
 </div>
 
 
 <div align="center">
-    <img src="https://github.com/AyushSolanki-17/StaticServer/blob/main/SolutionChallenge/Screenshots/7.jpeg?raw=true" alt="Image 2" width="200" height="412" />
-    <img src="https://github.com/AyushSolanki-17/StaticServer/blob/main/SolutionChallenge/Screenshots/1.jpeg?raw=true" alt="Image 2" width="200" height="412" />
-    <img src="https://github.com/AyushSolanki-17/StaticServer/blob/main/SolutionChallenge/Screenshots/8.jpeg?raw=true" alt="Image 3" width="200" height="412" />
-    <img src="https://github.com/AyushSolanki-17/StaticServer/blob/main/SolutionChallenge/Screenshots/9.jpeg?raw=true" alt="Image 2" width="200" height="412" />
+    <img src="https://github.com/AyushSolanki-17/StaticServer/blob/main/SolutionChallenge/Screenshots/5.jpeg?raw=true" alt="Image 2" width="200" height="412" />
+    <img src="https://github.com/AyushSolanki-17/StaticServer/blob/main/SolutionChallenge/Screenshots/6.jpeg?raw=true" alt="Image 2" width="200" height="412" />
+    <img src="https://github.com/AyushSolanki-17/StaticServer/blob/main/SolutionChallenge/Screenshots/7.jpeg?raw=true" alt="Image 3" width="200" height="412" />
+    <img src="https://github.com/AyushSolanki-17/StaticServer/blob/main/SolutionChallenge/Screenshots/8.jpeg?raw=true" alt="Image 2" width="200" height="412" />
 </div>
 
 <div align="center">
-    <img src="https://github.com/AyushSolanki-17/StaticServer/blob/main/SolutionChallenge/Screenshots/11.jpeg?raw=true" alt="Image 1" width="200" height="412" />
-    <img src="https://github.com/AyushSolanki-17/StaticServer/blob/main/SolutionChallenge/Screenshots/newblog.jpeg?raw=true" alt="Image 2" width="200" height="412" />
+    <img src="https://github.com/AyushSolanki-17/StaticServer/blob/main/SolutionChallenge/Screenshots/9.jpeg?raw=true" alt="Image 1" width="200" height="412" />
+    <img src="https://github.com/AyushSolanki-17/StaticServer/blob/main/SolutionChallenge/Screenshots/10.jpeg?raw=true" alt="Image 2" width="200" height="412" />
+    <img src="https://github.com/AyushSolanki-17/StaticServer/blob/main/SolutionChallenge/Screenshots/11.jpeg?raw=true" alt="Image 3" width="200" height="412" />
+    <img src="https://github.com/AyushSolanki-17/StaticServer/blob/main/SolutionChallenge/Screenshots/12.jpeg?raw=true" alt="Image 2" width="200" height="412" />
+</div>
+
+
+<div align="center">
     <img src="https://github.com/AyushSolanki-17/StaticServer/blob/main/SolutionChallenge/Screenshots/13.jpeg?raw=true" alt="Image 3" width="200" height="412" />
-    <img src="https://github.com/AyushSolanki-17/StaticServer/blob/main/SolutionChallenge/Screenshots/14.jpeg?raw=true" alt="Image 2" width="200" height="412" />
-</div>
-
-
-<div align="center">
-    <img src="https://github.com/AyushSolanki-17/StaticServer/blob/main/SolutionChallenge/Screenshots/2.jpeg?raw=true" alt="Image 3" width="200" height="412" />
-    <img src="https://github.com/AyushSolanki-17/StaticServer/blob/main/SolutionChallenge/Screenshots/10.jpeg?raw=true" alt="Image 3" width="200" height="412" />
+    <img src="https://github.com/AyushSolanki-17/StaticServer/blob/main/SolutionChallenge/Screenshots/14.jpeg?raw=true" alt="Image 3" width="200" height="412" />
     <img src="https://github.com/AyushSolanki-17/StaticServer/blob/main/SolutionChallenge/Screenshots/15.jpeg?raw=true" alt="Image 3" width="200" height="412" />
     <img src="https://github.com/AyushSolanki-17/StaticServer/blob/main/SolutionChallenge/Screenshots/16.jpeg?raw=true" alt="Image 3" width="200" height="412" />
 </div>
 
+<div align="center">
+    <img src="https://github.com/AyushSolanki-17/StaticServer/blob/main/SolutionChallenge/Screenshots/17.jpeg?raw=true" alt="Image 3" width="200" height="412" />
+    <img src="https://github.com/AyushSolanki-17/StaticServer/blob/main/SolutionChallenge/Screenshots/18.jpeg?raw=true" alt="Image 3" width="200" height="412" />
+    <img src="https://github.com/AyushSolanki-17/StaticServer/blob/main/SolutionChallenge/Screenshots/19.jpeg?raw=true" alt="Image 3" width="200" height="412" />
+    <img src="https://github.com/AyushSolanki-17/StaticServer/blob/main/SolutionChallenge/Screenshots/20.jpeg?raw=true" alt="Image 3" width="200" height="412" />
+</div>
+
+<div align="center">
+    <img src="https://github.com/AyushSolanki-17/StaticServer/blob/main/SolutionChallenge/Screenshots/21.jpeg?raw=true" alt="Image 3" width="200" height="412" />
+    <img src="https://github.com/AyushSolanki-17/StaticServer/blob/main/SolutionChallenge/Screenshots/22.jpeg?raw=true" alt="Image 3" width="200" height="412" />
+    <img src="https://github.com/AyushSolanki-17/StaticServer/blob/main/SolutionChallenge/Screenshots/23.jpeg?raw=true" alt="Image 3" width="200" height="412" />
+    <img src="https://github.com/AyushSolanki-17/StaticServer/blob/main/SolutionChallenge/Screenshots/24.jpeg?raw=true" alt="Image 3" width="200" height="412" />
+</div>
+<div align="center">
+    <img src="https://github.com/AyushSolanki-17/StaticServer/blob/main/SolutionChallenge/Screenshots/25.jpeg?raw=true" alt="Image 3" width="200" height="412" />
+    <img src="https://github.com/AyushSolanki-17/StaticServer/blob/main/SolutionChallenge/Screenshots/26.jpeg?raw=true" alt="Image 3" width="200" height="412" />
+    <img src="https://github.com/AyushSolanki-17/StaticServer/blob/main/SolutionChallenge/Screenshots/27.jpeg?raw=true" alt="Image 3" width="200" height="412" />
+    <img src="https://github.com/AyushSolanki-17/StaticServer/blob/main/SolutionChallenge/Screenshots/28.jpeg?raw=true" alt="Image 3" width="200" height="412" />
+</div>
 ## Demo Video Link
 
 https://youtu.be/HicF8QaKlUk
