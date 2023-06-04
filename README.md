@@ -199,11 +199,10 @@ https://youtu.be/Bm0T17vbvGM
 
 - More advanced Deep learning models for advanced tasks.
 - More automation in the application.
-- Making Progress Screen More interactive
 
 ## Upcoming Features
 
-- Google Maps to select location.
+- Integrating Google Analytics for increasing the efficiency
+- Increasing the Scalability by the help of Govt Support
 - Trees Planatation Program Guide.
 - Crop History 
-- Focusing on AgriPool feature and building a unique one stop database of Plant related Images.
