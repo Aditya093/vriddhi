@@ -6,13 +6,13 @@ class WeatherDataAll extends ChangeNotifier {
   int _humidity = 0;
   int _rain  = 0;
   String _condition = '';
-
+  int _condition_id= 0;
   int get temperature => _temperature;
   int get humidity=>_humidity;
   int get wind =>_wind;
   int get rain =>_rain;
   String get condition => _condition;
-
+  int get condition_id => _condition_id;
   void setTemperature(int temperature) {
     _temperature = temperature;
     notifyListeners();
@@ -31,6 +31,11 @@ class WeatherDataAll extends ChangeNotifier {
   }
   void setCondition(String cond){
     _condition = cond;
+    notifyListeners();
+  }
+  void setCondition_Id(int id)
+  {
+    _condition_id=id;
     notifyListeners();
   }
 

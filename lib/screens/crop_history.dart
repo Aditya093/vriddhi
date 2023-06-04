@@ -19,7 +19,6 @@ class CropHistory extends StatelessWidget{
             children: const[
                 Padding(padding: EdgeInsets.only(top:8.0)),
                 SizedBox(width:16),
-                HistoryCard()
             ],
           )
         ),

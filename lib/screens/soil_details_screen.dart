@@ -15,6 +15,8 @@ import 'package:path/path.dart';
 import 'package:async/async.dart';
 import 'package:vriddhi_0/url.dart';
 
+import 'crop_predict_screen.dart';
+
 WeatherModel weather = WeatherModel();
 class SoilDetailsScreen extends StatelessWidget {
   static const String id = 'soil_details_screen';
@@ -39,6 +41,8 @@ class _SoilDetailsFormState extends State<SoilDetailsForm> {
   bool _showFields = false; // private variable that decides whether to show more textfields or not.
   File? image;
   String cropName = '';
+  String crop2='';
+  String crop3='';
   String probabilty = '';
   double price = 0.0;
   double prod = 0.0;
@@ -119,6 +123,9 @@ class _SoilDetailsFormState extends State<SoilDetailsForm> {
         cropName = jsonDecode(value)["crop_1"];
         probabilty = jsonDecode(value)["crop_1_probs"];
         probabilty = string2float(probabilty);
+        crop2=jsonDecode(value)["crop_2"];
+        crop3=jsonDecode(value)["crop_3"];
+        print(crop2);
         price = jsonDecode(value)["price"];
         prod = jsonDecode(value)["production"];
         print(cropName);
@@ -321,31 +328,8 @@ class _SoilDetailsFormState extends State<SoilDetailsForm> {
                         onPressed: () async {
                           try {
                             await upload(image!);
-                            if (true)
-                              showModalBottomSheet(
-                                isScrollControlled: true,
-                                context: context,
-                                builder: (context) => SingleChildScrollView(
-                                    child: Container(
-                                  padding: EdgeInsets.only(
-                                      bottom: MediaQuery.of(context)
-                                          .viewInsets
-                                          .bottom),
-                                  child: ResultModal(
-                                    cropName: cropName,
-                                    probability: probabilty,
-                                    price: price,
-                                    production: prod,
-                                  ),
-                                )),
-                              );
-                            else{
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(
-                                  content: Text('Please try again'),
-                                ),
-                              );
-                            }
+                            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => CropPredictScreen(cropName: cropName, production: prod, probability: probabilty, price: price, crop2: crop2, crop3: crop3,)));
+
                           } catch (e) {
                             AlertDialog(
                               title: Text("Error"),

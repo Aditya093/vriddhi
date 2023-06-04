@@ -24,13 +24,7 @@ class BlogInfoScreen extends StatelessWidget {
           // ),
 
           SizedBox(width:16),
-          HistoryCard(
-              cropName: "Wheat",
-              dateStarted:"13/05/2022" ,
-              dateEnded: "13/09/2022",
-              production: 99999.0,
-              price: 10000000.0,
-              area: 567.0),
+
           BlogCard(
             title: 'Barnhardt Cotton’s Circle of Life',
             author: 'Dixit Mehta',
