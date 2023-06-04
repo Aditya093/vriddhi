@@ -215,6 +215,7 @@ flask run
     <img src="https://github.com/AyushSolanki-17/StaticServer/blob/main/SolutionChallenge/Screenshots/27.jpeg?raw=true" alt="Image 3" width="200" height="412" />
     <img src="https://github.com/AyushSolanki-17/StaticServer/blob/main/SolutionChallenge/Screenshots/28.jpeg?raw=true" alt="Image 3" width="200" height="412" />
 </div>
+
 ## Demo Video Link
 
 https://youtu.be/HicF8QaKlUk
