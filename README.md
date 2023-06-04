@@ -139,7 +139,7 @@ Climate Action: 'Vriddhi' can contribute to achieving the goal of climate action
 ### Step-7: Add Keys.json to environment variable named 'GOOGLE_APPLICATION_CREDENTIALS'
 
 ```
-ex[port GOOGLE_APPLICATION_CREDENTIALS=Keys.json
+export GOOGLE_APPLICATION_CREDENTIALS=Keys.json
 ```
 
 ### Step-8: Run following commands to start flask server. Note: you need to configure the requirements shown above.
