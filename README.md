@@ -102,6 +102,8 @@ Climate Action: 'Vriddhi' can contribute to achieving the goal of climate action
 
 
 ## How to run our application?
+There are two ways to run our application 1) Download the apk from here https://drive.google.com/drive/folders/1cJM4ro-4vGkzYbf7kfHXNlvbp1H8pCXE?usp=sharing or 2) Follow below mentioned steps
+
 
 ### Requirements
  - Android Studio or smartphone.
